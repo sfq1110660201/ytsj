@@ -15,11 +15,26 @@ const completePhone = r => require.ensure([], () => r(require('../page/ipManage/
 const testMail = r => require.ensure([], () => r(require('../page/ipManage/children/children/changeMail/testMail')), 'testMail')
 const changeAnotherMail = r => require.ensure([], () => r(require('../page/ipManage/children/children/changeMail/changeAnotherMail')), 'changeAnotherMail')
 const completeMail = r => require.ensure([], () => r(require('../page/ipManage/children/children/changeMail/completeMail')), 'completeMail')
+
 //注册
 const register = r => require.ensure([], () => r(require('../page/register/register')), 'register')
 const registerName = r => require.ensure([], () => r(require('../page/register/children/registerName')), 'registerName')
 const fillInfo = r => require.ensure([], () => r(require('../page/register/children/fillInfo')), 'fillInfo')
 const completeRegister = r => require.ensure([], () => r(require('../page/register/children/completeRegister')), 'completeRegister')
+
+//内容编辑
+const contentEdit = r => require.ensure([], () => r(require('../page/contentEdit/contentEdit')), 'contentEdit')
+const homePage = r => require.ensure([], () => r(require('../page/contentEdit/children/homePage')), 'homePage')
+const publish = r => require.ensure([], () => r(require('../page/contentEdit/children/publish')), 'publish')
+const manageContent = r => require.ensure([], () => r(require('../page/contentEdit/children/manageContent')), 'manageContent')
+const userIncrease = r => require.ensure([], () => r(require('../page/contentEdit/children/userIncrease')), 'userIncrease')
+const contentAnalysis = r => require.ensure([], () => r(require('../page/contentEdit/children/contentAnalysis')), 'contentAnalysis')
+const interestStatistics = r => require.ensure([], () => r(require('../page/contentEdit/children/interestStatistics')), 'interestStatistics')
+const setting = r => require.ensure([], () => r(require('../page/contentEdit/children/setting')), 'setting')
+const vedio = r => require.ensure([], () => r(require('../page/contentEdit/children/children/vedio')), 'vedio')
+const Graphic = r => require.ensure([], () => r(require('../page/contentEdit/children/children/Graphic')), 'Graphic')
+const pictures = r => require.ensure([], () => r(require('../page/contentEdit/children/children/pictures')), 'pictures')
+
 //首页  
 const msite = r => require.ensure([], () => r(require('../page/labelsPage/msite')), 'msite')
 //首页4个子页面
@@ -126,6 +141,43 @@ export default [{
             }, {
                 path: 'completeRegister', //完成注册
                 component: completeRegister,
+            }]
+        },
+        //内容管理
+        {
+            path: '/contentEdit',
+            component: contentEdit,
+            children: [{
+                path: 'homePage', //主页
+                component: homePage,
+            }, {
+                path: 'publish', //发表
+                component: publish,
+                children: [{
+	                path: 'vedio', //视频
+	                component: vedio,
+	            }, {
+	                path: 'Graphic', //图文
+	                component: Graphic,
+	            }, {
+	                path: 'pictures', //图集
+	                component: pictures,
+	            }]
+            }, {
+                path: 'manageContent', //内容管理
+                component: manageContent,
+            }, {
+                path: 'userIncrease', //用户增长
+                component: userIncrease,
+            }, {
+                path: 'contentAnalysis', //内容分析
+                component: contentAnalysis,
+            }, {
+                path: 'interestStatistics', //兴趣分析
+                component: interestStatistics,
+            }, {
+                path: 'setting', //设置
+                component: setting,
             }]
         },
         {

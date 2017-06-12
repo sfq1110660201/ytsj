@@ -1,5 +1,5 @@
 <template>
-	<div >
+	<div :style="{height:het+'px'}">
 		<section class="stepRegister">
 			<div class="firstStep">
 				<div class="step activeBake">1</div>

@@ -17,159 +17,185 @@
 			</div>
 		</section>
 		<!--<div id="mainregiste">-->
-			<section class="mainregiste addingRepair">
-				<div class="mainStep">
-					<span class="stepTitle">主题信息登记</span>
-					<span class="lineGray"></span>
+		<section class="mainregiste addingRepair">
+			<div class="mainStep">
+				<span class="stepTitle">主题信息登记</span>
+				<span class="lineGray"></span>
+			</div>
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>企业名称</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" placeholder="" />
+						<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
+					</div>
 				</div>
-				<form class="form-horizontal" role="form">
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>企业名称</label>
-						<div class="col-lg-10">
-							<input type="text"  class="form-control" placeholder=""/>
-							<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
-						</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>医图号描述</label>
+					<div class="col-lg-2">
+						<select class="form-control">
+							<option>163.com</option>
+							<option>qq.com</option>
+							<option>162.ocm</option>
+						</select>
+						<!--</div>-->
 					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>医图号描述</label>
-						<div class="col-lg-2">
-				    			<select class="form-control">
-									<option >163.com</option>
-									<option >qq.com</option>
-									<option >162.ocm</option>
-								</select>
-				    		<!--</div>-->
-						</div>
-						<div class="col-lg-2">
-				    			<select class="form-control">
-									<option >163.com</option>
-									<option >qq.com</option>
-									<option >162.ocm</option>
-								</select>
-				    		<!--</div>-->
-						</div>
+					<div class="col-lg-2">
+						<select class="form-control">
+							<option>163.com</option>
+							<option>qq.com</option>
+							<option>162.ocm</option>
+						</select>
+						<!--</div>-->
 					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label" > </label>
-						<div class="col-lg-10">
-							<input type="text"  class="form-control" placeholder="详细地址"/>
-							<!--<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>-->
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>营业执照注册号</label>
-						<div class="col-lg-10">
-							<input type="text"  class="form-control" placeholder=""/>
-							<p class="form-control-static explain">输入15营业执照注册号或18位统一社会信用代码</p>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>营业执照扫描件</label>
-						<div class="col-lg-10 uploadImgContent">
-							<img class="ipLogo" src="/static/img/(1)_03.png"/>
-							<div class="upLoadImg">
-								<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
-								<input type="button" class="btn btn-default" value="选择图片"/>
-								<p class="form-control-static warned">*图片不符合要求</p>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>企业LOGO</label>
-						<div class="col-lg-10 uploadImgContent">
-							<img class="ipLogo" src="/static/img/(1)_03.png"/>
-							<div class="upLoadImg">
-								<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
-								<input type="button" class="btn btn-default" value="选择图片"/>
-								<p class="form-control-static warned">*图片不符合要求</p>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>经营范围</label>
-						<div class="col-lg-10">
-							<input type="text"  class="form-control" placeholder=""/>
-							<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>行业领域</label>
-						<div class="col-lg-2">
-				    			<select class="form-control">
-									<option >163.com</option>
-									<option >qq.com</option>
-									<option >162.ocm</option>
-								</select>
-				    		<!--</div>-->
-						</div>
-						
-					</div>
-				</form>
-			</section>
-			<section class="mainregiste">
-				<div class="mainStep">
-					<span class="stepTitle">运营者信息登记</span>
-					<span class="lineGray2"></span>
 				</div>
-				<form class="form-horizontal" role="form">
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>身份证姓名</label>
-						<div class="col-lg-10">
-							<input type="text"  class="form-control" placeholder=""/>
-							<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"> </label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" placeholder="详细地址" />
+						<!--<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>-->
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>营业执照注册号</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" placeholder="" />
+						<p class="form-control-static explain">输入15营业执照注册号或18位统一社会信用代码</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>营业执照扫描件</label>
+					<div class="col-lg-10 uploadImgContent">
+						<img class="ipLogo" src="/static/img/(1)_03.png" />
+						<div class="upLoadImg">
+							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
+							<input type="button" class="btn btn-default" value="选择图片" />
+							<p class="form-control-static warned">*图片不符合要求</p>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>证件号码</label>
-						<div class="col-lg-10">
-							<input type="text"  class="form-control" placeholder=""/>
-							<p class="form-control-static explain"></p>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>企业LOGO</label>
+					<div class="col-lg-10 uploadImgContent">
+						<img class="ipLogo" src="/static/img/(1)_03.png" />
+						<div class="upLoadImg">
+							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
+							<input type="button" class="btn btn-default" value="选择图片" />
+							<p class="form-control-static warned">*图片不符合要求</p>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>证件照片</label>
-						<div class="col-lg-10 uploadImgContent">
-							<img class="ipLogo" src="/static/img/(1)_03.png"/>
-							<div class="upLoadImg">
-								<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
-								<input type="button" class="btn btn-default" value="选择图片"/>
-								<p class="form-control-static warned">*图片不符合要求</p>
-							</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>经营范围</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" placeholder="" />
+						<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>行业领域</label>
+					<div class="col-lg-2">
+						<select class="form-control">
+							<option>163.com</option>
+							<option>qq.com</option>
+							<option>162.ocm</option>
+						</select>
+						<!--</div>-->
+					</div>
+
+				</div>
+			</form>
+		</section>
+		<section class="mainregiste">
+			<div class="mainStep">
+				<span class="stepTitle">运营者信息登记</span>
+				<span class="lineGray2"></span>
+			</div>
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>身份证姓名</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" placeholder="" />
+						<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>证件号码</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" placeholder="" />
+						<p class="form-control-static explain"></p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>证件照片</label>
+					<div class="col-lg-10 uploadImgContent">
+						<img class="ipLogo" src="/static/img/(1)_03.png" />
+						<div class="upLoadImg">
+							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
+							<input type="button" class="btn btn-default" value="选择图片" />
+							<p class="form-control-static warned">*图片不符合要求</p>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>手机号码</label>
-						<div class="col-lg-10">
-							<input type="text"  class="form-control" placeholder=""/>
-							<p class="form-control-static explain"></p>
-						</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>手机号码</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" placeholder="" />
+						<p class="form-control-static explain"></p>
 					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label" ><span class="roundLight">●&nbsp;</span>联系邮箱</label>
-						<div class="col-lg-10">
-							<input type="text"  class="form-control" placeholder=""/>
-							<p class="form-control-static agreement"><input type="checkbox" name="" /><router-link to=""  class="toAgreeMent">&nbsp;&nbsp;同意《医图视界链健康数据链AI平台》</router-link></p>
-						</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>联系邮箱</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" placeholder="" />
+						<p class="form-control-static agreement"><input type="checkbox" name="" />
+							<router-link to="" class="toAgreeMent">&nbsp;&nbsp;同意《医图视界链健康数据链AI平台》</router-link>
+						</p>
 					</div>
-					<p class="next">
-						<router-link to="/register/fillInfo" tag='li' class="tagli">下一步</router-link>
-					</p>
-				</form>
-			</section>
-			
+				</div>
+				<p class="next">
+					<router-link to="" tag='li' class="tagli" @click.native="goCheck">提交审核</router-link>
+				</p>
+			</form>
+		</section>
+		<!--跳转模态窗-->
+		<section class="registerSucceed" :style="{width: modelWid+'px', height: modelHet +'px'}" v-if="isModelShow">
+			<div class="goPageWindow box-shadow">
+				<div class="lineOne">
+					<img class="checkRight" src="/static/img/636574c6e136a799b7309a525894222.png"/>
+					注册成功
+				</div>
+				<p>您已经成功注册了医图数据管理平台，&nbsp;请耐心等待系统审核</p>
+				<p class="explain">系统将在<span class="explain">5</span>秒后自动转跳至用户中心，如果没有请点击<router-link to="">手动跳转</router-link></p>
+			</div>
+		</section>
 	</div>
 </template>
 
 <script>
 	export default {
 		data() {
-				return {
-
-				}
-			},
-			components: {
-
+			return {
+				isModelShow:false,
+				modelWid:0,
+				modelHet:0,
 			}
+		},
+		mounted() {
+			this.$nextTick(function() {
+				this.modelWid = window.screen.availWidth;
+				this.modelHet = window.screen.availHeight;
+
+			})
+		},
+		components: {
+
+		},
+		methods:{
+			goCheck(){
+				this.isModelShow=true
+			}
+		}
 
 	}
 </script>
@@ -207,13 +233,18 @@
 			left: 640px;
 		}
 	}
-	#mainregiste{
+	
+	#mainregiste {
 		overflow-y: scroll;
 		top: 120px;
 		width: 915px;
 		margin: 0 auto;
 	}
-	.addingRepair{padding-top: 120px;}
+	
+	.addingRepair {
+		padding-top: 120px;
+	}
+	
 	.mainregiste {
 		/*position: relative;*/
 		top: 120px;
@@ -223,34 +254,72 @@
 		/*border: 1px solid #C7C7C7;*/
 		/*background: #fff;*/
 		margin: 0 auto;
-		.mainStep{
+		.mainStep {
 			overflow: hidden;
-			margin-bottom:40px;
-			span{
+			margin-bottom: 40px;
+			span {
 				float: left;
 			}
 		}
-		.stepTitle{
+		.stepTitle {
 			border-bottom: 2px solid #4781ea;
 			padding-bottom: 10px;
 			font-size: 20px;
 		}
-		.lineGray{
+		.lineGray {
 			border-bottom: 2px solid #C7C7C7;
 			height: 40px;
-    		width: 792px;
+			width: 792px;
 		}
-		.lineGray2{
+		.lineGray2 {
 			border-bottom: 2px solid #C7C7C7;
 			height: 40px;
-    		width: 772px;
+			width: 772px;
 		}
-		
+	} 
+	.registerSucceed{
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: rgba(255,255,255,.8);
+		.goPageWindow{
+			width: 550px;
+			height: 435px;
+			background: #fff; 
+			position: absolute;
+			left: 50%;
+			top: 40%;
+			margin-left: -275px;
+			margin-top: -200px;
+			border-radius: 5px;
+			padding: 25px;
+			p{
+				text-align: center;
+				margin-top: 20px;
+			}
+			.lineOne{
+				color: #1e67ea;
+				font-size: 25px ;
+				text-align: center;
+				margin-top: 150px;
+				.checkRight{
+					width: 30px;
+					vertical-align: middle;
+				}
+			}
+			
+		}
+		.box-shadow{  
+  			-webkit-box-shadow:0 0 20px #767879;  
+  			-moz-box-shadow:0 0 20px #767879;  
+  			box-shadow:0 0 20px #767879;  
+		} 
 	}
-
-	.lineLight{
+	
+	.lineLight {
 		border-bottom: 2px solid #4781ea!important;
 	}
+	
 	.activeBake {
 		color: #4781ea!important;
 		border: 2px solid #4781ea!important;
@@ -259,11 +328,12 @@
 	.activeColor {
 		color: #4781ea!important;
 	}
-	.roundLight{
+	
+	.roundLight {
 		color: #4781ea!important;
 		/*font-size: 25px;*/
-		
 	}
+	
 	.step {
 		font-size: 20px;
 		color: #C7C7C7;
@@ -282,49 +352,66 @@
 		margin-top: 10px;
 		padding-left: 5px;
 	}
-	input::-webkit-input-placeholder{
+	
+	input::-webkit-input-placeholder {
 		color: #C7C7C7
 	}
-	input:-moz-placeholder{
+	
+	input:-moz-placeholder {
 		color: #C7C7C7
 	}
-	input::-moz-placeholder{
+	
+	input::-moz-placeholder {
 		color: #C7C7C7
 	}
+	
 	input:-ms-input-placeholder {
 		color: #C7C7C7
 	}
-	.form-group{
+	
+	.form-group {
 		margin-bottom: 30px;
-		.control-label{
+		.control-label {
 			text-align: left;
 		}
 	}
-	.warned{color: #f8534c;}
-	.explain{color: #C7C7C7;}
-	.agreement{
-		
+	
+	.warned {
+		color: #f8534c;
+	}
+	
+	.explain {
+		color: #C7C7C7;
+	}
+	
+	.agreement {
 		margin-top: 30px;
-		.toAgreeMent{
+		.toAgreeMent {
 			color: #4781ea;
 		}
-		
 	}
-	.uploadImgContent{overflow: hidden;}
-	.ipLogo{
+	
+	.uploadImgContent {
+		overflow: hidden;
+	}
+	
+	.ipLogo {
 		float: left;
 		width: 133px;
 		height: 133px;
 	}
-	.upLoadImg{
+	
+	.upLoadImg {
 		float: left;
 		margin-left: 15px;
 	}
-	.upLoadImgDescription{
+	
+	.upLoadImgDescription {
 		margin-bottom: 77px;
 		color: #C7C7C7;
 	}
-	.next{
+	
+	.next {
 		/*position: relative;*/
 		/*top: 165px;*/
 		height: 50px;
@@ -334,7 +421,7 @@
 		border: 2px solid #4781ea;
 		margin: 50px auto 100px;
 		/*margin-bottom: 100px;*/
-		.tagli{
+		.tagli {
 			font-size: 25px;
 			color: #4781ea;
 		}

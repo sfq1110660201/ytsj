@@ -1,7 +1,8 @@
  <template>
   	<div class="register">
         <ul class="registerHeader">
-        	<img class="logoImg" src="/static/img/logo2.png"/>
+        	<img class="logoImg" src="/static/img/logo.png"/>
+        	<!--<img class="logoImg2" src="../../../static/img/logo1.png"/>-->
         	<li class="logRegister">注册</li>
         	<li class="logRegister">登录</li>
         </ul>
@@ -42,7 +43,7 @@
    		/*overflow: hidden;*/
    		.registerHeader{
    			.logoImg{
-   				width: 80px;
+   				width: 200px;
    			}
    			.logRegister{
    				float: right;
