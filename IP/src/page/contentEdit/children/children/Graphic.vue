@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="editTitle">
-			<input class="editTitleIpt" type="text" placeholder="标题  （5-30字）" style="display: block;height: 75px;width: 100%;font-size: 25px;padding-left: 25px;"/>
+			<input class="editTitleIpt" maxlength="30" type="text" placeholder="标题  （5-30字）" style="display: block;height: 75px;width: 100%;font-size: 25px;padding-left: 25px;"/>
 		</div>
 		<div id="editor-container">
 			<div id="editor-trigger">
@@ -36,8 +36,22 @@
 			</div>-->
 		</form>
 		<p class="publishTitle">来源内容</p>
-		<div><input type="radio" name="type" id="" value="原创" />原创</div>
-		<div><input type="radio" name="type" id="" value="转载" />转载</div>
+		<div class="radioIpt"><input type="radio" name="type" id="" value="原创" />&nbsp;原创</div>
+		<div class="radioIpt"><input type="radio" name="type" id="" value="转载" />&nbsp;转载</div>
+		<form class="form-horizontal" role="form">
+			<div class="form-group marginRepair">
+				<!--<label class="col-md-2 control-label"> </label>-->
+				<div class="col-md-2 right">
+					<input type="button" class="btn btn-default form-control right" value="取消"/>
+				</div>
+				<div class="col-md-2 right">
+					<input type="button" class="btn btn-default form-control right" value="提交审核"/>
+				</div>
+				<div class="col-md-2 right">
+					<input type="button" class="btn btn-default form-control right" value="保存"/>
+				</div>
+			</div>
+		</form>
 	</div>
 </template>
 
@@ -78,7 +92,7 @@
         height: 564px;
     }
     .publishTitle{
-    	padding: 30px 0 25px 0;
+    	padding: 25px 0 20px 0;
     }
     .uploadImgContent{overflow: hidden;}
 	.ipLogo{
@@ -98,4 +112,10 @@
 	.text_left{
 		text-align: left!important;
 	}
+	.form-group{margin-bottom: 0;}
+	.radioIpt{
+		margin-bottom: 20px;
+		font-size: 20px;
+	}
+	.right{float: right;}
 </style>

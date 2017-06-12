@@ -19,8 +19,8 @@
         data(){
             return{
                 het:0,
-                isActive1:false,
-                isActive2:true,
+                isActive1:true,
+                isActive2:false,
                 isActive3:false,
             }
         },
@@ -55,7 +55,10 @@
   
 <style lang="scss" scoped>
    	.publishPage{
+   		/*overflow: hidden;*/
+   		/*width: 960px;*/
    		ul{
+   			width: 945px;
    			li{
    				border-radius: 8px;
    				.items{

@@ -12,7 +12,7 @@
         	<section id="editPart">
         		<div class="editOperate left">
         			<router-link to="/contentEdit/homePage" class="editItem" tag="li" >●&nbsp;主页</router-link>
-					<router-link to="/contentEdit/publish" class="editItem" tag="li" >●&nbsp;发表</router-link>
+					<router-link to="/contentEdit/publish/Graphic" class="editItem" tag="li" >●&nbsp;发表</router-link>
         			<div class="editItem">
         				●&nbsp;管理
         				<router-link to="" class="secondaryItem" tag="li" >内容管理</router-link>
@@ -124,6 +124,7 @@
    				.editContent{
    					width: 1030px;
    					padding-left: 70px;
+   					padding-bottom: 100px;
    				}
    			}
    		}

@@ -54,7 +54,7 @@
 			},
 			mounted() {
 				this.$nextTick(function() {
-					this.het = window.screen.availHeight-215; //屏幕可视区域高	
+					this.het = window.screen.availHeight-115; //屏幕可视区域高	
 				})
 			},
 			components: {
