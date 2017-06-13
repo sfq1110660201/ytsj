@@ -24,15 +24,15 @@
 			</div>
 			<form class="form-horizontal" role="form">
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>企业名称</label>
-					<div class="col-lg-10">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>企业名称</label>
+					<div class="col-sm-10 col-xs-10">
 						<input type="text" class="form-control" placeholder="" />
 						<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>医图号描述</label>
-					<div class="col-lg-2">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>医图号描述</label>
+					<div class="col-sm-2 col-xs-2">
 						<select class="form-control">
 							<option>163.com</option>
 							<option>qq.com</option>
@@ -40,7 +40,7 @@
 						</select>
 						<!--</div>-->
 					</div>
-					<div class="col-lg-2">
+					<div class="col-sm-2 col-xs-2">
 						<select class="form-control">
 							<option>163.com</option>
 							<option>qq.com</option>
@@ -50,22 +50,22 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2 control-label"> </label>
-					<div class="col-lg-10">
+					<label class="col-sm-2 col-xs-2 control-label"> </label>
+					<div class="col-sm-10 col-xs-10">
 						<input type="text" class="form-control" placeholder="详细地址" />
 						<!--<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>-->
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>营业执照注册号</label>
-					<div class="col-lg-10">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>营业执照注册号</label>
+					<div class="col-sm-10 col-xs-10">
 						<input type="text" class="form-control" placeholder="" />
 						<p class="form-control-static explain">输入15营业执照注册号或18位统一社会信用代码</p>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>营业执照扫描件</label>
-					<div class="col-lg-10 uploadImgContent">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>营业执照扫描件</label>
+					<div class="col-sm-10 col-xs-10 uploadImgContent">
 						<img class="ipLogo" src="/static/img/(1)_03.png" />
 						<div class="upLoadImg">
 							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
@@ -75,8 +75,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>企业LOGO</label>
-					<div class="col-lg-10 uploadImgContent">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>企业LOGO</label>
+					<div class="col-sm-10 col-xs-10 uploadImgContent">
 						<img class="ipLogo" src="/static/img/(1)_03.png" />
 						<div class="upLoadImg">
 							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
@@ -86,15 +86,15 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>经营范围</label>
-					<div class="col-lg-10">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>经营范围</label>
+					<div class="col-sm-10 col-xs-10">
 						<input type="text" class="form-control" placeholder="" />
 						<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>行业领域</label>
-					<div class="col-lg-2">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>行业领域</label>
+					<div class="col-sm-2 col-xs-2">
 						<select class="form-control">
 							<option>163.com</option>
 							<option>qq.com</option>
@@ -113,22 +113,22 @@
 			</div>
 			<form class="form-horizontal" role="form">
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>身份证姓名</label>
-					<div class="col-lg-10">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>身份证姓名</label>
+					<div class="col-sm-10 col-xs-10">
 						<input type="text" class="form-control" placeholder="" />
 						<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>证件号码</label>
-					<div class="col-lg-10">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>证件号码</label>
+					<div class="col-sm-10 col-xs-10">
 						<input type="text" class="form-control" placeholder="" />
 						<p class="form-control-static explain"></p>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>证件照片</label>
-					<div class="col-lg-10 uploadImgContent">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>证件照片</label>
+					<div class="col-sm-10 col-xs-10 uploadImgContent">
 						<img class="ipLogo" src="/static/img/(1)_03.png" />
 						<div class="upLoadImg">
 							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
@@ -138,15 +138,15 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>手机号码</label>
-					<div class="col-lg-10">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>手机号码</label>
+					<div class="col-sm-10 col-xs-10">
 						<input type="text" class="form-control" placeholder="" />
 						<p class="form-control-static explain"></p>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2 control-label"><span class="roundLight">●&nbsp;</span>联系邮箱</label>
-					<div class="col-lg-10">
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>联系邮箱</label>
+					<div class="col-sm-10 col-xs-10">
 						<input type="text" class="form-control" placeholder="" />
 						<p class="form-control-static agreement"><input type="checkbox" name="" />
 							<router-link to="" class="toAgreeMent">&nbsp;&nbsp;同意《医图视界链健康数据链AI平台》</router-link>

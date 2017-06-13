@@ -34,6 +34,7 @@
   
 <style lang="scss" scoped>
    	.register{
+   		min-width: 1200px;
    		background: #dbdce0;
    		background: -webkit-radial-gradient(circle, #fff,#dbdce0); /* Safari 5.1 - 6.0 */
 		background: -o-radial-gradient(circle,  #fff,#dbdce0); /* Opera 11.6 - 12.0 */

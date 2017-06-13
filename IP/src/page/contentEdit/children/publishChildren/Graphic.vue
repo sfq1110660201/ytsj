@@ -14,7 +14,7 @@
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
 				<!--<label class="col-lg-2 control-label text_left" >医图号logo:</label>-->
-				<div class="col-lg-8 uploadImgContent">
+				<div class="col-sm-8 col-xs-8 uploadImgContent">
 					<img class="ipLogo" src="/static/img/(1)_03.png"/>
 					<div class="upLoadImg">
 						<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
@@ -23,32 +23,21 @@
 					</div>
 				</div>
 			</div>
-			
-			
-			<!--<div class="form-group marginRepair">
-				<label class="col-md-2 control-label"> </label>
-				<div class="col-md-2">
-					<input type="button" class="btn btn-default form-control paddingRepair" value="提交"/>
-				</div>
-				<div class="col-md-2">
-					<input type="button" class="btn btn-default form-control paddingRepair" value="返回"/>
-				</div>
-			</div>-->
 		</form>
 		<p class="publishTitle">来源内容</p>
-		<div class="radioIpt"><input type="radio" name="type" id="" value="原创" />&nbsp;原创</div>
-		<div class="radioIpt"><input type="radio" name="type" id="" value="转载" />&nbsp;转载</div>
+		<div class="radioIpt"><input type="radio" name="type"  value="原创" />&nbsp;原创</div>
+		<div class="radioIpt"><input type="radio" name="type"  value="转载" />&nbsp;转载</div>
 		<form class="form-horizontal" role="form">
 			<div class="form-group marginRepair">
 				<!--<label class="col-md-2 control-label"> </label>-->
-				<div class="col-md-2 right">
+				<div class="col-sm-2 col-xs-2 right">
 					<input type="button" class="btn btn-default form-control right" value="取消"/>
 				</div>
-				<div class="col-md-2 right">
+				<div class="col-sm-2 col-xs-2 right">
 					<input type="button" class="btn btn-default form-control right" value="提交审核"/>
 				</div>
-				<div class="col-md-2 right">
-					<input type="button" class="btn btn-default form-control right" value="保存"/>
+				<div class="col-sm-2 col-xs-2 right">
+					<input type="button" class="btn btn-default form-control right" @click="save" value="保存"/>
 				</div>
 			</div>
 		</form>
@@ -77,6 +66,11 @@
 		},
         components: {
            
+        },
+        methods:{
+        	save(){
+        		//console.log(this.editorContent)
+        	}
         }
         
     }
@@ -117,5 +111,5 @@
 		margin-bottom: 20px;
 		font-size: 20px;
 	}
-	.right{float: right;}
+	/*.right{float: right;}*/
 </style>

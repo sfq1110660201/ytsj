@@ -2,22 +2,22 @@
 	<div style="">
 		<section class="form-horizontal bottomLine" role="form">
 			<div class="form-group">
-				<label class="col-lg-2 control-label" for="password4">用户:</label>
-				<div class="col-lg-10 uploadImgContent">
+				<p class="col-sm-2 col-xs-2 textLeft control-label" for="password4">用户:</p>
+				<div class="col-sm-10 col-xs-10 uploadImgContent">
 					杭州妙妈
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-lg-2 control-label" for="password4">医图ID:</label>
-				<div class="col-lg-10 uploadImgContent">
+				<p class="col-sm-2 col-xs-2 textLeft control-label" for="password4">医图ID:</p>
+				<div class="col-sm-10 col-xs-10 uploadImgContent">
 					211324564789
 				</div>
 			</div>
 		</section>
 		<section class="form-horizontal" role="form">
 			<div class="form-group">
-				<label class="col-lg-2 control-label" for="password4">企业LOGO:</label>
-				<div class="col-lg-10 uploadImgContent">
+				<p class="col-sm-2 col-xs-2 textLeft control-label" for="password4">企业LOGO:</p>
+				<div class="col-sm-10 col-xs-10 uploadImgContent">
 					<img class="ipLogo" src="/static/img/(1)_03.png"/>
 					<div class="upLoadImg">
 						<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
@@ -27,8 +27,8 @@
 				</div>
 			</div>
 			<div class="form-group marginRepair">
-				<label class="col-md-2 control-label"> </label>
-				<div class="col-md-2">
+				<p class="col-sm-2 col-xs-2 textLeft control-label"> </p>
+				<div class="col-sm-2 col-xs-2">
 					<input type="button" class="btn btn-default form-control colorRepair" value="保存"/>
 				</div>
 			</div>

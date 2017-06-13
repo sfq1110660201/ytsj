@@ -11,21 +11,22 @@
         	</header>
         	<section id="editPart">
         		<div class="editOperate left">
-        			<router-link to="/contentEdit/homePage" class="editItem" tag="li" >●&nbsp;主页</router-link>
-					<router-link to="/contentEdit/publish/Graphic" class="editItem" tag="li" >●&nbsp;发表</router-link>
+        			<router-link to="/contentEdit/homePage" class="editItem" tag="li" :class="{activeColor:$route.path.indexOf('homePage') !== -1}">●&nbsp;主页</router-link>
+					<router-link to="/contentEdit/publish/Graphic" class="editItem" tag="li" :class="{activeColor:$route.path.indexOf('publish') !== -1}">●&nbsp;发表</router-link>
         			<div class="editItem">
         				●&nbsp;管理
-        				<router-link to="" class="secondaryItem" tag="li" >内容管理</router-link>
+        				<router-link to="/contentEdit/manageContent/listAll" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('manageContent') !== -1}">内容管理</router-link>
         			</div>
         			<div class="editItem">
         				●&nbsp;数据统计
-        				<router-link to="" class="secondaryItem" tag="li" >用户增长</router-link>
+        				<router-link to="/contentEdit/userIncrease/newAdding" class="secondaryItem" tag="li" >用户增长</router-link>
         				<router-link to="" class="secondaryItem" tag="li" >内容分析</router-link>
         				<router-link to="" class="secondaryItem" tag="li" >兴趣统计</router-link>
+        				<router-link to="" class="secondaryItem" tag="li" >用户属性</router-link>
         			</div>
         			<div class="editItem">
         				●&nbsp;设置
-        				<router-link to="" class="secondaryItem" tag="li" >医图号信息</router-link>
+        				<router-link to="/contentEdit/setting" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('setting') !== -1}">医图号信息</router-link>
         			</div>
         		</div>
         		<div class="editContent left">

@@ -31,9 +31,20 @@ const userIncrease = r => require.ensure([], () => r(require('../page/contentEdi
 const contentAnalysis = r => require.ensure([], () => r(require('../page/contentEdit/children/contentAnalysis')), 'contentAnalysis')
 const interestStatistics = r => require.ensure([], () => r(require('../page/contentEdit/children/interestStatistics')), 'interestStatistics')
 const setting = r => require.ensure([], () => r(require('../page/contentEdit/children/setting')), 'setting')
-const vedio = r => require.ensure([], () => r(require('../page/contentEdit/children/children/vedio')), 'vedio')
-const Graphic = r => require.ensure([], () => r(require('../page/contentEdit/children/children/Graphic')), 'Graphic')
-const pictures = r => require.ensure([], () => r(require('../page/contentEdit/children/children/pictures')), 'pictures')
+//发表下页面子模块
+const vedio = r => require.ensure([], () => r(require('../page/contentEdit/children/publishChildren/vedio')), 'vedio')
+const Graphic = r => require.ensure([], () => r(require('../page/contentEdit/children/publishChildren/Graphic')), 'Graphic')
+const pictures = r => require.ensure([], () => r(require('../page/contentEdit/children/publishChildren/pictures')), 'pictures')
+//内容管理下页面子模块
+const listAll = r => require.ensure([], () => r(require('../page/contentEdit/children/manageContentChildren/listAll')), 'listAll')
+const listGraphic = r => require.ensure([], () => r(require('../page/contentEdit/children/manageContentChildren/listGraphic')), 'listGraphic')
+const listVedio = r => require.ensure([], () => r(require('../page/contentEdit/children/manageContentChildren/listVedio')), 'listVedio')
+const listPictures = r => require.ensure([], () => r(require('../page/contentEdit/children/manageContentChildren/listPictures')), 'listPictures')
+//用户增长下页面子模块
+const newAdding = r => require.ensure([], () => r(require('../page/contentEdit/children/userIncreaseChildren/newAdding')), 'newAdding')//新增人数
+const cancelCaring = r => require.ensure([], () => r(require('../page/contentEdit/children/userIncreaseChildren/cancelCaring')), 'cancelCaring')//取消关注人数
+const addedCount = r => require.ensure([], () => r(require('../page/contentEdit/children/userIncreaseChildren/addedCount')), 'addedCount')//净增人数
+const accumulative = r => require.ensure([], () => r(require('../page/contentEdit/children/userIncreaseChildren/accumulative')), 'accumulative')//累计人数
 
 //首页  
 const msite = r => require.ensure([], () => r(require('../page/labelsPage/msite')), 'msite')
@@ -164,11 +175,37 @@ export default [{
 	                component: pictures,
 	            }]
             }, {
-                path: 'manageContent', //内容管理
+                path: 'manageContent', //
                 component: manageContent,
+                children: [{
+	                path: 'listAll', //全部
+	                component: listAll,
+	            }, {
+	                path: 'listGraphic', //图文
+	                component: listGraphic,
+	            }, {
+	                path: 'listVedio', //视频
+	                component: listVedio,
+	            }, {
+	                path: 'listPictures', //图集
+	                component: listPictures,
+	            }]
             }, {
-                path: 'userIncrease', //用户增长
+                path: 'userIncrease', //用户增长//newAdding，cancelCaring，addedCount,accumulative
                 component: userIncrease,
+                 children: [{
+	                path: 'newAdding', //新增
+	                component: newAdding,
+	            }, {
+	                path: 'cancelCaring', //取关
+	                component: cancelCaring,
+	            }, {
+	                path: 'addedCount', //净增
+	                component: addedCount,
+	            }, {
+	                path: 'accumulative', //累计
+	                component: accumulative,
+	            }]
             }, {
                 path: 'contentAnalysis', //内容分析
                 component: contentAnalysis,

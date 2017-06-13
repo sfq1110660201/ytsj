@@ -81,10 +81,10 @@ html,body{
     float: left;
 }
 .center{
-    text-align: center;
+    text-align: center!important;
 }
 .right{
-    float: right;
+    float: right!important;
 }
 
 .hide{
@@ -104,3 +104,20 @@ html,body{
 .paddingTop{
     padding-top: 16px;
 }
+.warned{color: #f8534c;}
+.uploadImgContent{overflow: hidden;}
+.ipLogo{
+    float: left;
+    width: 133px;
+    height: 133px;
+}
+.upLoadImg{
+    float: left;
+    margin-left: 15px;
+}
+.upLoadImgDescription{
+    margin-bottom: 77px;
+    color: #b0b0b0;
+}
+.textLeft{text-align: left!important;}
+.activeColor{color: #6dc5a3!important;}
