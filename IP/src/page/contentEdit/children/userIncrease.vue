@@ -24,10 +24,10 @@
         	</div>
         </div>
         <section class="dataTabs">
-        	<router-link to="/contentEdit/userIncrease/newAdding" tag='li' class="dataTab border_R darkBak" >新增人数</router-link>
-        	<router-link to="/contentEdit/userIncrease/cancelCaring" tag='li' class="dataTab border_R " >取消关注人数</router-link>
-        	<router-link to="/contentEdit/userIncrease/addedCount" tag='li' class="dataTab border_R " >净增人数</router-link>
-        	<router-link to="/contentEdit/userIncrease/accumulative" tag='li' class="dataTab border_R " >累计人数</router-link>
+        	<router-link to="/contentEdit/userIncrease/newAdding" tag='li' class="dataTab border_R " :class="{darkBak:$route.path.indexOf('newAdding') !== -1}">新增人数</router-link>
+        	<router-link to="/contentEdit/userIncrease/cancelCaring" tag='li' class="dataTab border_R " :class="{darkBak:$route.path.indexOf('cancelCaring') !== -1}">取消关注人数</router-link>
+        	<router-link to="/contentEdit/userIncrease/addedCount" tag='li' class="dataTab border_R " :class="{darkBak:$route.path.indexOf('addedCount') !== -1}">净增人数</router-link>
+        	<router-link to="/contentEdit/userIncrease/accumulative" tag='li' class="dataTab border_R " :class="{darkBak:$route.path.indexOf('accumulative') !== -1}">累计人数</router-link>
         </section>
         <section>
         	<router-view></router-view>

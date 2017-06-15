@@ -2,157 +2,234 @@
 	<div id="">
 		<div class="chartsOption borR">
 			<select class="left selectRepair borR">
+				<option value="">最近10天</option>
 				<option value="">最近30天</option>
-				<option value="">最近30天</option>
-				<option value="">最近30天</option>
-				<option value="">最近30天</option>
+				<option value="">最近90天</option>
+				<option value="">最近180天</option>
 			</select>
 			<div class="dateContainer left borR">
-				<input type="date"  class="dateIpt"/>至
-				<input type="date"  class="dateIpt"/>
+				<input type="date" class="dateIpt" value="" />至
+				<input type="date" class="dateIpt" />
 				<button class="chartsSure">确定</button>
 			</div>
 		</div>
 		<div id="charts">
-		    <div id="main"  :style="{width:'960px',height:'600px'}"></div>
+			<div id="main" :style="{width:'960px',height:'600px'}"></div>
 		</div>
+		<ul class="dataRange">
+			<div class="dataRangeHead">
+				<div class="dateContainer left borR">
+					<input type="date" class="dateIpt " value="" />至
+					<input type="date" class="dateIpt" />
+					<button class="chartsSure">确定</button>
+				</div>
+			</div>
+			
+			<div class="tableContent">
+				<table class="table table-condensed">
+			      <thead>
+			        <tr>
+			          <th>时间</th>
+			          <th>新关注人数</th>
+			          <th>取消关注人数</th>
+			          <th>净关注人数</th>
+			          <th>累计关注人数</th>
+			        </tr>
+			      </thead>
+			      <tbody>
+			        <tr>
+			          <td>2017-06-15</td>
+			          <td>Mark</td>
+			          <td>Otto</td>
+			          <td>@mdo</td>
+			          <td>@mdo</td>
+			        </tr>
+			        <tr>
+			          <td>2012-12-12</td>
+			          <td>Mark</td>
+			          <td>Otto</td>
+			          <td>@mdo</td>
+			          <td>@mdo</td>
+			        </tr>
+			      </tbody>
+			   	</table>
+			</div>
+			<ul class="pagination right">
+					<li class="btn btn-default btn-sm kakCol" >◀</li>
+					<li class="pageNumber">&nbsp;1/3&nbsp;</li>
+					<li class="btn btn-default btn-sm kakCol">▶</li>
+					<input type="text" maxlength="2"  class="pageNumberIpt"/>
+					<li class="btn btn-default btn-sm">转跳</li>
+			</ul>
+		</ul>
 	</div>
 </template>
 
 <script>
 	import echarts from "echarts"
-	export default{
-        data (){
-            return {
-                msg:[5, 20, 36, 10, 10, 20]
-                
-            }
-        },
-        mounted (){
-            var myChart = echarts.init(document.getElementById('main'));
-            myChart.setOption({
-                title: {
-        text: '堆叠区域图'
-    },
-    tooltip : {
-        trigger: 'axis',
-        axisPointer: {
-            type: 'cross',
-            label: {
-                backgroundColor: '#6a7985'
-            }
-        }
-    },
-    legend: {
-        data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
-    },
-    toolbox: {
-        feature: {
-            saveAsImage: {}
-        }
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis : [
-        {
-            type : 'category',
-            boundaryGap : false,
-            data : ['周一','周二','周三','周四','周五','周六','周日']
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value'
-        }
-    ],
-    series : [
-        {
-            name:'邮件营销',
-            type:'line',
-            stack: '总量',
-            areaStyle: {normal: {}},
-            data:[120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-            name:'联盟广告',
-            type:'line',
-            stack: '总量',
-            areaStyle: {normal: {}},
-            data:[220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-            name:'视频广告',
-            type:'line',
-            stack: '总量',
-            areaStyle: {normal: {}},
-            data:[150, 232, 201, 154, 190, 330, 410]
-        },
-        {
-            name:'直接访问',
-            type:'line',
-            stack: '总量',
-            areaStyle: {normal: {}},
-            data:[320, 332, 301, 334, 390, 330, 320]
-        },
-        {
-            name:'搜索引擎',
-            type:'line',
-            stack: '总量',
-            label: {
-                normal: {
-                    show: true,
-                    position: 'top'
-                }
-            },
-            areaStyle: {normal: {}},
-            data:[820, 932, 901, 934, 1290, 1330, 1320]
-        }
-    ]
-            });
-        }
+	export default {
+		data() {
+			return {
 
-    }
+			}
+		},
+		mounted() {
+			var myChart = echarts.init(document.getElementById('main'));
+			myChart.setOption({
+				title: {
+					text: '新增人数折线图'
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'cross',
+						label: {
+							backgroundColor: '#6a7985'
+						}
+					}
+				},
+				legend: {
+					data: ['新关注人数-全部']
+				},
+				toolbox: {
+					feature: {
+						saveAsImage: {}
+					}
+				},
+				grid: {
+					left: '0%',
+					right: '4%',
+					bottom: '4%',
+					containLabel: true,//控制图表大小
+				},
+				xAxis: [{
+					type: 'category',
+					boundaryGap: false,//控制周一距离0点位置
+					data: ['2012-12-11','2012-12-12', '2012-12-13', '2012-12-14', '2012-12-15', '2012-12-16', '2012-12-17', '2012-12-18', '2012-12-19', '2012-12-20']
+				}],
+				yAxis: [{
+					type: 'value'
+				}],
+				label: {
+                normal: {//配置这点数值样式
+	                    textStyle: {
+	                        color: 'rgba(0, 0, 0, 0.8)'
+	                    }
+	                }
+	            },
+				itemStyle: {//配置图表样式
+	                normal: {
+	                    color: '#b2d8c6',
+	                    shadowBlur: 600,
+//	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+	                }
+	           },
+				series: [
+					{
+						name: '新关注人数-全部',
+						type: 'line',
+						stack: '总量',
+						label: {
+							normal: {//设置这点是否显示数字
+								show: true,
+								position: 'top'
+							}
+						},
+						areaStyle: { normal: {} },
+						data: [231, 290, 130, 1320,932, 901, 934, 1290, 1330, 1320]
+					}
+				]
+			});
+		}
+
+	}
 </script>
 
 <style lang="scss" scoped>
-	.chartsOption{
+	.chartsOption {
 		/*height: 45px;*/
 		overflow: hidden;
 		background: #f4f5f9;
-		padding:5px 0;
-		.selectRepair,.dateIpt{
+		padding: 5px 0;
+		.selectRepair,
+		.dateIpt {
 			height: 40px;
 			background: #f4f5f9;
 			color: #777;
-		}
-		.dateContainer{
-			
-			padding-right: 10px;
-			.dateIpt{
-				display: inline-block;
-				padding: 0 0px 0 10px;
-				width: 163px;
-			}
-			.chartsSure{
-				padding: 3px 13px;
-				background: #6dc5a3;
-				color: #fff;
-				border-radius: 3px;
-			}
-		}
-		.borR{
-			border-right: 1px solid #ced2d9;
+			padding: 0 10px;
 		}
 		
 	}
-	#charts{
+	.dateContainer {
+		color: #000000;
+		padding-right: 10px;
+		.dateIpt {
+			height: 40px;
+			display: inline-block;
+			padding: 0 0px 0 10px;
+			width: 163px;
+			color: #777;
+			background: #f4f5f9;
+		}
+		.chartsSure {
+			padding: 3px 13px;
+			background: #6dc5a3;
+			color: #fff;
+			border-radius: 3px;
+		}
+	}
+	.borR {
+		border-right: 1px solid #ced2d9;
+	}
+	#charts {
 		border: 1px solid #ced2d9;
-		.chartOptions{
+		.chartOptions {
 			/*height: 45px;*/
 		}
 	}
+	.dataRange{
+		margin-top: 45px;
+		border:1px solid #ced2d9;
+		overflow: hidden;
+		padding-bottom: 10px;
+		.dataRangeHead{
+			padding: 5px 0;
+			background: #f4f5f9;
+			 overflow: hidden;
+			    
+		}
+		.tableContent{
+			table{
+				border-bottom:1px solid #ced2d9;
+				tr{
+					height: 45px;
+				}
+				th,td{
+					text-align: center;
+					line-height: 45px;
+				}
+			}
+		}
+	}
+	.pagination{
+		margin: 5px 0;
+		/*overflow: hidden;*/
+		margin-right: 20px;
+	}
+	.btn{
+		padding: 3px 2px;
+	}
+	.pageNumberIpt{
+		width: 40px;
+		border-radius: 3px;
+		padding: 0 5px;
+		text-align: center;
+		border: 1px solid #ced2d9;
+		position: relative;
+		top: 2px;
+	}
+	.kakCol{
+		color: #576477;
+	}
+	.pageNumber{position: relative;top: 2px;}
 </style>
