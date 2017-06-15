@@ -1,5 +1,18 @@
 <template>
 	<div id="">
+		<div class="chartsOption borR">
+			<select class="left selectRepair borR">
+				<option value="">最近30天</option>
+				<option value="">最近30天</option>
+				<option value="">最近30天</option>
+				<option value="">最近30天</option>
+			</select>
+			<div class="dateContainer left borR">
+				<input type="date"  class="dateIpt"/>至
+				<input type="date"  class="dateIpt"/>
+				<button class="chartsSure">确定</button>
+			</div>
+		</div>
 		<div id="charts">
 		    <div id="main"  :style="{width:'960px',height:'600px'}"></div>
 		</div>
@@ -105,5 +118,41 @@
     }
 </script>
 
-<style>
+<style lang="scss" scoped>
+	.chartsOption{
+		/*height: 45px;*/
+		overflow: hidden;
+		background: #f4f5f9;
+		padding:5px 0;
+		.selectRepair,.dateIpt{
+			height: 40px;
+			background: #f4f5f9;
+			color: #777;
+		}
+		.dateContainer{
+			
+			padding-right: 10px;
+			.dateIpt{
+				display: inline-block;
+				padding: 0 0px 0 10px;
+				width: 163px;
+			}
+			.chartsSure{
+				padding: 3px 13px;
+				background: #6dc5a3;
+				color: #fff;
+				border-radius: 3px;
+			}
+		}
+		.borR{
+			border-right: 1px solid #ced2d9;
+		}
+		
+	}
+	#charts{
+		border: 1px solid #ced2d9;
+		.chartOptions{
+			/*height: 45px;*/
+		}
+	}
 </style>
