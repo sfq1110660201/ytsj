@@ -19,10 +19,10 @@
         			</div>
         			<div class="editItem">
         				●&nbsp;数据统计
-        				<router-link to="/contentEdit/userIncrease/newAdding" class="secondaryItem" tag="li" >用户增长</router-link>
-        				<router-link to="" class="secondaryItem" tag="li" >内容分析</router-link>
-        				<router-link to="" class="secondaryItem" tag="li" >兴趣统计</router-link>
-        				<router-link to="" class="secondaryItem" tag="li" >用户属性</router-link>
+        				<router-link to="/contentEdit/userIncrease/newAdding" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('newAdding') !== -1}">用户增长</router-link>
+        				<router-link to="/contentEdit/contentAnalysis" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('contentAnalysis') !== -1}">内容分析</router-link>
+        				<router-link to="/contentEdit/interestStatistics" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('interestStatistics') !== -1}">兴趣统计</router-link>
+        				<router-link to="/contentEdit/" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('64') !== -1}">用户属性</router-link>
         			</div>
         			<div class="editItem">
         				●&nbsp;设置

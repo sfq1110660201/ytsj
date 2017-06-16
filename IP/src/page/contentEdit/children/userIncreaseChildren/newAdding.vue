@@ -55,9 +55,9 @@
 			   	</table>
 			</div>
 			<ul class="pagination right">
-					<li class="btn btn-default btn-sm kakCol" >◀</li>
-					<li class="pageNumber">&nbsp;1/3&nbsp;</li>
-					<li class="btn btn-default btn-sm kakCol">▶</li>
+					<li class="btn btn-default btn-sm kakCol" @click="minus" v-if='pageNumber!=1'>◀</li>
+					<li class="pageNumber">&nbsp;{{pageNumber}}/3&nbsp;</li>
+					<li class="btn btn-default btn-sm kakCol" @click="addPageNum">▶</li>
 					<input type="text" maxlength="2"  class="pageNumberIpt"/>
 					<li class="btn btn-default btn-sm">转跳</li>
 			</ul>
@@ -70,76 +70,98 @@
 	export default {
 		data() {
 			return {
-
+				pageNumber:1
 			}
 		},
+		computed:{//计算属性
+			
+		},
 		mounted() {
-			var myChart = echarts.init(document.getElementById('main'));
-			myChart.setOption({
-				title: {
-					text: '新增人数折线图'
-				},
-				tooltip: {
-					trigger: 'axis',
-					axisPointer: {
-						type: 'cross',
-						label: {
-							backgroundColor: '#6a7985'
-						}
-					}
-				},
-				legend: {
-					data: ['新关注人数-全部']
-				},
-				toolbox: {
-					feature: {
-						saveAsImage: {}
-					}
-				},
-				grid: {
-					left: '0%',
-					right: '4%',
-					bottom: '4%',
-					containLabel: true,//控制图表大小
-				},
-				xAxis: [{
-					type: 'category',
-					boundaryGap: false,//控制周一距离0点位置
-					data: ['2012-12-11','2012-12-12', '2012-12-13', '2012-12-14', '2012-12-15', '2012-12-16', '2012-12-17', '2012-12-18', '2012-12-19', '2012-12-20']
-				}],
-				yAxis: [{
-					type: 'value'
-				}],
-				label: {
-                normal: {//配置这点数值样式
-	                    textStyle: {
-	                        color: 'rgba(0, 0, 0, 0.8)'
-	                    }
-	                }
-	            },
-				itemStyle: {//配置图表样式
-	                normal: {
-	                    color: '#b2d8c6',
-	                    shadowBlur: 600,
-//	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-	                }
-	           },
-				series: [
-					{
-						name: '新关注人数-全部',
-						type: 'line',
-						stack: '总量',
-						label: {
-							normal: {//设置这点是否显示数字
-								show: true,
-								position: 'top'
+			this.$nextTick(function() {
+				this.setChart()
+			})
+		},
+		methods:{
+			setChart(){
+				var myChart = echarts.init(document.getElementById('main'));
+				myChart.setOption({
+					title: {
+						text: '新增人数折线图'
+					},
+					tooltip: {
+						trigger: 'axis',
+						axisPointer: {
+							type: 'cross',
+							label: {
+								backgroundColor: '#6a7985'
 							}
-						},
-						areaStyle: { normal: {} },
-						data: [231, 290, 130, 1320,932, 901, 934, 1290, 1330, 1320]
-					}
-				]
-			});
+						}
+					},
+					legend: {
+						data: ['新关注人数-全部']
+					},
+					toolbox: {
+						feature: {
+							saveAsImage: {}
+						}
+					},
+					grid: {
+						left: '0%',
+						right: '4%',
+						bottom: '4%',
+						containLabel: true,//控制图表大小
+					},
+					xAxis: [{
+						type: 'category',
+						boundaryGap: false,//控制周一距离0点位置
+						data: ['2012-12-11','2012-12-12', '2012-12-13', '2012-12-14', '2012-12-15', '2012-12-16', '2012-12-17', '2012-12-18', '2012-12-19', '2012-12-20']
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					label: {
+	                normal: {//配置这点数值样式
+		                    textStyle: {
+		                        color: 'rgba(0, 0, 0, 0.8)'
+		                    }
+		                }
+		            },
+					itemStyle: {//配置图表样式
+		                normal: {
+		                    color: '#b2d8c6',
+		                    shadowBlur: 600,
+	//	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+		                }
+		          	},
+					series: [
+						{
+							name: '新关注人数-全部',
+							type: 'line',
+							stack: '总量',
+							label: {
+								normal: {//设置这点是否显示数字
+									show: true,
+									position: 'top'
+								}
+							},
+							areaStyle: { normal: {} },
+							data: [231, 290, 130, 1320,932, 901, 934, 1290, 1330, 1320]
+						}
+					]
+				});
+			},
+			minus(){//点击分页栏减1
+				if(this.pageNumber>1){
+					--this.pageNumber
+					
+				}
+			},
+			addPageNum(){//点击分页栏加1
+				if(this.pageNumber<3){
+					++this.pageNumber
+					
+				}
+			},
 		}
 
 	}
@@ -162,7 +184,7 @@
 	}
 	.dateContainer {
 		color: #000000;
-		padding-right: 10px;
+		padding-right: 20px;
 		.dateIpt {
 			height: 40px;
 			display: inline-block;
@@ -214,7 +236,7 @@
 	.pagination{
 		margin: 5px 0;
 		/*overflow: hidden;*/
-		margin-right: 20px;
+		margin-right: 53px;
 	}
 	.btn{
 		padding: 3px 2px;
