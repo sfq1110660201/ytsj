@@ -1,8 +1,8 @@
 <template>
 	<div class="yituMiddleContent">
 		<div class="modelLeft" :style="{height:het+'px'}">
-			<router-link to="/ipContent/yiTu/myYiTu" tag='li' class="modelTabs">我的医图号</router-link>
-			<router-link to="/ipContent/yiTu/addYiTu" tag='li' class="modelTabs">添加医图号</router-link>
+			<router-link to="/ipContent/yiTu/myYiTu" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('myYiTu') !== -1}">我的医图号</router-link>
+			<router-link to="/ipContent/yiTu/addYiTu" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('addYiTu') !== -1}">添加医图号</router-link>
 		</div>
 		<div class="modelRight" >
 			<router-view></router-view>
@@ -69,7 +69,10 @@
 			overflow-y: scroll!important;
 		}
 	}
-	
+	.activeLi{
+		color: #fff!important;
+		background: #1f222d;
+	}
 	.modelTabs:hover {
 		color: #fff!important;
 		background: #1f222d;

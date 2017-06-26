@@ -13,7 +13,10 @@ import { InfiniteScroll } from 'mint-ui';//无限滚动
 import $ from 'jquery'
 import './assets/css/bootstrap.min.css'
 import './assets/js/bootstrap.min'
-
+//echarts
+import echarts from 'echarts'
+import zhejiang from 'echarts/map/js/china'  
+Vue.prototype.$echarts=echarts 
 
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function() {

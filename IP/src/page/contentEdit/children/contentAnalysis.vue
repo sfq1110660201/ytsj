@@ -11,7 +11,6 @@
 					<button class="chartsSure">确定</button>
 				</div>
 			</div>
-			
 			<div class="tableContent">
 				<table class="table table-condensed">
 			      <thead>

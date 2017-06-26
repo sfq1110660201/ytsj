@@ -21,6 +21,8 @@ const register = r => require.ensure([], () => r(require('../page/register/regis
 const registerName = r => require.ensure([], () => r(require('../page/register/children/registerName')), 'registerName')
 const fillInfo = r => require.ensure([], () => r(require('../page/register/children/fillInfo')), 'fillInfo')
 const completeRegister = r => require.ensure([], () => r(require('../page/register/children/completeRegister')), 'completeRegister')
+const recoverKeywords = r => require.ensure([], () => r(require('../page/register/children/recoverKeywords')), 'recoverKeywords')
+const resetKeywords = r => require.ensure([], () => r(require('../page/register/children/resetKeywords')), 'resetKeywords')
 
 //内容编辑
 const contentEdit = r => require.ensure([], () => r(require('../page/contentEdit/contentEdit')), 'contentEdit')
@@ -30,6 +32,7 @@ const manageContent = r => require.ensure([], () => r(require('../page/contentEd
 const userIncrease = r => require.ensure([], () => r(require('../page/contentEdit/children/userIncrease')), 'userIncrease')
 const contentAnalysis = r => require.ensure([], () => r(require('../page/contentEdit/children/contentAnalysis')), 'contentAnalysis')
 const interestStatistics = r => require.ensure([], () => r(require('../page/contentEdit/children/interestStatistics')), 'interestStatistics')
+const userClass = r => require.ensure([], () => r(require('../page/contentEdit/children/userClass')), 'userClass')
 const setting = r => require.ensure([], () => r(require('../page/contentEdit/children/setting')), 'setting')
 //发表下页面子模块
 const vedio = r => require.ensure([], () => r(require('../page/contentEdit/children/publishChildren/vedio')), 'vedio')
@@ -45,8 +48,6 @@ const newAdding = r => require.ensure([], () => r(require('../page/contentEdit/c
 const cancelCaring = r => require.ensure([], () => r(require('../page/contentEdit/children/userIncreaseChildren/cancelCaring')), 'cancelCaring')//取消关注人数
 const addedCount = r => require.ensure([], () => r(require('../page/contentEdit/children/userIncreaseChildren/addedCount')), 'addedCount')//净增人数
 const accumulative = r => require.ensure([], () => r(require('../page/contentEdit/children/userIncreaseChildren/accumulative')), 'accumulative')//累计人数
-
-
 
 
 export default [{
@@ -114,6 +115,12 @@ export default [{
             }, {
                 path: 'completeRegister', //完成注册
                 component: completeRegister,
+            }, {
+                path: 'recoverKeywords', //找回密码
+                component: recoverKeywords,
+            }, {
+                path: 'resetKeywords', //重置密码
+                component: resetKeywords,
             }]
         },
         //内容管理
@@ -153,7 +160,8 @@ export default [{
 	                component: listPictures,
 	            }]
             }, {
-                path: 'userIncrease', //用户增长//newAdding，cancelCaring，addedCount,accumulative
+                path: 'userIncrease',
+                //用户增长//newAdding，cancelCaring，addedCount,accumulative
                 component: userIncrease,
                  children: [{
 	                path: 'newAdding', //新增
@@ -174,6 +182,9 @@ export default [{
             }, {
                 path: 'interestStatistics', //兴趣分析
                 component: interestStatistics,
+            }, {
+                path: 'userClass', //用户属性
+                component: userClass,
             }, {
                 path: 'setting', //设置
                 component: setting,

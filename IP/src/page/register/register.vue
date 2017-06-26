@@ -41,7 +41,6 @@
 		background: -moz-radial-gradient(circle,  #fff,#dbdce0); /* Firefox 3.6 - 15 */
 		background: radial-gradient(circle,  #fff,#dbdce0); /* 标准的语法 */
    		padding: 40px 65px;
-   		/*overflow: hidden;*/
    		.registerHeader{
    			.logoImg{
    				width: 200px;
@@ -52,7 +51,6 @@
    				cursor: pointer;
    				color: #4781ea;
    				font-size: 25px;
-   				
    			}
    		}
    		.registerContent{

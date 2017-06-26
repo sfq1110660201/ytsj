@@ -1,8 +1,8 @@
 <template>
 	<div class="yituMiddleContent">
 		<div class="modelLeft" :style="{height:het+'px'}">
-			<router-link to="/ipContent/userInfo/userData" tag='li' class="modelTabs">用户资料</router-link>
-			<router-link to="/ipContent/userInfo/accountSecurity" tag='li' class="modelTabs">账户安全</router-link>
+			<router-link to="/ipContent/userInfo/userData" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('userData') !== -1}">用户资料</router-link>
+			<router-link to="/ipContent/userInfo/accountSecurity" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('accountSecurity') !== -1}">账户安全</router-link>
 		</div>
 		<div class="modelRight">
 			<router-view></router-view>
@@ -64,7 +64,10 @@
 			float: left;
 		}
 	}
-	
+	.activeLi{
+		color: #fff!important;
+		background: #1f222d;
+	}
 	.modelTabs:hover {
 		color: #fff!important;
 		background: #1f222d;

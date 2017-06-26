@@ -31,8 +31,8 @@
 			</div>
 		</section>
 		<div class="models" :style="{height:het+'px'}">
-			<router-link to="/ipContent/yiTu/myYiTu" tag='li' class="modelTabs">医图号</router-link>
-			<router-link to="/ipContent/userInfo/userData" tag='li' class="modelTabs">用户信息</router-link>
+			<router-link to="/ipContent/yiTu/myYiTu" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('yiTu') !== -1}">医图号</router-link>
+			<router-link to="/ipContent/userInfo/userData" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('userInfo') !== -1}">用户信息</router-link>
 		</div>
 
 		<router-view></router-view>
@@ -96,7 +96,6 @@
 				}
 				.dropdown_menu {
 					min-width: 170px!important;
-					/*li{padding-left: 10px;}*/
 					li {
 						padding: 0, 20px;
 					}
@@ -115,11 +114,13 @@
 			.modelTabs {
 				width: 106px;
 				height: 103px;
-				border-bottom: 1px solid #28A4C9;
 				text-align: center;
 				line-height: 103px;
 				color: #fff;
 			}
 		}
+	}
+	.active{
+		background: #65cea7;
 	}
 </style>

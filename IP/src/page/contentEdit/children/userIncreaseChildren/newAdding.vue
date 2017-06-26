@@ -24,7 +24,6 @@
 					<button class="chartsSure">确定</button>
 				</div>
 			</div>
-			
 			<div class="tableContent">
 				<table class="table table-condensed">
 			      <thead>
@@ -55,11 +54,11 @@
 			   	</table>
 			</div>
 			<ul class="pagination right">
-					<li class="btn btn-default btn-sm kakCol" @click="minus" v-if='pageNumber!=1'>◀</li>
-					<li class="pageNumber">&nbsp;{{pageNumber}}/3&nbsp;</li>
-					<li class="btn btn-default btn-sm kakCol" @click="addPageNum">▶</li>
-					<input type="text" maxlength="2"  class="pageNumberIpt"/>
-					<li class="btn btn-default btn-sm">转跳</li>
+				<li class="btn btn-default btn-sm kakCol" @click="minus" v-if='pageNumber!=1'>◀</li>
+				<li class="pageNumber">&nbsp;{{pageNumber}}/3&nbsp;</li>
+				<li class="btn btn-default btn-sm kakCol" @click="addPageNum">▶</li>
+				<input type="text" maxlength="2"  class="pageNumberIpt"/>
+				<li class="btn btn-default btn-sm">转跳</li>
 			</ul>
 		</ul>
 	</div>
@@ -122,7 +121,7 @@
 					label: {
 	                normal: {//配置这点数值样式
 		                    textStyle: {
-		                        color: 'rgba(0, 0, 0, 0.8)'
+		                        color: 'rgba(0, 0, 0, 0.8)',
 		                    }
 		                }
 		            },
@@ -130,7 +129,7 @@
 		                normal: {
 		                    color: '#b2d8c6',
 		                    shadowBlur: 600,
-	//	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
 		                }
 		          	},
 					series: [
