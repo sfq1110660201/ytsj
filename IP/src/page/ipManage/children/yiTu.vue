@@ -30,7 +30,7 @@
 		methods: {
 			setWid() {
 				this.wid = document.body.clientWidth - 349; //屏幕可视区域高
-				console.log(this.wid)
+				//console.log(this.wid)
 			}
 		},
 		watch: {
@@ -65,6 +65,7 @@
 			width: 80%;
 			margin-top: 87px;
 			padding-top: 50px;
+			padding-bottom: 40px;
 			float: left;
 			overflow-y: scroll!important;
 		}

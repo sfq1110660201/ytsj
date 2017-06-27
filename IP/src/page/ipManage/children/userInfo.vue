@@ -30,7 +30,7 @@
 		methods: {
 			setWid() {
 				this.wid = document.body.clientWidth - 349; //屏幕可视区域高
-				console.log(this.wid)
+				//console.log(this.wid)
 			}
 		},
 		watch: {
