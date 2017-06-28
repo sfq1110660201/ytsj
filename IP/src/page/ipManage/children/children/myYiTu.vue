@@ -27,6 +27,7 @@
 	export default {
 		data() {
 			return {
+				enterpriseId:"",//企业id
 				ipCounts: [
 					//					{
 					//						ipImg: "/static/img/dasdad.png",
@@ -44,34 +45,37 @@
 		},
 		mounted() {
 			this.$nextTick(function() {
-				this.getToken();
+				//this.getToken();
+				//console.log(this.$route.query)
+				this.enterpriseId=this.$route.query.enterpriseId;
+				this.getListData();
 			})
 		},
 		methods: {
-			getToken() { //获取TOKEN
-				this.$http.get("https://api.lotusdata.com/v1/buser/token", {
-					params: {
-						username: "uuapp.li@qq.com",
-						password: "123123",
-						refreshtoken: 0
-					}
-				}).then(
-					function(res) {
-						var TOKEN = res.data.token;
-						var ENTERPRISEID = res.data.data.Enterpriseid
-						localStorage.setItem("TOKEN", 'JWT ' + TOKEN)
-						localStorage.setItem("ENTERPRISEID", ENTERPRISEID)
-						this.getListData();
-					},
-					function() {
-						console.log("获取TOKEN失败")
-					}
-				)
-			},
+//			getToken() { //获取TOKEN
+//				this.$http.get("https://api.lotusdata.com/v1/buser/token", {
+//					params: {
+//						username: "uuapp.li@qq.com",
+//						password: "123123",
+//						refreshtoken: 0
+//					}
+//				}).then(
+//					function(res) {
+//						var TOKEN = res.data.token;
+//						var ENTERPRISEID = res.data.data.Enterpriseid
+//						localStorage.setItem("TOKEN", 'JWT ' + TOKEN)
+//						localStorage.setItem("ENTERPRISEID", ENTERPRISEID)
+//						this.getListData();
+//					},
+//					function() {
+//						console.log("获取TOKEN失败")
+//					}
+//				)
+//			},
 			getListData() { //获取企业ip列表
 				var TOKEN = localStorage.getItem("TOKEN")
-				var ENTERPRISEID = localStorage.getItem("ENTERPRISEID");//企业ID
-				this.$http.get("https://api.lotusdata.com/ip/v1/ipm/eiplist/" + ENTERPRISEID, {
+				//var ENTERPRISEID = localStorage.getItem("ENTERPRISEID");//企业ID
+				this.$http.get("https://api.lotusdata.com/ip/v1/ipm/eiplist/" + this.enterpriseId, {
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {

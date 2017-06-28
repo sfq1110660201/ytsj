@@ -31,8 +31,8 @@
 			</div>
 		</section>
 		<div class="models" :style="{height:het+'px'}">
-			<router-link to="/ipContent/yiTu/myYiTu" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('yiTu') !== -1}">医图号</router-link>
-			<router-link to="/ipContent/userInfo/userData" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('userInfo') !== -1}">用户信息</router-link>
+			<router-link :to="{ path:'/ipContent/yiTu/myYiTu',query:{enterpriseId:enterpriseId} }" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('yiTu') !== -1}">医图号</router-link>
+			<router-link :to="{path:'/ipContent/userInfo/userData',query:{enterpriseId:enterpriseId}}" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('userInfo') !== -1}">用户信息</router-link>
 		</div>
 
 		<router-view></router-view>
@@ -42,26 +42,42 @@
 <script>
 	export default {
 		data() {
-				return {
-					het: 0,
-				}
-			},
-			components: {
-
-			},
-			mounted() {
-				this.$nextTick(function() {
-					this.het = window.screen.availHeight; //屏幕可视区域高
-					//console.log( window.screen.availHeight,window.screen.height)
-
-				})
-			},
-			methods: {
-
-			},
-			watch: {
-
+			return {
+				het: 0,
+				enterpriseId: "",
 			}
+		},
+		components: {
+
+		},
+		mounted() {
+			this.$nextTick(function() {
+				this.het = window.screen.availHeight; //屏幕可视区域高
+				//this.getToken();
+				//console.log(localStorage.getItem("enterpriseId"))
+				this.enterpriseId = localStorage.getItem("enterpriseId")
+			})
+		},
+//		methods: {
+//			getToken() { //匹配用户名和密码
+//				this.$http.get("https://api.lotusdata.com/v1/buser/token", {
+//					params: {
+//						username: this.userName,
+//						password: this.password,
+//						refreshtoken: 0
+//					}
+//				}).then(
+//					function(res) {
+//					},
+//					function() {
+//						console.log("获取TOKEN失败")
+//					}
+//				)
+//			}
+//		},
+		watch: {
+
+		}
 	}
 </script>
 
@@ -120,7 +136,8 @@
 			}
 		}
 	}
-	.active{
+	
+	.active {
 		background: #65cea7;
 	}
 </style>

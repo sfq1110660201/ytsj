@@ -60,7 +60,9 @@
 			this.$nextTick(function() {
 				this.het = window.screen.availHeight; //屏幕可视区域高	
 				this.setWid();
+				this.enterpriseId=this.$route.query.enterpriseId;
 				this.getEnterpriseData();
+				
 			})
 		},
 		methods: {
@@ -70,16 +72,16 @@
 			},
 			getEnterpriseData(){
 				var TOKEN = localStorage.getItem("TOKEN")
-				var ENTERPRISEID=localStorage.getItem("ENTERPRISEID");
+				//var ENTERPRISEID=localStorage.getItem("ENTERPRISEID");
 				//console.log(ENTERPRISEID)
-				this.$http.get("https://api.lotusdata.com/ip/v1/enterprise/"+ENTERPRISEID, {
+				this.$http.get("https://api.lotusdata.com/ip/v1/enterprise/"+this.enterpriseId, {
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
 						//console.log(res.data.data)
 						var enterpriseData=res.data.data
 						this.companyName=enterpriseData.Companyname;
-						this.enterpriseId=enterpriseData.Enterpriseid;
+						//this.enterpriseId=enterpriseData.Enterpriseid;
 						this.imgOneSrc=enterpriseData.Logopic;
 					},
 					function() {

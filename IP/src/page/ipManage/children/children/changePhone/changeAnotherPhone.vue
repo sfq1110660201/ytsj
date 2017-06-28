@@ -8,7 +8,7 @@
 			<span  class="line1 "></span>
 			<div class="secStep">
 				<div class="step activeBake"></div>
-				<div class="phoneWord activeColor">修改邮箱</div>
+				<div class="phoneWord activeColor">修改手机</div>
 			</div>
 			<span  class="line2 "></span>
 			<div class="thirdStep">

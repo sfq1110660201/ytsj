@@ -1,8 +1,8 @@
 <template>
 	<div class="yituMiddleContent">
 		<div class="modelLeft" :style="{height:het+'px'}">
-			<router-link to="/ipContent/userInfo/userData" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('userData') !== -1}">用户资料</router-link>
-			<router-link to="/ipContent/userInfo/accountSecurity" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('accountSecurity') !== -1}">账户安全</router-link>
+			<router-link :to="{ path:'/ipContent/userInfo/userData',query:{enterpriseId:enterpriseId} }" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('userData') !== -1}">用户资料</router-link>
+			<router-link :to="{ path:'/ipContent/userInfo/accountSecurity',query:{enterpriseId:enterpriseId} }" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('accountSecurity') !== -1}">账户安全</router-link>
 		</div>
 		<div class="modelRight">
 			<router-view></router-view>
@@ -15,7 +15,10 @@
 		data() {
 			return {
 				het: 0,
-				wid: 0
+				wid: 0,
+				enterpriseId:"",
+				
+				
 			}
 		},
 		components: {
@@ -25,6 +28,7 @@
 			this.$nextTick(function() {
 				this.het = window.screen.availHeight; //屏幕可视区域高	
 				this.setWid()
+				this.enterpriseId = localStorage.getItem("enterpriseId")
 			})
 		},
 		methods: {

@@ -1,8 +1,8 @@
 <template>
 	<div class="yituMiddleContent">
 		<div class="modelLeft" :style="{height:het+'px'}">
-			<router-link to="/ipContent/yiTu/myYiTu" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('myYiTu') !== -1}">我的医图号</router-link>
-			<router-link to="/ipContent/yiTu/addYiTu" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('addYiTu') !== -1}">添加医图号</router-link>
+			<router-link :to="{ path:'/ipContent/yiTu/myYiTu',query:{enterpriseId:enterpriseId} }"  tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('myYiTu') !== -1}">我的医图号</router-link>
+			<router-link :to="{path:'/ipContent/yiTu/addYiTu',query:{enterpriseId:enterpriseId}}" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('addYiTu') !== -1}">添加医图号</router-link>
 		</div>
 		<div class="modelRight" >
 			<router-view></router-view>
@@ -15,7 +15,8 @@
 		data() {
 			return {
 				het: 0,
-				wid: 0
+				wid: 0,
+				enterpriseId:"",
 			}
 		},
 		components: {
@@ -25,12 +26,13 @@
 			this.$nextTick(function() {
 				this.het = window.screen.availHeight; //屏幕可视区域高	
 				this.setWid()
+				this.enterpriseId = localStorage.getItem("enterpriseId")
 			})
 		},
 		methods: {
 			setWid() {
 				this.wid = document.body.clientWidth - 349; //屏幕可视区域高
-				//console.log(this.wid)
+				
 			}
 		},
 		watch: {

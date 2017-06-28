@@ -15,7 +15,8 @@ const completePhone = r => require.ensure([], () => r(require('../page/ipManage/
 const testMail = r => require.ensure([], () => r(require('../page/ipManage/children/children/changeMail/testMail')), 'testMail')
 const changeAnotherMail = r => require.ensure([], () => r(require('../page/ipManage/children/children/changeMail/changeAnotherMail')), 'changeAnotherMail')
 const completeMail = r => require.ensure([], () => r(require('../page/ipManage/children/children/changeMail/completeMail')), 'completeMail')
-
+//登录
+const login = r => require.ensure([], () => r(require('../page/login/login')),'login')
 //注册
 const register = r => require.ensure([], () => r(require('../page/register/register')), 'register')
 const registerName = r => require.ensure([], () => r(require('../page/register/children/registerName')), 'registerName')
@@ -101,6 +102,11 @@ export default [{
 		            }]
             	}]
             }]
+        },
+        //登录
+        {
+            path: '/login',
+            component: login,
         },
         //注册
         {

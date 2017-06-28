@@ -12,7 +12,7 @@
 	        <tr>
 	          <td> <img class="littleIcon" src="/static/img/nav_btn_renzheng@2x.png"/>&nbsp;登陆邮箱</td>
 	          <td>您的登陆邮箱13752679323@163.com</td>
-	          <td><router-link to="/ipContent/userInfo/accountSecurity/testPhone" tag='li' class="edit">编辑与修改</router-link></td>
+	          <td><router-link to="/ipContent/userInfo/accountSecurity/testMail" tag='li' class="edit">编辑与修改</router-link></td>
 	        </tr>
 	        <tr>
 	          <td><img class="littleIcon" src="/static/img/nav_btn_renzheng@2x.png"/>&nbsp;登陆密码</td>
@@ -22,7 +22,7 @@
 	        <tr>
 	          <td><img class="littleIcon" src="/static/img/nav_btn_renzheng@2x.png"/>&nbsp;手机绑定</td>
 	          <td>您已绑定手机13752679323</td>
-	          <td><router-link to="/ipContent/userInfo/accountSecurity/testMail" tag='li' class="edit">编辑与修改</router-link></td>
+	          <td><router-link to="/ipContent/userInfo/accountSecurity/testPhone" tag='li' class="edit">编辑与修改</router-link></td>
 	        </tr>
 	      </tbody>
 	   </table>

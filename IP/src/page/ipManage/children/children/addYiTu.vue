@@ -112,6 +112,7 @@
 				ipType: "", //ip类型
 
 				isSubmit: true, //判断是否可以提交数据
+				enterpriseId:"",
 			}
 		},
 		components: {
@@ -120,29 +121,28 @@
 		mounted() {
 			this.$nextTick(function() {
 				this.het = window.screen.availHeight; //屏幕可视区域高
-				this.getToken();
-
+				this.enterpriseId=this.$route.query.enterpriseId;
 			})
 		},
 		methods: {
-			getToken() { //获取TOKEN
-				this.$http.get("https://api.lotusdata.com/v1/buser/token", {
-					params: {
-						username: "uuapp.li@qq.com",
-						password: "123123",
-						refreshtoken: 0
-					}
-				}).then(
-					function(res) {
-						var TOKEN = res.data.token;
-						localStorage.setItem("TOKEN", 'JWT ' + TOKEN)
-						//console.log(localStorage.getItem("TOKEN"))
-					},
-					function() {
-						console.log("获取TOKEN失败")
-					}
-				)
-			},
+//			getToken() { //获取非用户TOKEN
+//				this.$http.get("https://api.lotusdata.com/v1/buser/token", {
+//					params: {
+//						username: "uuapp.li@qq.com",
+//						password: "123123",
+//						refreshtoken: 0
+//					}
+//				}).then(
+//					function(res) {
+//						var TOKEN = res.data.token;
+//						localStorage.setItem("TOKEN", 'JWT ' + TOKEN)
+//						//console.log(localStorage.getItem("TOKEN"))
+//					},
+//					function() {
+//						console.log("获取TOKEN失败")
+//					}
+//				)
+//			},
 			isRepeatName(value) { //判断IPname是否重名
 				var TOKEN = localStorage.getItem("TOKEN")
 				var data = {
@@ -276,9 +276,8 @@
 							console.log(res)
 							if(res.body.message=="success"){
 								console.log("提交新的IP数据成功")
-								this.$router.push({path:"/ipContent/yiTu/myYiTu"})
+								this.$router.push({path:"/ipContent/yiTu/myYiTu",query:{enterpriseId:this.enterpriseId}})
 							}
-							
 						},
 						function() {
 							console.log("数据请求失败")
