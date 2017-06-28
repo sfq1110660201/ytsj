@@ -53,6 +53,7 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex'
 	import Vue from 'vue'
 	// 注册一个全局自定义指令 v-focus
 	Vue.directive('focus', {
@@ -97,6 +98,9 @@
 				this.getVerificationPicToken();
 			})
 		},
+		computed:mapState({//vuex存值
+		  	//msg:state => state.msg//function(state){return satate.msg}
+		}),
 		methods: {
 			getVerificationPicToken() { //获取验证码token（非用户token）
 				this.$http.get("https://api.lotusdata.com/v1/buser/token", {
@@ -134,7 +138,7 @@
 			reLoad() { //点击验证码重新获取新验证码
 				this.verificationPic = "https://api.lotusdata.com/captcha/" + this.verificationId + ".png?" + "reload=" + (new Date()).getTime();
 				//console.log(this.verificationPic)
-				console.log(this.verificationId)
+				//console.log(this.verificationId)
 			},
 			getUserName() { //失去焦点获取用户名
 				//console.log(this.userName)
@@ -208,8 +212,10 @@
 							var enterpriseId = res.data.data.Enterpriseid;
 							localStorage.setItem("TOKEN", 'JWT ' + TOKEN)
 							localStorage.setItem("enterpriseId",enterpriseId)
-							//console.log(TOKEN)
-							//console.log(enterpriseId)
+							//调用vuex方法
+							this.$store.commit('setEmail',res.data.data.Email)
+							this.$store.commit('setEnterpriseId',res.data.data.Enterpriseid)
+							
 							this.$router.push({ path: "/ipContent/yiTu/myYiTu", query: { enterpriseId: enterpriseId } })
 						} else {
 							this.password = "";

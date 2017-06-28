@@ -6,7 +6,7 @@
 			<div class="dropdown dropdown_con">
 				<button class="btn dropdown-toggle con1" id="dropdownMenu1" data-toggle="dropdown">
 					<!--<img src="static/image/robot.png" alt="###">-->
-					yitushijie@163.com
+					{{this.emailName}}
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu dropdown_menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+	import {mapGetters} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -56,25 +57,16 @@
 				//this.getToken();
 				//console.log(localStorage.getItem("enterpriseId"))
 				this.enterpriseId = localStorage.getItem("enterpriseId")
+				console.log(this.EnterpriseId)
 			})
 		},
-//		methods: {
-//			getToken() { //匹配用户名和密码
-//				this.$http.get("https://api.lotusdata.com/v1/buser/token", {
-//					params: {
-//						username: this.userName,
-//						password: this.password,
-//						refreshtoken: 0
-//					}
-//				}).then(
-//					function(res) {
-//					},
-//					function() {
-//						console.log("获取TOKEN失败")
-//					}
-//				)
-//			}
-//		},
+		computed:mapGetters({//vuex获取值
+           emailName:'getEmail',
+           EnterpriseId:"getEnterpriseId"
+       	}),
+		methods: {
+			
+		},
 		watch: {
 
 		}
