@@ -46,6 +46,7 @@
 			return {
 				het: 0,
 				enterpriseId: "",
+				emailName:"",
 			}
 		},
 		components: {
@@ -54,16 +55,15 @@
 		mounted() {
 			this.$nextTick(function() {
 				this.het = window.screen.availHeight; //屏幕可视区域高
-				//this.getToken();
-				//console.log(localStorage.getItem("enterpriseId"))
+				this.emailName = localStorage.getItem("emailName")
 				this.enterpriseId = localStorage.getItem("enterpriseId")
-				console.log(this.EnterpriseId)
+				//console.log(this.EnterpriseId)
 			})
 		},
-		computed:mapGetters({//vuex获取值
-           emailName:'getEmail',
-           EnterpriseId:"getEnterpriseId"
-       	}),
+//		computed:mapGetters({//vuex获取值
+//         emailName:'getEmail',
+//         EnterpriseId:"getEnterpriseId"
+//     	}),
 		methods: {
 			
 		},

@@ -213,9 +213,12 @@
 							localStorage.setItem("TOKEN", 'JWT ' + TOKEN)
 							localStorage.setItem("enterpriseId",enterpriseId)
 							//调用vuex方法
-							this.$store.commit('setEmail',res.data.data.Email)
+							//this.$store.commit('setEmail',res.data.data.Email)
 							this.$store.commit('setEnterpriseId',res.data.data.Enterpriseid)
-							
+							//this.$store.commit('setPhone',res.data.data.Phone)
+							localStorage.setItem("emailName",res.data.data.Email)
+							//console.log(localStorage.getItem("emailName"))
+							localStorage.setItem("phoneNum",res.data.data.Phone)
 							this.$router.push({ path: "/ipContent/yiTu/myYiTu", query: { enterpriseId: enterpriseId } })
 						} else {
 							this.password = "";

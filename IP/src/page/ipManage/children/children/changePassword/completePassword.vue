@@ -8,7 +8,7 @@
 			<span class="line1 "></span>
 			<div class="secStep">
 				<div class="step "></div>
-				<div class="phoneWord ">修改邮箱</div>
+				<div class="phoneWord ">修改密码</div>
 			</div>
 			<span class="line2 "></span>
 			<div class="thirdStep">
@@ -17,7 +17,7 @@
 			</div>
 		</section>
 		<section class="testContent activeColor">
-			新邮箱修改成功！网页将于{{backNum}}秒后跳转登录页
+			新邮密码改成功！网页将于{{backNum}}秒后跳转登录页
 		</section>
 	</div>
 </template>

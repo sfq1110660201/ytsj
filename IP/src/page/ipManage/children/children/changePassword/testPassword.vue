@@ -8,7 +8,7 @@
 			<span class="line1 "></span>
 			<div class="secStep">
 				<div class="step "></div>
-				<div class="phoneWord ">修改邮箱</div>
+				<div class="phoneWord ">修改密码</div>
 			</div>
 			<span class="line2 "></span>
 			<div class="thirdStep">
@@ -109,7 +109,7 @@
 							if(res.data.code=='0'){
 								//调用vuex方法存储resettoken
 								this.$store.commit('setResettoken',res.data.data)
-								this.$router.push({ path: "/ipContent/userInfo/accountSecurity/changeAnotherMail" })
+								this.$router.push({ path: "/ipContent/userInfo/accountSecurity/changeAnotherPassword" })
 							}else{
 								this.phoneTip="验证码错误"
 							}

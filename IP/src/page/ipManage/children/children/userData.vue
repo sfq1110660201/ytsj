@@ -201,4 +201,7 @@
 			z-index: 666;
 		}
 	}
+	.form-group{
+		margin-bottom: 10px;
+	}
 </style>

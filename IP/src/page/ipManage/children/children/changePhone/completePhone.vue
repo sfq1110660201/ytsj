@@ -17,12 +17,44 @@
 			</div>
 		</section>
 		<section class="testContent activeColor">
-			新邮箱修改成功！
+			新手机修改成功！网页将于{{backNum}}秒后跳转登录页
 		</section>
 	</div>
 </template>
 
 <script>
+	export default {
+		data() {
+				return {
+					emailName:"",
+					backNum:5
+				}
+			},
+			components: {
+
+			},
+			mounted() {
+				this.$nextTick(function() {
+					this.backLogin();
+
+				})
+			},
+			methods: {
+				backLogin(){
+					var that=this;
+					var timefunc=setInterval(function(){
+						that.backNum--;
+						if(that.backNum==0){
+							clearInterval(timefunc);
+							that.$router.push({ path: "/login" })
+						}
+					},1000)
+				}
+			},
+			watch: {
+
+			}
+	}
 </script>
 
 <style lang="scss" scoped>
