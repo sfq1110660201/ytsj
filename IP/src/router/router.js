@@ -61,7 +61,7 @@ export default [{
     children: [ //二级路由。对应App.vue
         {
             path: '',
-            redirect: '/ipContent/yiTu/myYiTu'
+            redirect: '/login'
         },
         {
         	path: '/ipContent',

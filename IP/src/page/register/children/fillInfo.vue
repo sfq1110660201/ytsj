@@ -16,7 +16,6 @@
 				<div class="littleWord">注册完成</div>
 			</div>
 		</section>
-		<!--<div id="mainregiste">-->
 		<section class="mainregiste addingRepair">
 			<div class="mainStep">
 				<span class="stepTitle">主题信息登记</span>
@@ -25,84 +24,121 @@
 			<form class="form-horizontal" role="form">
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>企业名称</label>
-					<div class="col-sm-10 col-xs-10">
-						<input type="text" class="form-control" placeholder="" />
+					<div class="col-sm-8 col-xs-8">
+						<input type="text" class="form-control" placeholder="" v-model.trim="companyName" />
 						<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
+					</div>
+					<div class="col-sm-2 col-xs-2">
+						<p class="form-control-static warned">{{companyNameTip}}</p>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>医图号描述</label>
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>所在地</label>
 					<div class="col-sm-2 col-xs-2">
-						<select class="form-control">
-							<option>163.com</option>
-							<option>qq.com</option>
-							<option>162.ocm</option>
+						<select class="form-control" v-model="pro">
+							<option>陕西省</option>
+							<option>陕西省</option>
+							<option>陕西省</option>
 						</select>
-						<!--</div>-->
 					</div>
 					<div class="col-sm-2 col-xs-2">
-						<select class="form-control">
-							<option>163.com</option>
-							<option>qq.com</option>
-							<option>162.ocm</option>
+						<select class="form-control" v-model="city">
+							<option>西安市</option>
+							<option>西安市</option>
+							<option>西安市</option>
 						</select>
-						<!--</div>-->
+					</div>
+					<div class="col-sm-2 col-xs-2">
+						<select class="form-control" v-model="district">
+							<option>雁塔区</option>
+							<option>雁塔区</option>
+							<option>雁塔区</option>
+						</select>
+					</div>
+					<div class="col-sm-2 col-xs-2">
+						<p class="form-control-static warned">{{areasTip}}</p>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"> </label>
-					<div class="col-sm-10 col-xs-10">
-						<input type="text" class="form-control" placeholder="详细地址" />
-						<!--<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>-->
+					<div class="col-sm-8 col-xs-8">
+						<input type="text" class="form-control" placeholder="详细地址" v-model.trim="address"/>
+					</div>
+					<div class="col-sm-2 col-xs-2">
+						<p class="form-control-static warned">{{addressTip}}</p>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>营业执照注册号</label>
-					<div class="col-sm-10 col-xs-10">
-						<input type="text" class="form-control" placeholder="" />
+					<div class="col-sm-8 col-xs-8">
+						<input type="text" class="form-control" placeholder="" v-model.trim="license" />
 						<p class="form-control-static explain">输入15营业执照注册号或18位统一社会信用代码</p>
+					</div>
+					<div class="col-sm-2 col-xs-2">
+						<p class="form-control-static warned">{{licenseTip}}</p>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>营业执照扫描件</label>
 					<div class="col-sm-10 col-xs-10 uploadImgContent">
-						<img class="ipLogo" src="/static/img/(1)_03.png" />
+						<img class="ipLogo" :src="imgOneSrc" />
 						<div class="upLoadImg">
-							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
-							<input type="button" class="btn btn-default" value="选择图片" />
-							<p class="form-control-static warned">*图片不符合要求</p>
+							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、gif;图片不可大于2M</p>
+							<a href="javascript:void(0);" class="uploadA btn btn-default">
+								<span>选择图片</span>
+								<form id="formOne">
+									<input class="uploadIpt" type="file" name="Filedata" v-on:change="iptOneChange" />
+								</form>
+							</a>
+							<p class="form-control-static warned">{{imgOneTip}}</p>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>企业LOGO</label>
 					<div class="col-sm-10 col-xs-10 uploadImgContent">
-						<img class="ipLogo" src="/static/img/(1)_03.png" />
+						<img class="ipLogo" :src="imgTwoSrc" />
 						<div class="upLoadImg">
-							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
-							<input type="button" class="btn btn-default" value="选择图片" />
-							<p class="form-control-static warned">*图片不符合要求</p>
+							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、gif;图片不可大于2M</p>
+							<a href="javascript:void(0);" class="uploadA btn btn-default">
+								<span>选择图片</span>
+								<form id="formTwo">
+									<input class="uploadIpt" type="file" name="Filedata" v-on:change="iptTwoChange" />
+								</form>
+							</a>
+							<p class="form-control-static warned">{{imgTwoTip}}</p>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>经营范围</label>
-					<div class="col-sm-10 col-xs-10">
-						<input type="text" class="form-control" placeholder="" />
+					<div class="col-sm-8 col-xs-8">
+						<input type="text" class="form-control" placeholder="" v-model.trim="business" />
 						<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
+					</div>
+					<div class="col-sm-2 col-xs-2">
+						<p class="form-control-static warned">{{businessTip}}</p>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>行业领域</label>
-					<div class="col-sm-2 col-xs-2">
-						<select class="form-control">
-							<option>163.com</option>
-							<option>qq.com</option>
-							<option>162.ocm</option>
+					<div class="col-sm-3 col-xs-3">
+						<select class="form-control" v-model="industry">
+							<option>医疗单位</option>
+							<option>IT|通信|电子|互联网</option>
+							<option>房地产|建筑业</option>
+							<option>商业服务业</option>
+							<option>贸易|批发|零售|租赁业</option>
+							<option>文体教育|公艺美术</option>
+							<option>交通|运输|物流|仓储</option>
+							<option>健康产业</option>
+							<option>食品加工和流通行业</option>
+							<option>保险|旅游|养老</option>
 						</select>
-						<!--</div>-->
 					</div>
-
+					<div class="col-sm-2 col-xs-2">
+						<p class="form-control-static warned">{{industryTip}}</p>
+					</div>
 				</div>
 			</form>
 		</section>
@@ -114,43 +150,62 @@
 			<form class="form-horizontal" role="form">
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>身份证姓名</label>
-					<div class="col-sm-10 col-xs-10">
-						<input type="text" class="form-control" placeholder="" />
+					<div class="col-sm-8 col-xs-8">
+						<input type="text" class="form-control" placeholder="" v-model.trim="personName" />
 						<p class="form-control-static explain">请与营业执照名称保持一致，审核通过后不可修过</p>
+					</div>
+					<div class="col-sm-2 col-xs-2">
+						<p class="form-control-static warned">{{nameTip}}</p>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>证件号码</label>
-					<div class="col-sm-10 col-xs-10">
-						<input type="text" class="form-control" placeholder="" />
+					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>身份证件号码</label>
+					<div class="col-sm-8 col-xs-8">
+						<input type="text" class="form-control" placeholder="" v-model.trim="certificates" />
 						<p class="form-control-static explain"></p>
+					</div>
+					<div class="col-sm-2 col-xs-2">
+						<p class="form-control-static warned">{{certificatesTip}}</p>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>证件照片</label>
 					<div class="col-sm-10 col-xs-10 uploadImgContent">
-						<img class="ipLogo" src="/static/img/(1)_03.png" />
+						<img class="ipLogo" :src="imgThreeSrc" />
 						<div class="upLoadImg">
-							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、jif;图片不可大于2M</p>
-							<input type="button" class="btn btn-default" value="选择图片" />
-							<p class="form-control-static warned">*图片不符合要求</p>
+							<p class="upLoadImgDescription">图片格式必须为：png、jpg、jpeg、gif;图片不可大于2M</p>
+							<a href="javascript:void(0);" class="uploadA btn btn-default">
+								<span>选择图片</span>
+								<form id="formThree">
+									<input class="uploadIpt" type="file" name="Filedata" v-on:change="iptThreeChange" />
+								</form>
+							</a>
+							<p class="form-control-static warned">{{imgThreeTip}}</p>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>手机号码</label>
-					<div class="col-sm-10 col-xs-10">
-						<input type="text" class="form-control" placeholder="" />
+					<div class="col-sm-8 col-xs-8">
+						<input type="text" class="form-control" placeholder="" v-model.trim="phone" />
 						<p class="form-control-static explain"></p>
+					</div>
+					<div class="col-sm-2 col-xs-2">
+						<p class="form-control-static warned">{{phoneTip}}</p>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>联系邮箱</label>
-					<div class="col-sm-10 col-xs-10">
-						<input type="text" class="form-control" placeholder="" />
-						<p class="form-control-static agreement"><input type="checkbox" name="" />
+					<div class="col-sm-8 col-xs-8">
+						<input type="text" class="form-control" placeholder="" v-model.trim="mail" />
+						<p class="form-control-static agreement">
+							<input type="checkbox" name="" v-model="ischecked" />
 							<router-link to="" class="toAgreeMent" @click.native="agreeShow">&nbsp;&nbsp;同意《医图视界链健康数据链AI平台》</router-link>
+							<span class="form-control-static warned">{{checkTip}}</span>
 						</p>
+					</div>
+					<div class="col-sm-2 col-xs-2">
+						<p class="form-control-static warned">{{mailTip}}</p>
 					</div>
 				</div>
 				<p class="next">
@@ -165,7 +220,7 @@
 					<img class="checkRight" src="/static/img/636574c6e136a799b7309a525894222.png" /> 注册成功
 				</div>
 				<p>您已经成功注册了医图数据管理平台，&nbsp;请耐心等待系统审核</p>
-				<p class="explain">系统将在<span class="explain">5</span>秒后自动转跳至用户中心，如果没有请点击
+				<p class="explain">系统将在<span class="explain">{{backtime}}</span>秒后自动转跳至用户中心，如果没有请点击
 					<router-link to="">手动跳转</router-link>
 				</p>
 			</div>
@@ -174,11 +229,10 @@
 		<section class="registerSucceed" :style="{width: modelWid+'px', height: modelHet +'px'}" v-if="isAgreeShow">
 			<div class="agreeContainer ">
 				<div class="agreeHeader">
-					<span class="left">医图视界会员协议</span>
+					<span class="left">医图视界—医图号用户注册协议</span>
 					<span class="right" @click="closeAgreement">X</span>
 				</div>
 				<section class="agreementList">
-					<p>医图视界—医图号用户注册协议</p>
 					<p>欢迎您使用健康数据链分发系统—医图号平台！</p>
 					<p>为了更好地为您提供服务，请您仔细阅读这份协议，理解认同后再进行注册。本协议是您与陕西医图视界信息科技有限公司（以下简称“医图视界公司”）就您注册、登录健康数据链分发系统医图号平台及使用等所涉及的全部行为所订立的权利义务规范。您在注册过程中点击“同意”等按钮、及注册后登录和使用时，均表明您已完全充分理解、同意并接受本协议，愿意遵守本协议及医图号平台公示的各项规则、规范的全部内容，若不同意则可停止注册、登录或使用医图号平台。</p>
 					<p>一、名词定义</p>
@@ -265,11 +319,6 @@
 					<p>9.4 本协议的成立、生效、履行、解释及纠纷解决，都适用于中华人民共和国的法律。本协议条款无论因何种原因部分无效或不可执行，其余条款仍有效，对双方具有约束力。</p>
 					<p>9.5 如双方就本协议内容或其执行发生任何争议，双方应尽量友好协商解决。协商不成时，任何一方均应向医图视界公司所在地有管辖权的人民法院提起诉讼。</p>
 					<p>9.6 本协议签订地为中华人民共和国西安市碑林区。</p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
 				</section>
 			</div>
 		</section>
@@ -279,34 +328,312 @@
 <script>
 	export default {
 		data() {
-				return {
-					isModelShow: false,
-					isAgreeShow: false,
-					modelWid: 0,
-					modelHet: 0,
-				}
-			},
-			mounted() {
-				this.$nextTick(function() {
-					this.modelWid = window.screen.availWidth;
-					this.modelHet = window.screen.availHeight;
+			return {
+				isModelShow: false,
+				isAgreeShow: false,
+				modelWid: 0,
+				modelHet: 0,
+				companyName: "",
+				companyNameTip: "",
 
-				})
-			},
-			components: {
+				pro: "",
+				city: "",
+				district: "",
+				areasTip: "",
+				
+				address:"",
+				addressTip:"",
 
-			},
-			methods: {
-				goCheck() {
-					this.isModelShow = true
-				},
-				agreeShow(){
-					this.isAgreeShow=true;
-				},
-				closeAgreement(){
-					this.isAgreeShow=false;
-				}
+				license: "",
+				licenseTip: "",
+
+				imgOneSrc: "",
+				imgOneTip: "",
+
+				imgTwoSrc: "",
+				imgTwoTip: "",
+
+				imgThreeSrc: "",
+				imgThreeTip: "",
+
+				business: "",
+				businessTip: "",
+
+				industry: "",
+				industryTip: "",
+
+				personName: "",
+				nameTip: "",
+
+				certificates: "",
+				certificatesTip: "",
+
+				phone: sessionStorage.getItem("phoneNumber"),
+				phoneTip: "",
+
+				mail: sessionStorage.getItem("mailName"),
+				mailTip: "",
+
+				ischecked: false,
+				checkTip: "",
+				
+				backtime:5,
+
 			}
+		},
+		mounted() {
+			this.$nextTick(function() {
+				this.modelWid = window.screen.availWidth;
+				this.modelHet = window.screen.availHeight;
+
+			})
+		},
+		components: {
+
+		},
+		methods: {
+			goCheck() {
+				if(this.companyName!=""){
+					this.companyNameTip="";
+					if(this.pro!="" && this.city!="" && this.district!=""){
+						this.areasTip="";
+						if(this.address!=""){
+							this.addressTip=""
+							if(this.license!=""){
+								this.licenseTip=""
+								if(this.imgOneSrc!=""){
+									this.imgOneTip=""
+									if(this.imgTwoSrc!=""){
+										this.imgTwoTip=""
+										if(this.business!=""){
+											this.businessTip=""
+											if(this.industry!=""){
+												this.industryTip=""
+												if(this.personName!=""){
+													this.nameTip=""
+													if(this.certificates!="" && this.certificates.length>=15 && this.certificates.length<19){
+														this.certificatesTip=""
+														if(this.imgThreeSrc!=""){
+															this.imgThreeTip=""
+															if(this.phone!=""){
+																if(/^1(3|4|5|7|8)\d{9}$/.test(this.phone)){
+																	this.phoneTip=""
+																	if(this.mail!=""){
+																		var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+																		if(myreg.test(this.mail)) {
+																			this.mailTip=""
+																			if(this.ischecked==true){
+																				this.checkTip=""
+																				this.sendInfo();
+																			}else{
+																				this.checkTip="请阅览并勾选协议"
+																			}
+																		}else{
+																			this.mailTip="邮箱不符合规范"
+																		}
+																	}else{
+																		this.mailTip="请输入注册邮箱"
+																	}
+																}else{
+																	this.phoneTip="输入手机不符合规范"
+																}
+															}else{
+																this.phoneTip="请输入手机号码"
+															}
+														}else{
+															this.imgThreeTip="请选择运营者身份证图片"
+														}
+													}else{
+														this.certificatesTip="请输入运营者份证号"
+													}
+												}else{
+													this.nameTip="请输入运营者姓名"
+												}
+											}else{
+												this.industryTip="请选择行业领域"
+											}
+										}else{
+											this.businessTip="请输入经营范围"
+										}
+									}else{
+										this.imgTwoTip="请选择企业logo图片"
+									}
+								}else{
+									this.imgOneTip="请选择营业执照扫描件图片"
+								}
+							}else{
+								this.licenseTip="请输入执照注册号"
+							}
+						}else{
+							this.addressTip="请输入详细地址"
+						}
+					}else{
+						this.areasTip="请选择所在地域";
+					}
+				}else{
+					this.companyNameTip="请输入企业名称";
+				}
+			},
+			sendInfo(){
+				var TOKEN = localStorage.getItem("TOKEN")
+				var registerId=sessionStorage.getItem("registerId")
+				var data = {
+					"companyname" : this.companyName,
+					"provinces" : this.pro,
+					"cities" : this.city,
+					"area" : this.district,
+					"address" : this.address,
+					"organizationcode" : this.license,
+					"businesslicensephoto" : this.imgOneSrc,
+					"businessscope" : this.business,
+					"logopic" : this.imgTwoSrc,
+					"industry" : this.industry,
+					"actualname" : this.personName,
+					"idtype" : "身份证",
+					"idnumber" : this.certificates,
+					"idphoto" : this.imgThreeSrc,
+					"linkphone" : this.phone,
+					"linkemail" : this.mail
+				}
+				this.$http.post("https://api.lotusdata.com/ip/v1/reg/detailregister/"+registerId, data, {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						console.log(res)
+						if(res.data.code==0){
+							var that=this
+							that.isModelShow=true;
+							var times=setInterval(function(){
+								that.backtime--;
+								if(that.backtime==0){
+									clearInterval(times)
+									that.$router.push({ path: "/login" })
+									that.isModelShow=false;
+								}
+							},1000)
+							
+						}
+					},
+					function() {
+						console.log("数据传输失败")
+					}
+				)
+			},
+			agreeShow() {
+				this.isAgreeShow = true;
+			},
+			closeAgreement() {
+				this.isAgreeShow = false;
+			},
+			iptOneChange: function(e) { //判断并加载营业执照扫描件
+				e.preventDefault();
+				var files = e.target.files;
+				var data = new FormData();
+				data.append('avatar', files[0]);
+				var imgFile = files[0];
+				var imgType = imgFile.name.substring(imgFile.name.indexOf(".") + 1, imgFile.name.length); //获取图片格式
+				var imgSize = imgFile.size; //获取图片大小
+				//console.log(imgFile)
+				if(imgType == "png" || imgType == "jpg" || imgType == "gif" || imgType == "jpeg") {
+					//console.log(imgType)
+					if(imgSize < 2 * 1024 * 1024) {
+						this.imgOneTip = " ";
+						this.sendimgOne();
+					} else {
+						this.imgOneTip = "*图片大小超出2M"
+					}
+				} else {
+					this.imgOneTip = "*图片不符合要求"
+				}
+			},
+			sendimgOne() {
+				var TOKEN = localStorage.getItem("TOKEN") //获取token
+				var form = document.getElementById('formOne');
+				var Filedata = new FormData(formOne);
+				this.$http.post("https://api.lotusdata.com/v1/file/standardupload", Filedata, {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						var newSrc = res.data.data
+						this.imgOneSrc = newSrc;
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+			},
+			iptTwoChange: function(e) { //判断并加载企业LOGO
+				e.preventDefault();
+				var files = e.target.files;
+				var data = new FormData();
+				data.append('avatar', files[0]);
+				var imgFile = files[0];
+				var imgType = imgFile.name.substring(imgFile.name.indexOf(".") + 1, imgFile.name.length); //获取图片格式
+				var imgSize = imgFile.size; //获取图片大小
+				if(imgType == "png" || imgType == "jpg" || imgType == "gif" || imgType == "jpeg") {
+					if(imgSize < 2 * 1024 * 1024) {
+						this.imgTwoTip = " ";
+						this.sendimgTwo();
+					} else {
+						this.imgTwoTip = "*图片大小超出2M"
+					}
+				} else {
+					this.imgTwoTip = "*图片不符合要求"
+				}
+			},
+			sendimgTwo() {
+				var TOKEN = localStorage.getItem("TOKEN") //获取token
+				var form = document.getElementById('formTwo');
+				var Filedata = new FormData(formTwo);
+				this.$http.post("https://api.lotusdata.com/v1/file/standardupload", Filedata, {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						var newSrc = res.data.data
+						this.imgTwoSrc = newSrc;
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+			},
+			iptThreeChange: function(e) { //判断并加载证件照
+				e.preventDefault();
+				var files = e.target.files;
+				var data = new FormData();
+				data.append('avatar', files[0]);
+				var imgFile = files[0];
+				//console.log(imgFile)
+				var imgType = imgFile.name.substring(imgFile.name.indexOf(".") + 1, imgFile.name.length); //获取图片格式
+				var imgSize = imgFile.size; //获取图片大小
+				if(imgType == "png" || imgType == "jpg" || imgType == "gif" || imgType == "jpeg") {
+					if(imgSize < 2 * 1024 * 1024) {
+						this.imgThreeTip = " ";
+						this.sendimgThree();
+					} else {
+						this.imgThreeTip = "*图片大小超出2M"
+					}
+				} else {
+					this.imgThreeTip = "*图片不符合要求"
+				}
+			},
+			sendimgThree() {
+				var TOKEN = localStorage.getItem("TOKEN") //获取token
+				var form = document.getElementById('formThree');
+				var Filedata = new FormData(formThree);
+				this.$http.post("https://api.lotusdata.com/v1/file/standardupload", Filedata, {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						var newSrc = res.data.data
+						this.imgThreeSrc = newSrc;
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+			},
+		}
 
 	}
 </script>
@@ -393,6 +720,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
+		z-index: 666;
 		background: rgba(255, 255, 255, .8);
 		.goPageWindow {
 			width: 550px;
@@ -431,21 +759,21 @@
 			margin-top: -180px;
 			border: 5px solid #646464;
 			overflow: hidden;
-			.agreeHeader{
+			.agreeHeader {
 				overflow: hidden;
 				padding: 5px 10px;
 				background: #fbfbfb;
 				border: 1px solid #eee;
-				.right{
+				.right {
 					cursor: pointer;
 				}
 			}
-			.agreementList{
+			.agreementList {
 				padding: 10px 10px;
 				overflow: hidden;
 				overflow-y: scroll;
 				height: 360px;
-				p{
+				p {
 					font-size: 13px;
 				}
 			}
@@ -519,6 +847,7 @@
 	
 	.warned {
 		color: #f8534c;
+		font-size: 13px;
 	}
 	
 	.explain {
@@ -540,6 +869,7 @@
 		float: left;
 		width: 133px;
 		height: 133px;
+		background: #f5f5f5;
 	}
 	
 	.upLoadImg {
@@ -565,6 +895,34 @@
 		.tagli {
 			font-size: 25px;
 			color: #4781ea;
+		}
+	}
+	/*图片上传控件*/
+	
+	.uploadA {
+		width: 100px;
+		height: 30px;
+		overflow: hidden;
+		position: relative;
+		#formOne .uploadIpt,
+		#formTwo .uploadIpt,
+		#formThree .uploadIpt {
+			/*display: inline-block;*/
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 999;
+		}
+		span {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 3px;
+			left: 0;
+			z-index: 2;
 		}
 	}
 </style>

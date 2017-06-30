@@ -17,7 +17,7 @@
 			</div>
 		</section>
 		<section class="testContent activeColor">
-			新手机修改成功！网页将于{{backNum}}秒后跳转登录页
+			新手机修改成功！系统将于{{backNum}}秒后跳转登录页
 		</section>
 	</div>
 </template>
