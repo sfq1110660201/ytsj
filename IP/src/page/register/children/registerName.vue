@@ -151,6 +151,7 @@
 							sessionStorage.setItem("registerId",res.data.data)
 							sessionStorage.setItem("phoneNumber",this.phoneNumber)
 							sessionStorage.setItem("mailName",this.mailName)
+							sessionStorage.setItem("password",this.password2)
 							this.$router.push({ path: "/register/fillInfo" })
 							
 						}

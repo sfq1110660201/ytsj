@@ -13,7 +13,7 @@
 					<div class="left">
 						<img class="logIcon" src="/static/img/userName.png" />
 						<span class="iptItem">用户名</span>
-						<input class="iptL" type="text" v-focus v-model.trim="userName" @blur='getUserName' />
+						<input class="iptL" type="text" v-focus v-model.trim="userName"  />
 					</div>
 					<div class="right">
 						<p class="warned infoTip" v-if="isUserName" v-text="userNameText"></p>
@@ -140,9 +140,6 @@
 				//console.log(this.verificationPic)
 				//console.log(this.verificationId)
 			},
-			getUserName() { //失去焦点获取用户名
-				//console.log(this.userName)
-			},
 			submit() {
 				//console.log(this.userName,this.password,this.verificationValue)
 				if(this.userName == '') {
@@ -212,12 +209,7 @@
 							var enterpriseId = res.data.data.Enterpriseid;
 							localStorage.setItem("TOKEN", 'JWT ' + TOKEN)
 							localStorage.setItem("enterpriseId",enterpriseId)
-							//调用vuex方法
-							//this.$store.commit('setEmail',res.data.data.Email)
-							this.$store.commit('setEnterpriseId',res.data.data.Enterpriseid)
-							//this.$store.commit('setPhone',res.data.data.Phone)
 							localStorage.setItem("emailName",res.data.data.Email)
-							//console.log(localStorage.getItem("emailName"))
 							localStorage.setItem("phoneNum",res.data.data.Phone)
 							this.$router.push({ path: "/ipContent/yiTu/myYiTu", query: { enterpriseId: enterpriseId } })
 						} else {

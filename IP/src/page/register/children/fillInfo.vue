@@ -221,7 +221,7 @@
 				</div>
 				<p>您已经成功注册了医图数据管理平台，&nbsp;请耐心等待系统审核</p>
 				<p class="explain">系统将在<span class="explain">{{backtime}}</span>秒后自动转跳至用户中心，如果没有请点击
-					<router-link to="">手动跳转</router-link>
+					<router-link :to="({ path: '/ipContent/yiTu/myYiTu', query: { enterpriseId: enterpriseId } })">手动跳转</router-link>
 				</p>
 			</div>
 		</section>
@@ -378,6 +378,7 @@
 				checkTip: "",
 				
 				backtime:5,
+				enterpriseId:"",
 
 			}
 		},
@@ -501,21 +502,49 @@
 					function(res) {
 						console.log(res)
 						if(res.data.code==0){
+							this.testNameAndPssword();
+//							
+							
+						}
+					},
+					function() {
+						console.log("数据传输失败")
+					}
+				)
+			},
+			testNameAndPssword() { //匹配用户名和密码
+				this.$http.get("https://api.lotusdata.com/v1/buser/token", {
+					params: {
+						username: sessionStorage.getItem("mailName"),
+						password: sessionStorage.getItem("password"),
+						refreshtoken: 0
+					}
+				}).then(
+					function(res) {
+						if(res.data.code == 0 && res.data.data != "") {
+							console.log(res.data)
+							var TOKEN = res.data.token;
+							this.enterpriseId = res.data.data.Enterpriseid;
+							localStorage.setItem("TOKEN", 'JWT ' + TOKEN)
+							localStorage.setItem("enterpriseId",this.enterpriseId)
+							localStorage.setItem("emailName",res.data.data.Email)
+							localStorage.setItem("phoneNum",res.data.data.Phone)
 							var that=this
 							that.isModelShow=true;
 							var times=setInterval(function(){
 								that.backtime--;
 								if(that.backtime==0){
 									clearInterval(times)
-									that.$router.push({ path: "/login" })
+									that.$router.push({ path: "/ipContent/yiTu/myYiTu", query: { enterpriseId: that.enterpriseId } })
 									that.isModelShow=false;
 								}
 							},1000)
-							
+						} else {
+							console.log("参数错误")
 						}
 					},
 					function() {
-						console.log("数据传输失败")
+						console.log("获取TOKEN失败")
 					}
 				)
 			},
