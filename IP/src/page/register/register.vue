@@ -3,8 +3,8 @@
         <ul class="registerHeader">
         	<img class="logoImg" src="/static/img/logo.png"/>
         	<!--<img class="logoImg2" src="../../../static/img/logo1.png"/>-->
-        	<li class="logRegister">注册</li>
-        	<li class="logRegister">登录</li>
+        	<router-link to="/register/registerName" tag="li" class="logRegister">注册</router-link>
+        	<router-link to="/login" tag="li" class="logRegister">登录</router-link>
         </ul>
         <section class="registerContent">
         	<router-view></router-view>

@@ -191,11 +191,12 @@
 				}
 			},
 			sendimgOne() {
-				var TOKEN = localStorage.getItem("TOKEN") //获取token
+				var token = localStorage.getItem("token") //获取token
+				console.log(TOKEN)
 				var form = document.getElementById('formOne');
 				var Filedata = new FormData(formOne);
 				this.$http.post("https://api.lotusdata.com/v1/file/standardupload", Filedata, {
-					headers: { 'Authorization': TOKEN }
+					headers: { 'Authorization': token }
 				}).then(
 					function(res) {
 						var newSrc = res.data.data
@@ -227,11 +228,11 @@
 				}
 			},
 			sendimgTwo() {
-				var TOKEN = localStorage.getItem("TOKEN") //获取token
+				var token = localStorage.getItem("token") //获取token
 				var form = document.getElementById('formTwo');
 				var Filedata = new FormData(formTwo);
 				this.$http.post("https://api.lotusdata.com/v1/file/standardupload", Filedata, {
-					headers: { 'Authorization': TOKEN }
+					headers: { 'Authorization': token }
 				}).then(
 					function(res) {
 						var newSrc = res.data.data

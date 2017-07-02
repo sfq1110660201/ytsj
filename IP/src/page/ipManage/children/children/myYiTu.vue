@@ -86,7 +86,7 @@
 									this.ipCounts.push({
 										ipImg: listData[i].Pic,
 										ipName: listData[i].Ipname,
-										ipTime: listData[i].Createdate.substr(0, 9),
+										ipTime: listData[i].Createdate.substr(0, 10),
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "正常",
 										ipReview: "未审核",
@@ -95,7 +95,7 @@
 									this.ipCounts.push({
 										ipImg: listData[i].Pic,
 										ipName: listData[i].Ipname,
-										ipTime: listData[i].Createdate.substr(0, 9),
+										ipTime: listData[i].Createdate.substr(0, 10),
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "正常",
 										ipReview: "审核中",
@@ -104,7 +104,7 @@
 									this.ipCounts.push({
 										ipImg: listData[i].Pic,
 										ipName: listData[i].Ipname,
-										ipTime: listData[i].Createdate.substr(0, 9),
+										ipTime: listData[i].Createdate.substr(0, 10),
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "正常",
 										ipReview: "审核通过",
@@ -115,7 +115,7 @@
 									this.ipCounts.push({
 										ipImg: listData[i].Pic,
 										ipName: listData[i].Ipname,
-										ipTime: listData[i].Createdate.substr(0, 9),
+										ipTime: listData[i].Createdate.substr(0, 10),
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "已冻结",
 										ipReview: "未审核",
@@ -124,7 +124,7 @@
 									this.ipCounts.push({
 										ipImg: listData[i].Pic,
 										ipName: listData[i].Ipname,
-										ipTime: listData[i].Createdate.substr(0, 9),
+										ipTime: listData[i].Createdate.substr(0, 10),
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "已冻结",
 										ipReview: "审核中",
@@ -133,7 +133,7 @@
 									this.ipCounts.push({
 										ipImg: listData[i].Pic,
 										ipName: listData[i].Ipname,
-										ipTime: listData[i].Createdate.substr(0, 9),
+										ipTime: listData[i].Createdate.substr(0, 10),
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "已冻结",
 										ipReview: "审核通过",

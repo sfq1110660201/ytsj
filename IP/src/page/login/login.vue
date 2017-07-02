@@ -5,7 +5,7 @@
 				<p class="welcome">欢迎来到医图视界</p>
 				<p class="tip">用医学美图构建健康数据大视界!用循证医学解构健康医疗大数据!</p>
 				<p class="tip">用健康教育打通用户链接新思路!</p>
-				<router-link to="" class="btn btn-default register">注 册</router-link>
+				<router-link to="/register/registerName" class="btn btn-default register">注 册</router-link>
 			</section>
 			<section class="right loginR">
 				<p class="center headTip">登 陆</p>
@@ -23,7 +23,7 @@
 				<div class="iptCon">
 					<div class="left">
 						<img class="logIcon" src="/static/img/passwordIcon.png" />
-						<span class="iptItem">密码</span>
+						<span class="iptItem">密&nbsp;&nbsp;&nbsp;码</span>
 						<input class="iptLPassword" v-model="password" type="password" maxlength="15" />
 					</div>
 					<div class="right">
@@ -44,7 +44,7 @@
 						<p><img class="verification" :src="verificationPic" @click="reLoad" /></p>
 					</div>
 				</div>
-				<router-link to="" tag="p" class="text-right">忘记密码</router-link>
+				<router-link to="/register/recoverKeywords" tag="p" class="text-right">忘记密码</router-link>
 				<router-link to="" tag="p" class="submit" @click.native="submit">登 录</router-link>
 			</section>
 
@@ -112,7 +112,7 @@
 				}).then(
 					function(res) {
 						this.token = "JWT " + res.data.token;
-						//console.log(this.token)
+						localStorage.setItem("token",this.token)
 						this.getVerificationPic()
 					},
 					function() {

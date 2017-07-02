@@ -111,15 +111,23 @@
 				}
 			},
 			sendimgOne() {
-				var TOKEN = localStorage.getItem("TOKEN") //获取token
+				var token = localStorage.getItem("token") //获取token
+				console.log(token)
 				var form = document.getElementById('formOne');
 				var Filedata = new FormData(formOne);
 				this.$http.post("https://api.lotusdata.com/v1/file/standardupload", Filedata, {
-					headers: { 'Authorization': TOKEN }
+					headers: { 'Authorization': token }
 				}).then(
 					function(res) {
-						var newSrc = res.data.data
-						this.imgOneSrc = newSrc;
+						if(res.data.code==0){
+							this.isImgTypeOne=""
+							var newSrc = res.data.data
+							this.imgOneSrc = newSrc;
+							console.log(newSrc)
+						}else{
+							this.isImgTypeOne="参数错误"
+						}
+						
 					},
 					function() {
 						console.log("数据请求失败")
