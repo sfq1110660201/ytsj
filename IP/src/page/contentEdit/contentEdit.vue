@@ -4,29 +4,29 @@
         	<header class="contentHeader">
         		<img class="logoOne left" src="/static/img/logoOne.png"/>
         		<span class="logoTitle left">医图号</span>
-        		<router-link class="backCompany left" to="" >我的企业</router-link>
-        		<span class="userName right">睿妈涨姿势</span>
-        		<img class="userImg right" src="/static/img/dasdad.png"/>
+        		<router-link class="backCompany left" :to="{path:'/ipContent/yiTu/myYiTu',query:{enterpriseId:enterpriseId}}" >我的企业</router-link>
+        		<span class="userName right">{{ipName}}</span>
+        		<img class="userImg right" :src="ipSrc"/>
         		<img class="email right" src="/static/img/email.png"/>
         	</header>
         	<section id="editPart">
         		<div class="editOperate left">
-        			<router-link to="/contentEdit/homePage" class="editItem" tag="li" :class="{activeColor:$route.path.indexOf('homePage') !== -1}">●&nbsp;主页</router-link>
-					<router-link to="/contentEdit/publish/Graphic" class="editItem" tag="li" :class="{activeColor:$route.path.indexOf('publish') !== -1}">●&nbsp;发表</router-link>
+        			<router-link :to="{path:'/contentEdit/homePage',query:{ipId:ipId}}" class="editItem" tag="li" :class="{activeColor:$route.path.indexOf('homePage') !== -1}">●&nbsp;主页</router-link>
+					<router-link :to="{path:'/contentEdit/publish/Graphic',query:{ipId:ipId}}" class="editItem" tag="li" :class="{activeColor:$route.path.indexOf('publish') !== -1}">●&nbsp;发表</router-link>
         			<div class="editItem">
         				●&nbsp;管理
-        				<router-link to="/contentEdit/manageContent/listAll" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('manageContent') !== -1}">内容管理</router-link>
+        				<router-link :to="{path:'/contentEdit/manageContent/listAll',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('manageContent') !== -1}">内容管理</router-link>
         			</div>
         			<div class="editItem">
         				●&nbsp;数据统计
-        				<router-link to="/contentEdit/userIncrease/newAdding" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('newAdding') !== -1}">用户增长</router-link>
-        				<router-link to="/contentEdit/contentAnalysis" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('contentAnalysis') !== -1}">内容分析</router-link>
-        				<router-link to="/contentEdit/interestStatistics" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('interestStatistics') !== -1}">兴趣统计</router-link>
-        				<router-link to="/contentEdit/userClass" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('userClass') !== -1}">用户属性</router-link>
+        				<router-link :to="{path:'/contentEdit/userIncrease/newAdding',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('newAdding') !== -1}">用户增长</router-link>
+        				<router-link :to="{path:'/contentEdit/contentAnalysis',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('contentAnalysis') !== -1}">内容分析</router-link>
+        				<router-link :to="{path:'/contentEdit/interestStatistics',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('interestStatistics') !== -1}">兴趣统计</router-link>
+        				<router-link :to="{path:'/contentEdit/userClass',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('userClass') !== -1}">用户属性</router-link>
         			</div>
         			<div class="editItem">
         				●&nbsp;设置
-        				<router-link to="/contentEdit/setting" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('setting') !== -1}">医图号信息</router-link>
+        				<router-link :to="{path:'/contentEdit/setting',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('setting') !== -1}">医图号信息</router-link>
         			</div>
         		</div>
         		<div class="editContent left">
@@ -42,16 +42,39 @@
     export default {
         data(){
             return{
+            	ipId:"",
+               ipSrc:"",
+               ipName:"",
+               enterpriseId:"",
                
             }
         },
         mounted() {
 			this.$nextTick(function() {
-				
+				this.ipId=this.$route.query.ipId;
+				//console.log(this.$route.query)
+				this.getIpInfo();
 			})
 		},
-        components: {
-           
+        methods:{
+        	getIpInfo(){
+        		var TOKEN = localStorage.getItem("TOKEN")
+        		//console.log(TOKEN)
+        		this.$http.get("https://api.lotusdata.com/ip/v1/ipm/"+this.ipId, {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						//console.log(res)
+						this.ipSrc=res.data.data.Pic;
+						this.ipName=res.data.data.Ipname;
+						this.enterpriseId=res.data.data.Enterpriseid
+						//console.log(res.data.data.Enterpriseid)
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+        	}
         }
         
     }

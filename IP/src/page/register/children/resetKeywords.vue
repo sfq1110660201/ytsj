@@ -74,6 +74,7 @@
 				sendPassword() { //更换新密码
 					var token = sessionStorage.getItem("token")
 					var setResettoken = sessionStorage.getItem("setResettoken")
+					console.log(this.newPassword1)
 					var postInfo = {
 						"resettoken": setResettoken,
 						"type": "password",

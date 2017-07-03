@@ -11,7 +11,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for=" ipCount in ipCounts">
+				<tr v-for=" ipCount in ipCounts" @click="getSingleIp(ipCount)">
 					<td style="overflow: hidden;"><img class="ipLogo" :src="ipCount.ipImg" /> {{ipCount.ipName}}</td>
 					<td>{{ipCount.ipTime}}</td>
 					<td>{{ipCount.ipMangaer}}</td>
@@ -28,16 +28,7 @@
 		data() {
 			return {
 				enterpriseId:"",//企业id
-				ipCounts: [
-					//					{
-					//						ipImg: "/static/img/dasdad.png",
-					//						ipName: "锐捷洗手液",
-					//						ipTime: "2012-12-12",
-					//						ipMangaer: "张三",
-					//						ipIsNormal: "正常",
-					//						ipReview: "审核中"
-					//					}
-				]
+				ipCounts: []
 			}
 		},
 		components: {
@@ -80,6 +71,7 @@
 				}).then(
 					function(res) {
 						var listData = res.data.data
+						//console.log(listData)
 						for(var i = 0; i < listData.length; i++) {
 							if(listData[i].Servicestatus == 0) {
 								if(listData[i].Auditstatus == -1) {
@@ -90,6 +82,7 @@
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "正常",
 										ipReview: "未审核",
+										ipId:listData[i].Ipid
 									})
 								} else if(listData[i].Auditstatus == 0) {
 									this.ipCounts.push({
@@ -99,6 +92,7 @@
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "正常",
 										ipReview: "审核中",
+										ipId:listData[i].Ipid
 									})
 								} else if(listData[i].Auditstatus == 1) {
 									this.ipCounts.push({
@@ -108,6 +102,7 @@
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "正常",
 										ipReview: "审核通过",
+										ipId:listData[i].Ipid
 									})
 								}
 							}else if(listData[i].Servicestatus == 1) {
@@ -119,6 +114,7 @@
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "已冻结",
 										ipReview: "未审核",
+										ipId:listData[i].Ipid
 									})
 								} else if(listData[i].Auditstatus == 0) {
 									this.ipCounts.push({
@@ -128,6 +124,7 @@
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "已冻结",
 										ipReview: "审核中",
+										ipId:listData[i].Ipid
 									})
 								} else if(listData[i].Auditstatus == 1) {
 									this.ipCounts.push({
@@ -137,6 +134,7 @@
 										ipMangaer: listData[i].Creator,
 										ipIsNormal: "已冻结",
 										ipReview: "审核通过",
+										ipId:listData[i].Ipid
 									})
 								}
 							}
@@ -147,6 +145,11 @@
 						console.log("数据请求失败")
 					}
 				)
+			},
+			getSingleIp(res){
+				//console.log(res)
+				this.$router.push({path:"/contentEdit/homePage",query:{ipId:res.ipId}})
+				
 			}
 		},
 		watch: {

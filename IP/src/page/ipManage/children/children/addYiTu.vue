@@ -192,7 +192,7 @@
 			},
 			sendimgOne() {
 				var token = localStorage.getItem("token") //获取token
-				console.log(TOKEN)
+				//console.log(TOKEN)
 				var form = document.getElementById('formOne');
 				var Filedata = new FormData(formOne);
 				this.$http.post("https://api.lotusdata.com/v1/file/standardupload", Filedata, {

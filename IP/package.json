@@ -40,6 +40,7 @@
     "function-bind": "^1.0.2",
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.17.2",
+    "jquery": "^2.2.3",
     "json-loader": "^0.5.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
@@ -58,13 +59,13 @@
     "vue-loader": "^10.0.0",
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.1.0",
+    "wangeditor": "^3.0.3",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.3",
     "webpack-dev-server": "^1.16.2",
     "webpack-hot-middleware": "^2.12.2",
     "webpack-merge": "^0.14.1",
-    "weixin-js-sdk": "^1.2.0",
-    "jquery" : "^2.2.3"
+    "weixin-js-sdk": "^1.2.0"
   },
   "engines": {
     "node": ">= 4.0.0",
