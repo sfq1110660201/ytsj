@@ -33,7 +33,7 @@
 		mounted() {
 			this.$nextTick(function() {
 				this.ipId = this.$route.query.ipId;
-				console.log(this.ipId)
+				//console.log(this.ipId)
 			})
 		},
 		components: {

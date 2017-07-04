@@ -42,11 +42,10 @@
     export default {
         data(){
             return{
-            	ipId:"",
+               ipId:"",
                ipSrc:"",
                ipName:"",
-               enterpriseId:"",
-               
+               enterpriseId:"", 
             }
         },
         mounted() {

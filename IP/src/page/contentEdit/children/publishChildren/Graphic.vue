@@ -1,15 +1,9 @@
 <template>
 	<div>
-		
-		<div id="div1" class="toolbar"></div>
-		<!--<div style="padding: 5px 0; color: #ccc">中间隔离带</div>-->
 		<div class="editTitle">
 			<input class="editTitleIpt" v-model.trim="title" maxlength="30" type="text" placeholder="标题  （5-30字）" style="display: block;height: 75px;width: 100%;font-size: 25px;padding-left: 25px;" />
 		</div>
-    	<div id="div2" class="toolbar"> <!--可使用 min-height 实现编辑区域自动增加高度-->
-        	<p>请输入内容</p>
-    	</div>
-    	
+		<div id="editor-trigger" style="height: 500px;width: 900px;"></div>
 		<div id="editor-container">
 			<div id="editorElem">
 			</div>
@@ -33,6 +27,48 @@
 				</div>
 			</div>
 		</form>
+		<p class="publishTitle">IP描述</p>
+		<div class="ipLebals">
+			<div class="left">
+				<img src="/static/img/addIP_03.png"/>
+			</div>
+			<div class="lebalsContainer left">
+				<ul class="lebals">
+					<li v-for="lebal in lebals" :data-id="lebal.index" @mouseover="setLebalIndex(lebal)">{{lebal.name}}</li>
+				</ul>
+				<ul class="secondLebals" v-if="lebalIndex==0">
+					<li v-for="item in shenglis" @click="saveLebals(item.name)">{{item.name}}</li>
+				</ul>
+				<ul class="secondLebals" v-if="lebalIndex==1">
+					<li v-for="item in jibings" @click="saveLebals(item.name)">{{item.name}}</li>
+				</ul>
+				<ul class="secondLebals" v-if="lebalIndex==2">
+					<li v-for="item in hulis" @click="saveLebals(item.name)">{{item.name}}</li>
+					
+				</ul>
+				<ul class="secondLebals" v-if="lebalIndex==3">
+					<li v-for="item in foods" @click="saveLebals(item.name)">{{item.name}}</li>
+				</ul>
+				<ul class="secondLebals" v-if="lebalIndex==4">
+					<li v-for="item in baojians" @click="saveLebals(item.name)">{{item.name}}</li>
+				</ul>
+				<ul class="secondLebals" v-if="lebalIndex==5">
+					<li v-for="item in jiaoyus" @click="saveLebals(item.name)">{{item.name}}</li>
+				</ul>
+			</div>
+		</div>
+		<p class="publishTitle">已选标签</p>
+		<div class="ipLebals">
+			<div class="left">
+				<img src="/static/img/addIP_06.png"/>
+			</div>
+			<div class="lebalsContainer left">
+				<ul class="chosed">
+					<li v-for="(item,index) in chosedLebals">{{item.name}}<img class="delete" src="/static/img/delete.png" @click='deleteLebal(item.name,index)'/></li>
+				</ul>
+				
+			</div>
+		</div>
 		<p class="publishTitle">来源内容</p>
 		<div class="radioIpt"><input type="radio" name="isproto" value="原创" v-model="checked"/>&nbsp;原创</div>
 		<div class="radioIpt"><input type="radio" name="isproto" value="转载" v-model="checked"/>&nbsp;转载</div>
@@ -42,7 +78,7 @@
 					<input type="button" class="btn btn-default form-control right" value="取消" />
 				</div>
 				<div class="col-sm-2 col-xs-2 right">
-					<input type="button" class="btn btn-default form-control right" value="提交审核" />
+					<input type="button" class="btn btn-default form-control right" @click="submit" value="提交审核" />
 				</div>
 				<div class="col-sm-2 col-xs-2 right">
 					<input type="button" class="btn btn-default form-control right" @click="" value="保存" />
@@ -53,9 +89,9 @@
 </template>
 
 <script>
-	//import 'src/plugins/wangEditor.js'
-	//	import 'src/style/wangEditor.css'
-	import E from 'wangeditor'
+	import 'src/plugins/wangEditor.js'
+	import 'src/style/wangEditor.css'
+	
 	export default {
 		data() {
 			return {
@@ -64,7 +100,66 @@
 				title:"",
 				imgOneSrc:"",
 				isImgTypeOne:"",
-				checked:true,
+				checked:"",
+				lebalIndex:0,
+				lebals:[{
+					index:0,
+					name:"生理阶段",
+					isbool:true
+				},{
+					index:1,
+					name:"疾病",
+					isbool:true
+				},{
+					index:2,
+					name:"护理",
+					isbool:true
+				},{
+					index:3,
+					name:"饮食",
+					isbool:true
+				},{
+					index:4,
+					name:"保健",
+					isbool:true
+				},{
+					index:5,
+					name:"教育",
+					isbool:true
+				}],
+				shenglis:[{
+					name:"备孕"
+				},{
+					name:"孕期"
+				},{
+					name:"分娩期"
+				},{
+					name:"产后"
+				},{
+					name:"出生后24小时"
+				},{
+					name:"新生儿"
+				},{
+					name:"婴儿"
+				},{
+					name:"学龄前儿童"
+				},{
+					name:"少年"
+				}],
+				jibings:[{
+					name:"男性疾病"
+				},{
+					name:"女性疾病"
+				},{name:"两性疾病"},{name:"胎儿疾病"},{name:"新生儿疾病"},{name:"婴儿疾病"},{name:"儿童疾病"},{name:"内科"},{name:"外科"},{name:"遗传病"},{name:"皮肤科"},{name:"骨科"},{name:"眼科"},{name:"耳鼻喉科"},{name:"免疫科"},{name:"口腔科"},{name:"精神心理"},{name:"生长发育"},{name:"中医科"},{name:"寄生虫"},{name:"感染科"}],
+				hulis:[{name:"男性护理"},{name:"女性护理"},{name:"两性护理"},{name:"胎儿护理"},{name:"新生儿护理"},{name:"清洁"},{name:"院前护理"},{name:"疾病护理"},{name:"庭院护理"}],
+				foods:[{name:"生食"},{name:"熟食"},{name:"植物"},{name:"肉"},{name:"蛋"},{name:"乳"},{name:"营养素"},{name:"禁忌"},{name:"食品安全"}],
+				baojians:[{name:"生活行为"},{name:"运动"},{name:"环境"},{name:"保健方法"}],
+				jiaoyus:[{name:"心理"},{name:"胎教"},{name:"儿童心理"},{name:"育儿"},{name:"经验分享"}],
+				firstLebal:"生理阶段",
+				secLebal:"",
+				secMidLebal:"",//检索数组中是否已含所选标签
+				choosingLebal:"",
+				chosedLebals:[]
 			}
 		},
 		mounted() {
@@ -77,36 +172,21 @@
 		},
 		methods: {
 			setWangEditor() {
-				var TOKEN = localStorage.getItem("TOKEN")
 				var self = this;
-				// 创建编辑器
-				var editor = new E('#div1', '#div2')
-				editor.customConfig.onchange = (html) => {
-					self.editorContent = html
-				}
-	
-				editor.customConfig.uploadImgServer = 'https://api.lotusdata.com/v1/file/editorupload'
-				editor.customConfig.uploadFileName = 'Filedata'
-				editor.customConfig.uploadImgHeaders = {
+		        var TOKEN = localStorage.getItem("TOKEN")
+		        var editor = new wangEditor('editor-trigger');
+		        editor.onchange = function () {
+		            // onchange 事件中更新数据
+		            self.editorContent = editor.$txt.html();
+		        };
+		        editor.config.uploadImgUrl = 'https://api.lotusdata.com/v1/file/editorupload'
+				editor.config.uploadImgFileName  = 'Filedata'
+				
+				editor.config.withCredentials = false
+				editor.config.uploadHeaders = {
 					'Authorization': TOKEN
 				}
-				editor.customConfig.uploadImgHooks = {
-					before: function(xhr, editor, files) {
-						console.log("before"+xhr)
-					},
-					success: function(xhr, editor, result) {
-						console.log(xhr)
-					},
-					fail: function(xhr, editor, result) {
-						console.log("fail"+xhr)
-					},
-					error: function(xhr, editor) {
-						console.log(xhr)
-						console.log(editor)
-					},
-				}
-				editor.customConfig.withCredentials = false
-				editor.create()
+		        editor.create();
 			},
 			iptOneChange: function(e) { //判断并加载IP logo
 				e.preventDefault();
@@ -147,17 +227,79 @@
 					}
 				)
 			},
+			setLebalIndex(res){
+				this.lebalIndex=res.index;
+				this.firstLebal=res.name;
+				//console.log(this.choosingLebal)
+			},
+			saveLebals(res){
+					if(this.secMidLebal.indexOf(res)==-1){
+						this.secLebal=res;
+						this.secMidLebal+=this.secLebal;
+						this.choosingLebal=this.firstLebal+">"+this.secLebal;
+						this.chosedLebals.push({
+							name:this.choosingLebal
+						})
+						this.secLebal="";
+					}
+				
+			},
+			deleteLebal(res,index){
+				console.log(res,index);
+				this.chosedLebals.splice(index,1);
+			},
+			submit(){
+				console.log(this.checked)
+				//debugger
+				if(this.title==""){
+					alert("标题为空，请填写标题")
+				}else if(this.editorContent==""){
+					alert("请添加编辑内容")
+				}else if(this.imgOneSrc==""){
+					alert("请选择图文封面")
+				}else if(this.chosedLebals.length==0){
+					alert("请选择标签")
+				}else if(this.checked==""){
+					alert("请选择原创类型")
+				}else if(this.title!="" && this.editorContent!="" && this.imgOneSrc!="" && this.chosedLebals.length>0 && this.checked!=""){
+						this.sendInfo();
+					}
+				
+			},
+			sendInfo(){
+				var TOKEN = localStorage.getItem("TOKEN")
+				//console.log(TOKEN)
+				var tags=[];
+				for(var i=0;i<this.chosedLebals.length;i++){
+					tags.push(this.chosedLebals[i].name)
+				}
+				var articleInfo={
+					"ipid" : "",
+					"title" : this.title,
+					"content" : this.editorContent,
+					"pic" : this.imgOneSrc,
+					"tags" : tags
+				}
+				this.$http.post("https://api.lotusdata.com/ip/v1/article/", articleInfo, {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						console.log(res)
+						//this.$router.push({path:""})
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+			}
 		}
 
 	}
 </script>
 
 <style lang="scss" scoped>
-	/*@import 'src/style/wangEditor';*/
-	
 	.editTitle {
 		height: 75px;
-		/*border: 1px solid #ccc;*/
 	}
 	
 	#editor-trigger {
@@ -199,7 +341,52 @@
 	.form-group {
 		margin-bottom: 0;
 	}
-	
+	.ipLebals{
+		width: 960px;
+		border:1px solid #ccc;
+		padding: 20px;
+		overflow: hidden;
+		.left img{
+			width: 25px;
+		}
+		.lebalsContainer{
+			margin-left:20px;
+			width: 850px;
+			.lebals{
+				margin-bottom:10px;
+				li{
+					display: inline-block;
+					padding: 0 0 10px 0;
+					margin: 0 5px;
+					border-bottom: 4px solid #fff ;
+				}
+			}
+			.secondLebals{
+				li{
+					display: inline-block;
+					padding: 0 0 15px 0;
+					margin: 0 6px;
+					color: #959595;
+				}
+			}
+			.chosed{
+				li{
+					display: inline-block;
+					padding: 0 0 10px 0;
+					margin: 0 5px;
+					border-bottom: 4px solid #fff ;
+				}
+			}
+			.lebals li:hover{
+				border-bottom: 4px solid #6dc5a3  ;
+			}
+			.secondLebals li:hover{
+				color: #000000;
+			}
+		}
+		
+		
+	}
 	.radioIpt {
 		margin-bottom: 20px;
 		font-size: 20px;
@@ -233,5 +420,9 @@
 			left: 0;
 			z-index: 666;
 		}
+	}
+	.delete{
+		width: 15px!important;
+		cursor: pointer;
 	}
 </style>

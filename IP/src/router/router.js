@@ -54,6 +54,9 @@ const cancelCaring = r => require.ensure([], () => r(require('../page/contentEdi
 const addedCount = r => require.ensure([], () => r(require('../page/contentEdit/children/userIncreaseChildren/addedCount')), 'addedCount')//净增人数
 const accumulative = r => require.ensure([], () => r(require('../page/contentEdit/children/userIncreaseChildren/accumulative')), 'accumulative')//累计人数
 
+//const wangEditor = r => require.ensure([], () => r(require('../components/wangeditor/wangEditor')), 'wangEditor')
+
+
 
 export default [{
     path: '/',
@@ -116,6 +119,10 @@ export default [{
             	}]
             }]
         },
+//      {
+//          path: 'wangEditor', 
+//          component: wangEditor,
+//      },
         //登陆
         {
             path: 'login', 
