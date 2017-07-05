@@ -1,6 +1,6 @@
 <template>
 	<div class="publishPage">
-		<div class="container">
+		<div class="container" style="padding-left: 0;">
 			<ul class="nav nav-tabs" role="tablists">
 				<li role="presentation" :class="{ active: isActive1}">
 					<router-link :to="{path:'/contentEdit/publish/Graphic',query:{ipId:ipId}}" class="items" @click.native="checkOne">图文</router-link>

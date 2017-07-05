@@ -11,13 +11,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for=" ipCount in ipCounts" @click="getSingleIp(ipCount)">
+				<router-link :to="{path:'/contentEdit/homePage',query:{ipId:ipCount.ipId}}" tag="tr" v-for=" ipCount in ipCounts">
 					<td style="overflow: hidden;"><img class="ipLogo" :src="ipCount.ipImg" /> {{ipCount.ipName}}</td>
 					<td>{{ipCount.ipTime}}</td>
 					<td>{{ipCount.ipMangaer}}</td>
 					<td>{{ipCount.ipIsNormal}}</td>
 					<td>{{ipCount.ipReview}}</td>
-				</tr>
+				</router-link>
 			</tbody>
 		</table>
 	</div>

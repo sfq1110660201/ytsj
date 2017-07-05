@@ -72,7 +72,7 @@
 			},
 			getEnterpriseData(){
 				var TOKEN = localStorage.getItem("TOKEN")
-				//var ENTERPRISEID=localStorage.getItem("ENTERPRISEID");
+				var ENTERPRISEID=localStorage.getItem("ENTERPRISEID");
 				//console.log(ENTERPRISEID)
 				this.$http.get("https://api.lotusdata.com/ip/v1/enterprise/"+this.enterpriseId, {
 					headers: { 'Authorization': TOKEN }
@@ -112,7 +112,7 @@
 			},
 			sendimgOne() {
 				var token = localStorage.getItem("token") //获取token
-				console.log(token)
+				//console.log(token)
 				var form = document.getElementById('formOne');
 				var Filedata = new FormData(formOne);
 				this.$http.post("https://api.lotusdata.com/v1/file/standardupload", Filedata, {
@@ -123,7 +123,7 @@
 							this.isImgTypeOne=""
 							var newSrc = res.data.data
 							this.imgOneSrc = newSrc;
-							console.log(newSrc)
+							//console.log(newSrc)
 						}else{
 							this.isImgTypeOne="参数错误"
 						}
@@ -135,17 +135,21 @@
 				)
 			},
 			submitImg(){
+				//debugger
 				var TOKEN = localStorage.getItem("TOKEN")
-				var ENTERPRISEID=localStorage.getItem("ENTERPRISEID");
+				//var ENTERPRISEID=localStorage.getItem("ENTERPRISEID");
 				var data = {
 					"filed": "logopic",
 					"data": this.imgOneSrc
 				}
-				this.$http.put("https://api.lotusdata.com/ip/v1/enterprise/"+ENTERPRISEID, data, {
+				this.$http.put("https://api.lotusdata.com/ip/v1/enterprise/"+this.enterpriseId, data, {
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
-//						/console.log(res)
+						//console.log(res)
+						if(res.data.code==0){
+							alert("修改企业LOGO成功")
+						}
 					},
 					function() {
 						console.log("数据请求失败")

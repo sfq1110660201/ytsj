@@ -45,7 +45,7 @@
 (function (window, $) {
     if (window.wangEditor) {
         // 重复引用
-        alert('一个页面不能重复引用 wangEditor.js 或 wangEditor.min.js ！！！');
+        console.log('一个页面不能重复引用 wangEditor.js 或 wangEditor.min.js ！！！');
         return;
     }
 
@@ -7345,16 +7345,13 @@ _e(function (E, $) {
         if (!uploadImgUrl) {
             return;
         }
-
         // 阻止浏览器默认行为
         E.$document.on('dragleave drop dragenter dragover', function (e) {
             e.preventDefault();
         });
-
         // 监控 $txt drop 事件
         $txt.on('drop', function (dragEvent) {
             dragEvent.preventDefault();
-
             var originalEvent = dragEvent.originalEvent;
             var files = originalEvent.dataTransfer && originalEvent.dataTransfer.files;
 
@@ -7370,13 +7367,11 @@ _e(function (E, $) {
                     // 只接收图片
                     return;
                 }
-
                 E.log('得到图片 ' + name);
 
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     E.log('读取到图片 ' + name);
-
                     // 执行上传
                     var base64 = e.target.result || this.result;
                     editor.xhrUploadImg({

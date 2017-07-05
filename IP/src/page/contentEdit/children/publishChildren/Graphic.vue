@@ -3,11 +3,7 @@
 		<div class="editTitle">
 			<input class="editTitleIpt" v-model.trim="title" maxlength="30" type="text" placeholder="标题  （5-30字）" style="display: block;height: 75px;width: 100%;font-size: 25px;padding-left: 25px;" />
 		</div>
-		<div id="editor-trigger" style="height: 500px;width: 900px;"></div>
-		<div id="editor-container">
-			<div id="editorElem">
-			</div>
-		</div>
+		<div id="editor-trigger" style="height: 500px;width: 900px;" v-html="editorContent"></div>
 		<p class="publishTitle">图文封面</p>
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
@@ -27,6 +23,8 @@
 				</div>
 			</div>
 		</form>
+		<p class="publishTitle">摘要</p>
+		<textarea class="textarea" v-model.trim="textarea" placeholder="选填，如不填写会默认抓取正文前54个字"></textarea>
 		<p class="publishTitle">IP描述</p>
 		<div class="ipLebals">
 			<div class="left">
@@ -90,11 +88,13 @@
 
 <script>
 	import 'src/plugins/wangEditor.js'
-	import 'src/style/wangEditor.css'
+	//import 'src/style/wangEditor.css'
 	
 	export default {
 		data() {
 			return {
+				ipId:"",
+				Articleid:"",
 				het: 0,
 				editorContent: '',
 				title:"",
@@ -159,16 +159,23 @@
 				secLebal:"",
 				secMidLebal:"",//检索数组中是否已含所选标签
 				choosingLebal:"",
-				chosedLebals:[]
+				chosedLebals:[],
+				textarea:"",
 			}
 		},
 		mounted() {
 			this.$nextTick(function() {
 				this.setWangEditor()
+				this.ipId=this.$route.query.ipId
+				
+				//console.log(this.$route.query)
+				if(this.$route.query.Articleid){
+					this.Articleid=this.$route.query.Articleid
+					this.editArticle();
+				}else{
+					this.Articleid==""
+				}
 			})
-		},
-		components: {
-
 		},
 		methods: {
 			setWangEditor() {
@@ -249,7 +256,7 @@
 				this.chosedLebals.splice(index,1);
 			},
 			submit(){
-				console.log(this.checked)
+				//console.log(this.checked)
 				//debugger
 				if(this.title==""){
 					alert("标题为空，请填写标题")
@@ -262,30 +269,87 @@
 				}else if(this.checked==""){
 					alert("请选择原创类型")
 				}else if(this.title!="" && this.editorContent!="" && this.imgOneSrc!="" && this.chosedLebals.length>0 && this.checked!=""){
+					
+					if(this.Articleid!=""){
+						this.sendEditInfo();
+					}else{
 						this.sendInfo();
 					}
+				}
 				
 			},
-			sendInfo(){
+			sendInfo(){//发送新建文章数据
 				var TOKEN = localStorage.getItem("TOKEN")
-				//console.log(TOKEN)
 				var tags=[];
 				for(var i=0;i<this.chosedLebals.length;i++){
 					tags.push(this.chosedLebals[i].name)
 				}
+				//console.log(tags.join("|"))
 				var articleInfo={
-					"ipid" : "",
+					"ipid" : this.ipId,
 					"title" : this.title,
 					"content" : this.editorContent,
 					"pic" : this.imgOneSrc,
-					"tags" : tags
+					"tags" : tags.join("|"),
+					"original":this.checked
 				}
 				this.$http.post("https://api.lotusdata.com/ip/v1/article/", articleInfo, {
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
-						console.log(res)
+						//console.log(res)
 						//this.$router.push({path:""})
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+			},
+			sendEditInfo(){//发送编辑后图文数据
+				var TOKEN = localStorage.getItem("TOKEN")
+				var tags=[];
+				for(var i=0;i<this.chosedLebals.length;i++){
+					tags.push(this.chosedLebals[i].name)
+				}
+				//console.log(tags.join("|"))
+				var articleInfo={
+					"title" : this.title,
+					"content" : this.editorContent,
+					"pic" : this.imgOneSrc,
+					"tags" : tags.join("|"),
+					"original":this.checked
+				}
+				this.$http.put("https://api.lotusdata.com/ip/v1/article/"+this.Articleid, articleInfo, {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						//console.log(res)
+						if(res.data.code==0){
+							console.log("编辑文章成功")
+						}
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+			},
+			editArticle(){//获取文章数据
+				var TOKEN = localStorage.getItem("TOKEN")
+        		this.$http.get("https://api.lotusdata.com/ip/v1/article/"+this.Articleid, {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						//console.log(res.data.data)
+						var editArticleData=res.data.data;
+						this.title=editArticleData.articledata.Title;
+						this.editorContent=editArticleData.articledata.Content;
+						this.imgOneSrc=editArticleData.articledata.Pic;
+						for(var i=0;i<editArticleData.articletags.length;i++){
+							this.chosedLebals.push({
+								name:editArticleData.articletags[i].Tagshow
+							})
+						}
+						this.checked=editArticleData.articledata.Original;
 					},
 					function() {
 						console.log("数据请求失败")
@@ -309,7 +373,13 @@
 	.publishTitle {
 		padding: 25px 0 20px 0;
 	}
-	
+	.textarea{
+		width: 960px;
+		height: 180px;
+		resize: none;
+		border: 1px solid #ccc;
+		padding: 15px 20px;
+	}
 	.uploadImgContent {
 		overflow: hidden;
 	}

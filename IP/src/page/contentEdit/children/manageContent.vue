@@ -11,34 +11,31 @@
 		<div class="container">
 			<ul class="nav nav-tabs" role="tablists">
 				<li role="presentation" :class="{ active: isActive0}">
-					<router-link to="/contentEdit/manageContent/listAll" class="items" @click.native="checkZero">全部</router-link>
+					<router-link :to="{path:'/contentEdit/manageContent/listAll',query:{ipId:ipId}}" class="items" @click.native="checkZero">全部</router-link>
 				</li>
 				<li role="presentation" :class="{ active: isActive1}">
-					<router-link to="/contentEdit/manageContent/listGraphic" class="items" @click.native="checkOne">图文</router-link>
+					<router-link :to="{path:'/contentEdit/manageContent/listGraphic',query:{ipId:ipId}}" class="items" @click.native="checkOne">图文</router-link>
 				</li>
 				<li role="presentation" :class="{ active: isActive2}">
-					<router-link to="/contentEdit/manageContent/listVedio" class="items" @click.native="checkTwo">视频</router-link>
+					<router-link :to="{path:'/contentEdit/manageContent/listVedio',query:{ipId:ipId}}" class="items" @click.native="checkTwo">视频</router-link>
 				</li>
 				<li role="presentation" :class="{ active: isActive3}">
-					<router-link to="/contentEdit/manageContent/listPictures" class="items" @click.native="checkThree">图集</router-link>
+					<router-link :to="{path:'/contentEdit/manageContent/listPictures',query:{ipId:ipId}}" class="items" @click.native="checkThree">图集</router-link>
 				</li>
 				<li class="pull_right">
 					时间排序
 					<span class="activeColor">↑↓</span>
 				</li>
 				<li class="pull_right" >
-					<select name="">
-						<option value="">默认</option>
-						<option value="">已审核</option>
-						<option value="">未审核</option>
-						<option value="">审核中</option>
+					<select @click="chooseMedicine()">
+						<option :value="item.name" v-for="item in options">{{item.value}}</option>
 					</select>
 				</li>
 				
 			</ul>
 		</div>
 		<div class="listContainer">
-			<router-view></router-view>
+			<router-view :child-review="review"></router-view>
 		</div>
 	</div>
 </template>
@@ -51,11 +48,26 @@
 				isActive1: false,
 				isActive2: false,
 				isActive3: false,
+				ipId:"",
+				options:[{
+					value:"默认",
+					name:"已审核/审核中/未通过"
+				},{
+					value:"已审核",
+					name:"已审核"
+				},{
+					value:"审核中",
+					name:"审核中"
+				},{
+					value:"未通过",
+					name:"未通过"
+				}],
+				review:"",
 			}
 		},
 		mounted() {
 			this.$nextTick(function() {
-
+				this.ipId=this.$route.query.ipId;
 			})
 		},
 		components: {
@@ -85,6 +97,11 @@
 				this.isActive1 = false;
 				this.isActive2 = false;
 				this.isActive3 = true;
+			},
+			chooseMedicine(e){
+				var e=event
+				//console.log(e.target.value)
+				this.review=e.target.value
 			}
 		}
 	}
