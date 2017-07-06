@@ -18,26 +18,6 @@
 				</router-link>
 			</ul>
 		</section>
-		<!--<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>医图号</th>
-					<th>创建日期</th>
-					<th>创始人</th>
-					<th>服务状态</th>
-					<th>审核状态</th>
-				</tr>
-			</thead>
-			<tbody>
-				<router-link :to="{path:'/contentEdit/homePage',query:{ipId:ipCount.ipId}}" tag="tr" v-for=" ipCount in ipCounts">
-					<td style="overflow: hidden;"><img class="ipLogo" :src="ipCount.ipImg" /> {{ipCount.ipName}}</td>
-					<td>{{ipCount.ipTime}}</td>
-					<td>{{ipCount.ipMangaer}}</td>
-					<td>{{ipCount.ipIsNormal}}</td>
-					<td>{{ipCount.ipReview}}</td>
-				</router-link>
-			</tbody>
-		</table>-->
 	</div>
 </template>
 

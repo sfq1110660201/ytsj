@@ -6,25 +6,22 @@
 			<div class="dropdown dropdown_con">
 				<button class="btn dropdown-toggle con1" id="dropdownMenu1" data-toggle="dropdown">
 					<!--<img src="static/image/robot.png" alt="###">-->
-					{{this.emailName}}
+					{{emailName}}
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu dropdown_menu" role="menu" aria-labelledby="dropdownMenu1">
 					<li>
-						<a href="##">用户中心</a>
+						<router-link :to="{path:'/ipContent/yiTu/myYiTu',query:{enterpriseId:enterpriseId}}" >用户中心</router-link>
 					</li>
+					<!--<li>
+						<router-link to="">我的消息</router-link>
+					</li>-->
 					<li>
-						<a href="###">我的消息</a>
+						<router-link :to="{path:'/ipContent/userInfo/accountSecurity',query:{enterpriseId:enterpriseId}}">账号安全</router-link>
 					</li>
+					<li role="presentation" class="divider"></li>
 					<li>
-						<a href="###">账号安全</a>
-					</li>
-					<!--<li role="presentation" class="divider"></li>-->
-					<li>
-						<a href="###">订单管理</a>
-					</li>
-					<li>
-						<a href="###">退出</a>
+						<router-link to="" @click.native="signOut">退出</router-link>
 					</li>
 
 				</ul>
@@ -59,7 +56,6 @@
 				this.het = window.screen.availHeight; //屏幕可视区域高
 				this.emailName = localStorage.getItem("emailName")
 				this.enterpriseId = localStorage.getItem("enterpriseId")
-				//console.log(this.EnterpriseId)
 			})
 		},
 //		computed:mapGetters({//vuex获取值
@@ -67,7 +63,17 @@
 //         EnterpriseId:"getEnterpriseId"
 //     	}),
 		methods: {
-			
+			signOut(){//tuichu
+				
+				localStorage.removeItem("TOKEN");
+				localStorage.removeItem("emailName");
+				localStorage.removeItem("enterpriseId");
+				localStorage.removeItem("phoneNum");
+				localStorage.removeItem("token");
+				this.$router.push({path:"/login"})
+				
+				
+			}
 		},
 		watch: {
 

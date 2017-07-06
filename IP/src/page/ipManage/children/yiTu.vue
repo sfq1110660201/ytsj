@@ -66,7 +66,7 @@
 			}
 		}
 		.modelRight {
-			width: 1100px;
+			width: 1200px;
 			margin-top: 87px;
 			padding-top: 50px;
 			padding-bottom: 40px;
