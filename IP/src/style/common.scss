@@ -47,6 +47,7 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
 textarea { -webkit-appearance: none;}   
 
 html,body{
+    margin-top: 0;
 //  height: 100%;
 //  width: 100%;
 //  background-color: #F5F5F5;
@@ -107,7 +108,10 @@ html,body{
 .paddingTop{
     padding-top: 16px;
 }
-.warned{color: #f8534c;}
+.warned{
+    color: #f8534c;
+    font-size: 13px;
+ }
 .uploadImgContent{overflow: hidden;}
 .ipLogo{
     float: left;

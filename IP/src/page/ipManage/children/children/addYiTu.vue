@@ -5,7 +5,7 @@
 				<div class="form-group">
 					<p class="col-sm-2 col-xs-2 textLeft control-label">医图号名称</p>
 					<div class="col-sm-5 col-xs-5">
-						<input type="text" class="form-control" v-model.trim="ipName" @blur="isRepeatName(ipName)" />
+						<input type="text" class="form-control" maxlength="16" v-model.trim="ipName" @blur="isRepeatName(ipName)" />
 						<p class="form-control-static warned" v-text="isNameRepeat"></p>
 					</div>
 				</div>
@@ -51,18 +51,14 @@
 				<div class="form-group">
 					<p class="col-sm-2 col-xs-2 textLeft control-label">医图号描述</p>
 					<div class="col-sm-2 col-xs-2">
-						<select class="form-control" v-model="ipDescriptionA">
-							<option>测试数据00</option>
-							<option>测试数据01</option>
-							<option>测试数据02</option>
+						<select class="form-control" v-model="ipDescriptionA" @change="chooseLebals1">
+							<option :value="item.index" v-for="item in lebalsOne">{{item.name}}</option>
 						</select>
 						<p class="form-control-static warned" v-text="descriptionTip"></p>
 					</div>
 					<div class="col-sm-2 col-xs-2">
-						<select class="form-control" v-model="ipDescriptionB">
-							<option>测试数据10</option>
-							<option>测试数据11</option>
-							<option>测试数据12</option>
+						<select class="form-control" v-model="ipDescriptionB" @click="chooseLebals2">
+							<option v-for="item in lebals[lebalIndex]">{{item.name}}</option>
 						</select>
 					</div>
 				</div>
@@ -82,9 +78,9 @@
 					<div class="col-sm-2 col-xs-2">
 						<input type="button" class="btn btn-default form-control paddingRepair" value="提交" @click="submit" />
 					</div>
-					<div class="col-sm-2 col-xs-2">
+					<!--<div class="col-sm-2 col-xs-2">
 						<input type="button" class="btn btn-default form-control paddingRepair" value="返回" />
-					</div>
+					</div>-->
 				</div>
 			</form>
 		</section>
@@ -107,12 +103,59 @@
 
 				ipName: "",
 				ipIntroduction: "", //ip简介
-				ipDescriptionA: "", //ip描述
-				ipDescriptionB: "", //ip描述
+				ipDescriptionA: "0", //ip描述
+				ipDescriptionB: "综合", //ip描述
 				ipType: "", //ip类型
 
 				isSubmit: true, //判断是否可以提交数据
 				enterpriseId:"",
+				lebalIndex:0,
+				lebalsOne:[{
+					index:0,
+					name:"母婴健康"
+				},{
+					index:1,
+					name:"饮食养生"
+				},{
+					index:2,
+					name:"保健疗养"
+				},{
+					index:3,
+					name:"两性生活"
+				}],
+				lebals:[[
+					{name:"综合"},
+					{name:"孕产指南"},
+					{name:"科学哺育"},
+					{name:"辣妈"},
+					{name:"早教"},
+					{name:"孕品"},
+				],[
+					{name:"综合"},
+					{name:"营养饮食"},
+					{name:"饮食禁忌"},
+					{name:"菜谱"},
+					{name:"食物相克"},
+					{name:"食物热量"},
+					{name:"中医食疗"},
+				],[
+					{name:"综合"},
+					{name:"滋阴补肾"},
+					{name:"其他"},
+					{name:"美容"},
+					{name:"加肥"},
+					{name:"补血"},
+					{name:"营养不良"},
+					{name:"补钙"},
+					{name:"补脾"},
+					{name:"养肺"},
+				],[
+					{name:"综合"},
+					{name:"青春期"},
+					{name:"性生活"},
+					{name:"同性生活"},
+					{name:"两性用品"},
+				]]
 			}
 		},
 		components: {
@@ -125,24 +168,16 @@
 			})
 		},
 		methods: {
-//			getToken() { //获取非用户TOKEN
-//				this.$http.get("https://api.lotusdata.com/v1/buser/token", {
-//					params: {
-//						username: "uuapp.li@qq.com",
-//						password: "123123",
-//						refreshtoken: 0
-//					}
-//				}).then(
-//					function(res) {
-//						var TOKEN = res.data.token;
-//						localStorage.setItem("TOKEN", 'JWT ' + TOKEN)
-//						//console.log(localStorage.getItem("TOKEN"))
-//					},
-//					function() {
-//						console.log("获取TOKEN失败")
-//					}
-//				)
-//			},
+			chooseLebals1(e){
+				var e=event;
+				//console.log(e.target.value)
+				//console.log(e.target.dataid)
+				this.lebalIndex=e.target.value
+			},
+			chooseLebals2(e){
+				var e=event;
+				//console.log(e.target.value)
+			},
 			isRepeatName(value) { //判断IPname是否重名
 				var TOKEN = localStorage.getItem("TOKEN")
 				var data = {
@@ -245,7 +280,6 @@
 			},
 			submit() { //添加IP数据
 				//debugger
-				console.log(this.ipName, this.imgOneSrc, this.imgTwoSrc, this.ipIntroduction, this.ipDescriptionA, this.ipDescriptionB, this.ipType)
 				if(this.ipName == "") {
 					this.isNameRepeat = "请输入医图号名称"
 				} else if(this.imgOneSrc == "") {
@@ -262,22 +296,33 @@
 					this.typeTip = "请选择医图号类型"
 				} else if(this.ipName != "" && this.imgOneSrc != "" && this.imgTwoSrc != "" && this.ipIntroduction != "" && this.ipDescriptionA != "" && this.ipDescriptionB != "" && this.ipType != "") {
 					var TOKEN = localStorage.getItem("TOKEN")
+					if(this.ipDescriptionA==0){
+						var ipDescriptionA="母婴健康"
+					}else if(this.ipDescriptionA==1){
+						var ipDescriptionA="饮食养生"
+					}else if(this.ipDescriptionA==2){
+						var ipDescriptionA='保健疗养'
+					}else if(this.ipDescriptionA==3){
+						var ipDescriptionA="两性生活"
+					}
+					//console.log(this.ipName, this.imgOneSrc, this.imgTwoSrc, this.ipIntroduction, ipDescriptionA, this.ipDescriptionB, this.ipType)
 					var data = {
 						"ipname": this.ipName,
 						"summary": this.ipIntroduction,
 						"pic": this.imgOneSrc,
-						"tags": this.ipDescriptionA + "|" + this.ipDescriptionB,
+						"tags": ipDescriptionA + "|" + this.ipDescriptionB,
 						"qrcode": this.imgTwoSrc,
 						"iptype": this.ipType
 					}
-					this.$http.post("https://api.lotusdata.com/ip/v1/ipm", data, {
+					this.$http.post("https://api.lotusdata.com/ip/v1/ipm/", data, {
 						headers: { 'Authorization': TOKEN }
 					}).then(
 						function(res) {
-							console.log(res)
+							//console.log(res)
 							if(res.body.message=="success"){
-								console.log("提交新的IP数据成功")
-								this.$router.push({path:"/ipContent/yiTu/myYiTu",query:{enterpriseId:this.enterpriseId}})
+								this.descriptionTip=""
+								alert("医图号设置成功")
+								//this.$router.push({path:"/ipContent/yiTu/myYiTu",query:{enterpriseId:this.enterpriseId}})
 							}
 						},
 						function() {

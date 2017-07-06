@@ -1,5 +1,5 @@
 <template>
-	<div style="">
+	<div class="userData">
 		<section class="form-horizontal bottomLine" role="form">
 			<div class="form-group">
 				<p class="col-sm-2 col-xs-2 textLeft control-label" for="password4">用户</p>
@@ -164,6 +164,11 @@
 </script>
 
 <style lang="scss" scoped>
+.userData{
+	/*position: relative;
+	left: 310px;
+	top: 100px;*/
+}
 .form-horizontal{padding-left: 82px;}
 	.bottomLine{margin-bottom: 20px;border-bottom: 1px solid #e6e9ea;}
 	.control-label{padding-top: 0;}

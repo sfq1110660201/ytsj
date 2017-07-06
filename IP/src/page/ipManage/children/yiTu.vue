@@ -43,20 +43,22 @@
 
 <style lang="scss" scoped>
 	.yituMiddleContent {
-		margin-top: -87px;
+		/*margin-top: -87px;*/
 		/*padding-top: 87px;*/
 		float: left;
 		/*width: 150px;*/
-		min-width: 1220px;
+		width: 1220px;
 		/*height: 500px;*/
 		/*background: #2AABD2;*/
 		/*overflow: hidden;*/
 		.modelLeft {
 			float: left;
 			background: #282c37;
-			width: 20%;
+			width: 204px;
 			min-height: 894px;
 			padding: 80px 18px 0 18px;
+			position:fixed;
+			left:106px;
 			.modelTabs {
 				color: #7e8998;
 				padding-left: 14px;
@@ -64,10 +66,11 @@
 			}
 		}
 		.modelRight {
-			width: 80%;
+			width: 1100px;
 			margin-top: 87px;
 			padding-top: 50px;
 			padding-bottom: 40px;
+			margin-left: 310px;
 			float: left;
 			overflow-y: scroll!important;
 		}

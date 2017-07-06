@@ -1,6 +1,24 @@
 <template>
 	<div class="">
-		<table class="table table-hover">
+		<section class="ipContent">
+			<ul>
+				<li class="yituName">医图号</li>
+				<li class="createTime">创建日期</li>
+				<li class="build">创始人</li>
+				<li class="serveStatus">服务状态</li>
+				<li class="shenhe">审核状态</li>
+			</ul>
+			<ul>
+				<router-link class="ipLine" :to="{path:'/contentEdit/homePage',query:{ipId:ipCount.ipId}}" target="_blank" v-for=" ipCount in ipCounts">
+					<li style="overflow: hidden;" class="yituName"><img class="ipLogo" :src="ipCount.ipImg" /> {{ipCount.ipName}}</li>
+					<li class="createTime">{{ipCount.ipTime}}</li>
+					<li class="build">{{ipCount.ipMangaer}}</li>
+					<li class="serveStatus">{{ipCount.ipIsNormal}}</td>
+					<li class="shenhe">{{ipCount.ipReview}}</li>
+				</router-link>
+			</ul>
+		</section>
+		<!--<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>医图号</th>
@@ -19,7 +37,7 @@
 					<td>{{ipCount.ipReview}}</td>
 				</router-link>
 			</tbody>
-		</table>
+		</table>-->
 	</div>
 </template>
 
@@ -159,6 +177,38 @@
 </script>
 
 <style lang="scss" scoped>
+.ipContent{
+	ul{
+		overflow:hidden;
+		li{float: left;line-height: 55px; text-align: center;color: #666;font-size: 14px;}
+		.yituName{width: 30%;}
+		.createTime{width: 25%;}
+		.build{width: 25%;}
+		.serveStatus{width: 10%;}
+		.shenhe{width: 10%;}
+		.ipLine{
+			border-bottom: 1px solid #DDDDDD;
+			display: block;
+			height: 55px;
+			
+			.ipLogo {
+				width: 32px;
+				height: 32px;
+				border-radius: 100%;
+				/*display: inline-block;
+			    margin-right: 15px;
+			    vertical-align: middle;*/
+				float: left;
+				margin-left: 12%;
+				margin-top: 16px;
+				
+			}
+		}
+		.ipLine:hover{
+			background: #f4f7fa!important;
+		}
+	}
+}
 	tr {
 		height: 63px;
 		th,
@@ -176,7 +226,7 @@
 			    margin-right: 15px;
 			    vertical-align: middle;*/
 				float: left;
-				margin-left: 31%;
+				margin-left: 12%;
 				margin-top: 16px;
 			}
 		}

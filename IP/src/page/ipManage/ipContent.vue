@@ -1,8 +1,8 @@
 <template>
 
 	<div class="yituContainer">
-		<section>
-			<span class="logoTitle">医图视界健康数据链AI平台</span>
+		<section :style="{width:wid+'px'}">
+			<div class="logoTitle">医图视界健康数据链AI平台</div>
 			<div class="dropdown dropdown_con">
 				<button class="btn dropdown-toggle con1" id="dropdownMenu1" data-toggle="dropdown">
 					<!--<img src="static/image/robot.png" alt="###">-->
@@ -44,6 +44,7 @@
 	export default {
 		data() {
 			return {
+				wid:0,
 				het: 0,
 				enterpriseId: "",
 				emailName:"",
@@ -54,6 +55,7 @@
 		},
 		mounted() {
 			this.$nextTick(function() {
+				this.wid = window.screen.availWidth-310; //屏幕可视区域高
 				this.het = window.screen.availHeight; //屏幕可视区域高
 				this.emailName = localStorage.getItem("emailName")
 				this.enterpriseId = localStorage.getItem("enterpriseId")
@@ -75,17 +77,20 @@
 
 <style lang="scss" scoped>
 	.yituContainer {
-		overflow: hidden;
+		/*overflow: hidden;*/
 		position: relative;
 		min-width: 1326px;
 		section {
 			height: 87px;
 			/*position: absolute;*/
 			/*top: 0;*/
-			margin-left: 350px;
+			margin-left: 310px;
 			background: #fff;
-			position: relative;
+			/*position: relative;*/
 			border-bottom: 1px solid #e4e7e9;
+			position: fixed;
+			z-index: 666;
+			top: 0;
 			.logoTitle {
 				position: absolute;
 				left: 20px;
@@ -111,14 +116,13 @@
 			}
 		}
 		.models {
-			margin-top: -87px;
-			/*padding-top: 87px;*/
+			/*margin-top: -87px;*/
 			float: left;
 			width: 106px;
 			min-height: 894px;
-			/*color: #fff;*/
-			/*height: 500px;*/
 			background: #313541;
+			position: fixed;
+			left: 0;
 			.modelTabs {
 				width: 106px;
 				height: 103px;

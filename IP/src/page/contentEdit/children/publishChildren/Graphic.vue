@@ -3,7 +3,12 @@
 		<div class="editTitle">
 			<input class="editTitleIpt" v-model.trim="title" maxlength="30" type="text" placeholder="标题  （5-30字）" style="display: block;height: 75px;width: 100%;font-size: 25px;padding-left: 25px;" />
 		</div>
-		<div id="editor-trigger" style="height: 500px;width: 900px;" v-html="editorContent"></div>
+		<!--<div id="editor-container" style="height: 700px;">-->
+			<div id="editor-trigger" style="height: 700px;">
+				<!--<div v-html="editorContent"></div>-->
+			</div>
+		<!--</div>-->
+		
 		<p class="publishTitle">图文封面</p>
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
@@ -73,14 +78,14 @@
 		<form class="form-horizontal" role="form">
 			<div class="form-group marginRepair">
 				<div class="col-sm-2 col-xs-2 right">
-					<input type="button" class="btn btn-default form-control right" value="取消" />
+					<input type="button" class="btn btn-default form-control right paddingRepair" @click="cancle" value="取消" />
 				</div>
 				<div class="col-sm-2 col-xs-2 right">
-					<input type="button" class="btn btn-default form-control right" @click="submit" value="提交审核" />
+					<input type="button" class="btn btn-default form-control right paddingRepair" @click="submit" value="提交审核" />
 				</div>
-				<div class="col-sm-2 col-xs-2 right">
+				<!--<div class="col-sm-2 col-xs-2 right">
 					<input type="button" class="btn btn-default form-control right" @click="" value="保存" />
-				</div>
+				</div>-->
 			</div>
 		</form>
 	</div>
@@ -88,7 +93,7 @@
 
 <script>
 	import 'src/plugins/wangEditor.js'
-	//import 'src/style/wangEditor.css'
+	import 'src/style/wangEditor.css'
 	
 	export default {
 		data() {
@@ -165,7 +170,7 @@
 		},
 		mounted() {
 			this.$nextTick(function() {
-				this.setWangEditor()
+				
 				this.ipId=this.$route.query.ipId
 				
 				//console.log(this.$route.query)
@@ -173,12 +178,13 @@
 					this.Articleid=this.$route.query.Articleid
 					this.editArticle();
 				}else{
-					this.Articleid==""
+					this.Articleid=="";
+					this.setWangEditor()
 				}
 			})
 		},
 		methods: {
-			setWangEditor() {
+			setWangEditor(res) {
 				var self = this;
 		        var TOKEN = localStorage.getItem("TOKEN")
 		        var editor = new wangEditor('editor-trigger');
@@ -194,6 +200,10 @@
 					'Authorization': TOKEN
 				}
 		        editor.create();
+		        if(res!="" && res !=undefined){
+		        	editor.$txt.html(res)
+		        }
+		        
 			},
 			iptOneChange: function(e) { //判断并加载IP logo
 				e.preventDefault();
@@ -278,6 +288,9 @@
 				}
 				
 			},
+			cancle(){
+				this.$router.go(-1)
+			},
 			sendInfo(){//发送新建文章数据
 				var TOKEN = localStorage.getItem("TOKEN")
 				var tags=[];
@@ -297,8 +310,9 @@
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
-						//console.log(res)
-						//this.$router.push({path:""})
+						if(res.data.code=="0"){
+							alert("新建文章数据成功")
+						}
 					},
 					function() {
 						console.log("数据请求失败")
@@ -317,7 +331,8 @@
 					"content" : this.editorContent,
 					"pic" : this.imgOneSrc,
 					"tags" : tags.join("|"),
-					"original":this.checked
+					"original":this.checked,
+					"Summary":this.textarea,
 				}
 				this.$http.put("https://api.lotusdata.com/ip/v1/article/"+this.Articleid, articleInfo, {
 					headers: { 'Authorization': TOKEN }
@@ -325,7 +340,8 @@
 					function(res) {
 						//console.log(res)
 						if(res.data.code==0){
-							console.log("编辑文章成功")
+							//console.log("编辑文章成功")
+							alert("编辑文章成功")
 						}
 					},
 					function() {
@@ -339,17 +355,19 @@
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
-						//console.log(res.data.data)
+						//console.log(res)
 						var editArticleData=res.data.data;
 						this.title=editArticleData.articledata.Title;
 						this.editorContent=editArticleData.articledata.Content;
 						this.imgOneSrc=editArticleData.articledata.Pic;
+						this.textarea=editArticleData.articledata.Summary;
 						for(var i=0;i<editArticleData.articletags.length;i++){
 							this.chosedLebals.push({
 								name:editArticleData.articletags[i].Tagshow
 							})
 						}
 						this.checked=editArticleData.articledata.Original;
+						this.setWangEditor(this.editorContent);
 					},
 					function() {
 						console.log("数据请求失败")
@@ -366,8 +384,8 @@
 		height: 75px;
 	}
 	
-	#editor-trigger {
-		height: 564px;
+	#editor-container {
+		margin-bottom: 20px;
 	}
 	
 	.publishTitle {
@@ -495,4 +513,5 @@
 		width: 15px!important;
 		cursor: pointer;
 	}
+	.paddingRepair{background: #6dc5a3!important;color: #fff!important;}
 </style>

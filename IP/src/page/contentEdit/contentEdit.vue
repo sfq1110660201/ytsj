@@ -122,6 +122,10 @@
    					margin-top: 12px;
    					border-radius: 100%;
    					margin-right: 15px;
+   					border: 2px solid #fff;
+   				}
+   				.userImg:hover{
+   					border: 2px solid #6dc5a3;
    				}
    				.userName{
    					margin-top: 15px;

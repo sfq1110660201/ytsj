@@ -3070,7 +3070,8 @@ _e(function (E, $) {
             E[value] = function (info) {
                 // 通过配置来控制打印输出
                 if (E.config && E.config.printLog) {
-                    console[value]('wangEditor提示: ' + info);
+                	//debugger
+                    //console[value]('wangEditor提示: ' + info);
                 }
             };
         }
@@ -6556,8 +6557,9 @@ _e(function (E, $) {
 
                 // 将结果插入编辑器
                 img = document.createElement('img');
+                var newSrc=resultText.slice(1,resultText.length-1)
                 img.onload = function () {
-                    var html = '<img src="' + resultText + '" alt="' + originalName + '" style="max-width:100%;"/>';
+                    var html = '<img src="' + newSrc + '" alt="' + originalName + '" style="max-width:100%;"/>';
                     editor.command(null, 'insertHtml', html);
 
                     E.log('已插入图片，地址 ' + resultText);
@@ -6567,7 +6569,8 @@ _e(function (E, $) {
                     E.error('使用返回的结果获取图片，发生错误。请确认以下结果是否正确：' + resultText);
                     img = null;
                 };
-                img.src = resultText;
+                img.src = newSrc;
+                //img.src = resultText;
             }
 
         });

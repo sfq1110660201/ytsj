@@ -45,16 +45,18 @@
 
 <style lang="scss" scoped>
 	.yituMiddleContent {
-		margin-top: -87px;
-		float: left;
+		margin-left: 310px;
 		min-width: 1220px;
 		.modelLeft {
 			float: left;
 			background: #282c37;
 			/*width: 243px;*/
-			width: 20%;
+			width: 204px;
 			min-height: 894px;
 			padding: 80px 18px 0 18px;
+			position:fixed;
+			left:106px;
+			top:0;
 			.modelTabs {
 				color: #7e8998;
 				padding-left: 14px;
