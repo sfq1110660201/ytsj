@@ -30,10 +30,10 @@
 		</form>
 		<p class="publishTitle">摘要</p>
 		<textarea class="textarea" v-model.trim="textarea" placeholder="选填，如不填写会默认抓取正文前54个字"></textarea>
-		<p class="publishTitle">IP描述</p>
+		<p class="publishTitle">标签选择</p>
 		<div class="ipLebals">
 			<div class="left">
-				<img src="/static/img/addIP_03.png"/>
+				<img src="/static/IP/img/addIP_03.png"/>
 			</div>
 			<div class="lebalsContainer left">
 				<ul class="lebals">
@@ -63,29 +63,30 @@
 		<p class="publishTitle">已选标签</p>
 		<div class="ipLebals">
 			<div class="left">
-				<img src="/static/img/addIP_06.png"/>
+				<img src="/static/IP/img/addIP_06.png"/>
 			</div>
 			<div class="lebalsContainer left">
 				<ul class="chosed">
-					<li v-for="(item,index) in chosedLebals">{{item.name}}<img class="delete" src="/static/img/delete.png" @click='deleteLebal(item.name,index)'/></li>
+					<li v-for="(item,index) in chosedLebals">{{item.name}}<img class="delete" src="/static/IP/img/delete.png" @click='deleteLebal(item.name,index)'/></li>
 				</ul>
 				
 			</div>
 		</div>
 		<p class="publishTitle">来源内容</p>
-		<div class="radioIpt"><input type="radio" name="isproto" value="原创" v-model="checked"/>&nbsp;原创</div>
-		<div class="radioIpt"><input type="radio" name="isproto" value="转载" v-model="checked"/>&nbsp;转载</div>
+		<div class="radioIpt"><input type="radio" name="isproto" value="原创" v-model="checked"/>&nbsp;原创&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="isproto" value="转载" v-model="checked"/>&nbsp;转载</div>
+		<div>责任编辑：<input class="editor" v-model.trim="editor" type="text" maxlength="6"/></div>
+		<div class="agreement"><input type="checkbox" v-model="isAgreemnet"/>&nbsp;医图视界提示：您应对自己上传的原创作品或转载作品的合法性负责，不得含有侵犯第三方知识产权的内容，否则，造成的法律责任由您全部负责！如若因此导致平台被追责的，平台有权依法向您行使追偿权。</div>
 		<form class="form-horizontal" role="form">
 			<div class="form-group marginRepair">
 				<div class="col-sm-2 col-xs-2 right">
 					<input type="button" class="btn btn-default form-control right paddingRepair" @click="cancle" value="取消" />
 				</div>
 				<div class="col-sm-2 col-xs-2 right">
-					<input type="button" class="btn btn-default form-control right paddingRepair" @click="submit" value="提交审核" />
+					<input type="button" class="btn btn-default form-control right paddingRepair" @click="submit('1')" value="提交审核" />
 				</div>
-				<!--<div class="col-sm-2 col-xs-2 right">
-					<input type="button" class="btn btn-default form-control right" @click="" value="保存" />
-				</div>-->
+				<div class="col-sm-2 col-xs-2 right">
+					<input type="button" class="btn btn-default form-control right paddingRepair" @click="submit('0')" value="保存草稿" />
+				</div>
 			</div>
 		</form>
 	</div>
@@ -166,6 +167,8 @@
 				choosingLebal:"",
 				chosedLebals:[],
 				textarea:"",
+				editor:"",
+				isAgreemnet:false,
 			}
 		},
 		mounted() {
@@ -262,11 +265,10 @@
 				
 			},
 			deleteLebal(res,index){
-				console.log(res,index);
+				//console.log(res,index);
 				this.chosedLebals.splice(index,1);
 			},
-			submit(){
-				//console.log(this.checked)
+			submit(isDraft){
 				//debugger
 				if(this.title==""){
 					alert("标题为空，请填写标题")
@@ -278,12 +280,15 @@
 					alert("请选择标签")
 				}else if(this.checked==""){
 					alert("请选择原创类型")
-				}else if(this.title!="" && this.editorContent!="" && this.imgOneSrc!="" && this.chosedLebals.length>0 && this.checked!=""){
-					
-					if(this.Articleid!=""){
-						this.sendEditInfo();
-					}else{
-						this.sendInfo();
+				}else if(this.editor==""){
+					alert("请填写责任编辑")
+				}else if(this.isAgreemnet==false){
+					alert('请勾选版权提示')
+				}else if(this.title!="" && this.editorContent!="" && this.imgOneSrc!="" && this.chosedLebals.length>0 && this.checked!="" && this.editor!="" && this.isAgreemnet==true){
+					if(this.Articleid!=""){//编辑
+						this.sendEditInfo(isDraft);
+					}else{//创建新文章
+						this.sendInfo(isDraft);
 					}
 				}
 				
@@ -291,7 +296,8 @@
 			cancle(){
 				this.$router.go(-1)
 			},
-			sendInfo(){//发送新建文章数据
+			sendInfo(isDraft){//发送新建文章数据
+				//debugger
 				var TOKEN = localStorage.getItem("TOKEN")
 				var tags=[];
 				for(var i=0;i<this.chosedLebals.length;i++){
@@ -304,12 +310,16 @@
 					"content" : this.editorContent,
 					"pic" : this.imgOneSrc,
 					"tags" : tags.join("|"),
-					"original":this.checked
+					"original":this.checked,
+					"Summary":this.textarea,
+					"author":this.editor,
+					"submit":isDraft
 				}
 				this.$http.post("https://api.lotusdata.com/ip/v1/article/", articleInfo, {
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
+						//console.log(res)
 						if(res.data.code=="0"){
 							alert("新建文章数据成功")
 						}
@@ -319,7 +329,7 @@
 					}
 				)
 			},
-			sendEditInfo(){//发送编辑后图文数据
+			sendEditInfo(isDraft){//发送编辑后图文数据
 				var TOKEN = localStorage.getItem("TOKEN")
 				var tags=[];
 				for(var i=0;i<this.chosedLebals.length;i++){
@@ -333,6 +343,8 @@
 					"tags" : tags.join("|"),
 					"original":this.checked,
 					"Summary":this.textarea,
+					"author":this.editor,
+					"submit":isDraft
 				}
 				this.$http.put("https://api.lotusdata.com/ip/v1/article/"+this.Articleid, articleInfo, {
 					headers: { 'Authorization': TOKEN }
@@ -354,13 +366,14 @@
         		this.$http.get("https://api.lotusdata.com/ip/v1/article/"+this.Articleid, {
 					headers: { 'Authorization': TOKEN }
 				}).then(
-					function(res) {
-						//console.log(res)
+					function(res) {//
+						console.log(res)
 						var editArticleData=res.data.data;
 						this.title=editArticleData.articledata.Title;
 						this.editorContent=editArticleData.articledata.Content;
 						this.imgOneSrc=editArticleData.articledata.Pic;
 						this.textarea=editArticleData.articledata.Summary;
+						this.editor=editArticleData.articledata.Author;
 						for(var i=0;i<editArticleData.articletags.length;i++){
 							this.chosedLebals.push({
 								name:editArticleData.articletags[i].Tagshow
@@ -389,7 +402,7 @@
 	}
 	
 	.publishTitle {
-		padding: 25px 0 20px 0;
+		padding: 30px 0 5px 0;
 	}
 	.textarea{
 		width: 960px;
@@ -478,6 +491,14 @@
 	.radioIpt {
 		margin-bottom: 20px;
 		font-size: 20px;
+	}
+	.editor{border-bottom: 1px solid #DDDDDD;}
+	.agreement{
+		input{
+			vertical-align: middle;
+		}
+		margin: 20px 0 50px;
+		color: #c96c54;
 	}
 	.toolbar{
 		border: 1px solid #ccc;

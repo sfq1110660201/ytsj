@@ -60,6 +60,7 @@
 			position:fixed;
 			left:106px;
 			.modelTabs {
+				cursor: pointer;
 				color: #7e8998;
 				padding-left: 14px;
 				margin-bottom: 10px;

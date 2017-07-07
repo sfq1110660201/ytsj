@@ -16,7 +16,7 @@
 		<section class="registerSucceed" :style="{width: modelWid+'px', height: modelHet +'px'}" v-if="isModelShow">
 			<div class="goPageWindow box-shadow">
 				<div class="lineOne">
-					<img class="checkRight" src="/static/img/636574c6e136a799b7309a525894222.png" /> 新密码设置成功
+					<img class="checkRight" src="/static/IP/img/636574c6e136a799b7309a525894222.png" /> 新密码设置成功
 				</div>
 				<router-link class="toLogin" to="/login" tag="p">转跳至登录页面</router-link>
 				<!--<p class="explain">系统将在<span class="explain">{{backtime}}</span>秒后自动转跳至用户中心，如果没有请点击

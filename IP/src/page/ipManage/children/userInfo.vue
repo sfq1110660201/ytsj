@@ -58,6 +58,7 @@
 			left:106px;
 			top:0;
 			.modelTabs {
+				cursor: pointer;
 				color: #7e8998;
 				padding-left: 14px;
 				margin-bottom: 10px;

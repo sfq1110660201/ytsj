@@ -71,7 +71,7 @@
 				save(){
 					//this.$router.push({path:"/ipContent/userInfo/accountSecurity/completeMail"})
 					
-					 
+					 debugger
 					if(this.newMail1==""){
 						this.emailRight="请填写新邮箱";
 					}else if(this.newMail2==""){

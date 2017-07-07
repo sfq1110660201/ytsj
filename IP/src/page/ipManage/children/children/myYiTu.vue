@@ -2,11 +2,11 @@
 	<div class="">
 		<section class="ipContent">
 			<ul>
-				<li class="yituName">医图号</li>
-				<li class="createTime">创建日期</li>
-				<li class="build">创始人</li>
-				<li class="serveStatus">服务状态</li>
-				<li class="shenhe">审核状态</li>
+				<li class="yituName fontSize">医图号</li>
+				<li class="createTime fontSize">创建日期</li>
+				<li class="build fontSize">创建人</li>
+				<li class="serveStatus fontSize">服务状态</li>
+				<li class="shenhe fontSize">审核状态</li>
 			</ul>
 			<ul>
 				<router-link class="ipLine" :to="{path:'/contentEdit/homePage',query:{ipId:ipCount.ipId}}" target="_blank" v-for=" ipCount in ipCounts">
@@ -34,8 +34,6 @@
 		},
 		mounted() {
 			this.$nextTick(function() {
-				//this.getToken();
-				//console.log(this.$route.query)
 				this.enterpriseId=this.$route.query.enterpriseId;
 				this.getListData();
 			})
@@ -161,6 +159,10 @@
 	ul{
 		overflow:hidden;
 		li{float: left;line-height: 55px; text-align: center;color: #666;font-size: 14px;}
+		.fontSize{
+			font-size: 16px;
+			font-weight: 600;
+		}
 		.yituName{width: 30%;}
 		.createTime{width: 25%;}
 		.build{width: 25%;}

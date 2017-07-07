@@ -35,24 +35,18 @@
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label"><span class="roundLight">●&nbsp;</span>所在地</label>
 					<div class="col-sm-2 col-xs-2">
-						<select class="form-control" v-model="pro">
-							<option>陕西省</option>
-							<option>陕西省</option>
-							<option>陕西省</option>
+						<select class="form-control" v-model="pro" @change="getPro()">
+							<option :value="item.name+item.proId" :id="item.proId" v-for="item in pros">{{item.name}}</option>
 						</select>
 					</div>
 					<div class="col-sm-2 col-xs-2">
-						<select class="form-control" v-model="city">
-							<option>西安市</option>
-							<option>西安市</option>
-							<option>西安市</option>
+						<select class="form-control" v-model="city" @change="getCity()">
+							<option :value="item.name+item.cityId"  v-for="item in citys">{{item.name}}</option>
 						</select>
 					</div>
 					<div class="col-sm-2 col-xs-2">
-						<select class="form-control" v-model="district">
-							<option>雁塔区</option>
-							<option>雁塔区</option>
-							<option>雁塔区</option>
+						<select class="form-control" v-model="district" >
+							<option :value="item.name"  v-for="item in districts">{{item.name}}</option>
 						</select>
 					</div>
 					<div class="col-sm-2 col-xs-2">
@@ -217,9 +211,9 @@
 		<section class="registerSucceed" :style="{width: modelWid+'px', height: modelHet +'px'}" v-if="isModelShow">
 			<div class="goPageWindow box-shadow">
 				<div class="lineOne">
-					<img class="checkRight" src="/static/img/636574c6e136a799b7309a525894222.png" /> 注册成功
+					<img class="checkRight" src="/static/IP/img/636574c6e136a799b7309a525894222.png" /> 注册成功
 				</div>
-				<p>您已经成功注册了医图数据管理平台，&nbsp;请耐心等待系统审核</p>
+				<p>您已经成功注册了医图数据管理平台</p>
 				<p class="explain">系统将在<span class="explain">{{backtime}}</span>秒后自动转跳至用户中心，如果没有请点击
 					<router-link :to="({ path: '/ipContent/yiTu/myYiTu', query: { enterpriseId: enterpriseId } })">手动跳转</router-link>
 				</p>
@@ -379,6 +373,11 @@
 				
 				backtime:5,
 				enterpriseId:"",
+				
+				//地域选择三级联动
+				pros:[],
+				citys:[],
+				districts:[]
 
 			}
 		},
@@ -386,17 +385,37 @@
 			this.$nextTick(function() {
 				this.modelWid = window.screen.availWidth;
 				this.modelHet = window.screen.availHeight;
-
+				this.getAreas();
 			})
 		},
 		components: {
 
 		},
 		methods: {
+			getAreas(){
+				var TOKEN = localStorage.getItem("TOKEN")
+				this.$http.get("https://api.lotusdata.com/ip/v1/basicdic/chineseregions?type=p", {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						var areasData=res.data.data;
+						for(var i=0;i<areasData.length;i++){
+							this.pros.push({
+								name:areasData[i].a,
+								proId:areasData[i].i
+							})
+						}
+						
+					},
+					function() {
+						console.log("获取TOKEN失败")
+					}
+				)
+			},
 			goCheck() {
 				if(this.companyName!=""){
 					this.companyNameTip="";
-					if(this.pro!="" && this.city!="" && this.district!=""){
+					if(this.pro!="" && this.city!=""){
 						this.areasTip="";
 						if(this.address!=""){
 							this.addressTip=""
@@ -478,10 +497,14 @@
 			sendInfo(){
 				var TOKEN = localStorage.getItem("TOKEN")
 				var registerId=sessionStorage.getItem("registerId")
+				var proEnd=this.pro.length-6
+				var pro=this.pro.slice(0,proEnd)
+				var cityEnd=this.city.length-6;
+				var city=this.city.slice(0,cityEnd)
 				var data = {
 					"companyname" : this.companyName,
-					"provinces" : this.pro,
-					"cities" : this.city,
+					"provinces" : pro,
+					"cities" : city,
 					"area" : this.district,
 					"address" : this.address,
 					"organizationcode" : this.license,
@@ -662,6 +685,78 @@
 					}
 				)
 			},
+			getPro(e){
+				//debugger
+				this.city="";
+				this.citys=[];
+				var e=event;
+				var start=this.pro.length-6
+				var end=this.pro.length
+				var proID=this.pro.slice(start,end)
+				this.getCitys(proID)
+			},
+			getCitys(proID){
+				var TOKEN = localStorage.getItem("TOKEN")
+				this.$http.get("https://api.lotusdata.com/ip/v1/basicdic/chineseregions", {
+					params: {
+						type: "c",
+						id: proID,
+					},
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						//console.log(res)
+						var areasData=res.data.data;
+						for(var i=0;i<areasData.length;i++){
+							this.citys.push({
+								name:areasData[i].a,
+								cityId:areasData[i].i
+							})
+						}
+						
+					},
+					function() {
+						console.log("获取TOKEN失败")
+					}
+				)
+			},
+			getCity(){
+				this.district="";
+				this.districts=[];
+				var e=event;
+				e.stopPropagation();
+				var start=this.city.length-6
+				var end=this.city.length
+				var districtID=this.city.slice(start,end)
+				//console.log(districtID)
+				//console.log(e.target.value)
+				this.getDistricts(districtID)
+			},
+			getDistricts(districtID){
+				var TOKEN = localStorage.getItem("TOKEN")
+				this.$http.get("https://api.lotusdata.com/ip/v1/basicdic/chineseregions", {
+					params: {
+						type: "a",
+						id: districtID,
+					},
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						//console.log(res)
+						var areasData=res.data.data;
+						for(var i=0;i<areasData.length;i++){
+							this.districts.push({
+								name:areasData[i].a,
+								cityId:areasData[i].i
+							})
+						}
+						
+					},
+					function() {
+						console.log("获取TOKEN失败")
+					}
+				)
+			}
 		}
 
 	}

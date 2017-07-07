@@ -3,10 +3,10 @@
         <section class="homePageOne">
         	<div class="readInfo">
         		<div class="publishedInfo">
-        			<section class="publishedInfo_L left">
-        				<img class="publishedImg" src="/static/img/dasdad.png"/>
+        			<router-link  :to="{path:'/contentEdit/publish/Graphic',query:{ipId:ipId}}" tag="section" class="publishedInfo_L left">
+        				<img class="publishedImg" src="/static/IP/img/dasdad.png"/>
         				<div class="publish">发表</div>
-        			</section>
+        			</router-link>
         			<section class="publishedInfo_R left">
         				<div class="readInfoOne left">
         					<div class="fansNumber center">
@@ -43,11 +43,12 @@
         data(){
             return{
                 het:0,
+                ipId:"",
             }
         },
         mounted() {
 			this.$nextTick(function() {
-					
+				this.ipId=this.$route.query.ipId;
 			})
 		},
         components: {
@@ -71,6 +72,7 @@
    					overflow:hidden;
    					
    					.publishedInfo_L{
+   						cursor: pointer;
    						height: 140px;
    						width: 200px;
    						background: #313541;

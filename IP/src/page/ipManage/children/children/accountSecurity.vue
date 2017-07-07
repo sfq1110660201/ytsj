@@ -10,17 +10,17 @@
 	      </thead>
 	      <tbody>
 	        <tr>
-	          <td> <img class="littleIcon" src="/static/img/nav_btn_renzheng@2x.png"/>&nbsp;登陆邮箱</td>
+	          <td> <img class="littleIcon" src="/static/IP/img/nav_btn_renzheng@2x.png"/>&nbsp;登陆邮箱</td>
 	          <td>您的登陆邮箱&nbsp;<span class="colGray">{{emailName}}</span></td>
 	          <td><router-link to="/ipContent/userInfo/accountSecurity/testMail" tag='li' class="edit">编辑与修改</router-link></td>
 	        </tr>
 	        <tr>
-	          <td><img class="littleIcon" src="/static/img/nav_btn_renzheng@2x.png"/>&nbsp;登陆密码</td>
+	          <td><img class="littleIcon" src="/static/IP/img/nav_btn_renzheng@2x.png"/>&nbsp;登陆密码</td>
 	          <td>互联网账号存在风险，建议定期修改密码确保账户安全</td>
 	          <td><router-link to="/ipContent/userInfo/accountSecurity/testPassword" tag='li' class="edit">编辑与修改</router-link></td>
 	        </tr>
 	        <tr>
-	          <td><img class="littleIcon" src="/static/img/nav_btn_renzheng@2x.png"/>&nbsp;手机绑定</td>
+	          <td><img class="littleIcon" src="/static/IP/img/nav_btn_renzheng@2x.png"/>&nbsp;手机绑定</td>
 	          <td>您已绑定手机&nbsp;<span class="colGray">{{userPhone}}</span></td>
 	          <td><router-link to="/ipContent/userInfo/accountSecurity/testPhone" tag='li' class="edit">编辑与修改</router-link></td>
 	        </tr>
@@ -66,7 +66,7 @@
 	.userTable{padding-left: 82px;}
 	tr{height: 63px!important;}
 	th,td{padding: 0!important; text-align: center;line-height: 63px!important;}
-	.edit{text-decoration: underline;}
+	.edit{text-decoration: underline;cursor: pointer;}
 	.littleIcon{width: 15px;}
 	.colGray{
 		color: #828384;

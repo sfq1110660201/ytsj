@@ -11,33 +11,33 @@
 				<p class="center headTip">登 陆</p>
 				<div class="iptCon">
 					<div class="left">
-						<img class="logIcon" src="/static/img/userName.png" />
-						<span class="iptItem">用户名</span>
+						<img class="logIcon" src="/static/IP/img/userName.png" />
+						<span class="iptItem">邮&nbsp;&nbsp;&nbsp;箱</span>
 						<input class="iptL" type="text" v-focus v-model.trim="userName"  />
 					</div>
 					<div class="right">
 						<p class="warned infoTip" v-if="isUserName" v-text="userNameText"></p>
-						<p v-if="usernameRight"><img class="isright" src="/static/img/right.png" /></p>
+						<p v-if="usernameRight"><img class="isright" src="/static/IP/img/right.png" /></p>
 					</div>
 				</div>
 				<div class="iptCon">
 					<div class="left">
-						<img class="logIcon" src="/static/img/passwordIcon.png" />
+						<img class="logIcon" src="/static/IP/img/passwordIcon.png" />
 						<span class="iptItem">密&nbsp;&nbsp;&nbsp;码</span>
 						<input class="iptLPassword" v-model="password" type="password" maxlength="15" />
 					</div>
 					<div class="right">
 						<p class="warned infoTip" v-if="isPassword" v-text="passwordText"></p>
-						<p v-if="passwordRight"><img class="isright" src="/static/img/right.png" /></p>
+						<p v-if="passwordRight"><img class="isright" src="/static/IP/img/right.png" /></p>
 					</div>
 				</div>
 				<div class="iptCon">
 					<div class="left">
-						<img class="logIcon" src="/static/img/istrue.png" />
+						<img class="logIcon" src="/static/IP/img/istrue.png" />
 						<span class="iptItem">验证码</span>
 						<input class="iptLIstrue" type="text" v-model.trim="verificationValue" />
 						<span class="warned Tip" v-if="isVerification" v-text="verificationText"></span>
-						<img v-if="verificationRight" class="isverificationRight" src="/static/img/right.png" />
+						<img v-if="verificationRight" class="isverificationRight" src="/static/IP/img/right.png" />
 					</div>
 					<div class="right backRepair">
 						<!--<p class="warned infoTip" v-if="isPassword" v-text="passwordText"></p>-->
@@ -202,7 +202,7 @@
 				}).then(
 					function(res) {
 						if(res.data.code == 0 && res.data.data != "") {
-							console.log(res.data)
+							//console.log(res.data)
 							this.isPassword = false;
 							this.isVerification = false;
 							var TOKEN = res.data.token;
@@ -232,7 +232,7 @@
 
 <style lang="scss" scoped>
 	.loginContainer {
-		background: url(/static/img/back.jpg) no-repeat;
+		background: url(/static/IP/img/back.jpg) no-repeat;
 		background-size: cover;
 		position: relative;
 		.containerModel {

@@ -51,7 +51,7 @@
 				ipId:"",
 				options:[{
 					value:"默认",
-					name:"已审核/审核中/未通过"
+					name:"已审核/审核中/未通过/草稿"
 				},{
 					value:"已审核",
 					name:"已审核"
@@ -61,6 +61,9 @@
 				},{
 					value:"未通过",
 					name:"未通过"
+				},{
+					value:"草稿",
+					name:"草稿"
 				}],
 				review:"",
 			}

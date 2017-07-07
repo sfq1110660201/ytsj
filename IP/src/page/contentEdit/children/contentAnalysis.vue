@@ -1,7 +1,7 @@
 <template>
 	<div id="">
 		<section>
-			<img class="tipIcon" src="/static/img/dasdas43.png"/>仅统计了内容发出后7天内的累计数据，并且客户端展示的阅读数，和此处的阅读数计算方法略有不同，因此两者数值也可能不一样。
+			<img class="tipIcon" src="/static/IP/img/dasdas43.png"/>仅统计了内容发出后7天内的累计数据，并且客户端展示的阅读数，和此处的阅读数计算方法略有不同，因此两者数值也可能不一样。
 		</section>
 		<ul class="dataRange">
 			<div class="dataRangeHead">

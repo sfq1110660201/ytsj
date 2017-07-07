@@ -6,10 +6,10 @@ module.exports = {
         env: {
             NODE_ENV: '"production"'
         },
-        index: path.resolve(__dirname, '../MY/index.html'),
-        assetsRoot: path.resolve(__dirname, '../MY'),
+        index: path.resolve(__dirname, '../IP/index.html'),
+        assetsRoot: path.resolve(__dirname, '../IP'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/MY/',
+        assetsPublicPath: '/IP/',
         productionSourceMap: true,
         // Surge or Netlify already gzip all static assets for you.
         // Before setting to `true`, make sure to:

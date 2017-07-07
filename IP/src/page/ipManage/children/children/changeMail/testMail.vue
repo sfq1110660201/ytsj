@@ -77,7 +77,7 @@
 			
 			getTxt() {//更改手机获取验证码
 				this.phoneTip=""
-				console.log(this.phoneNum)
+				//console.log(this.phoneNum)
 				var TOKEN = localStorage.getItem("TOKEN")
 				this.$http.post("https://api.lotusdata.com/v1/sms/send", {}, {
 					params: {
@@ -87,7 +87,10 @@
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
-						console.log(res.data.message)
+						//console.log(res.data.message)
+						if(res.data.code==0){
+							alert("验证码发送成功，请查收")
+						}
 					},
 					function() {
 						console.log("数据请求失败")
@@ -105,7 +108,7 @@
 						headers: { 'Authorization': TOKEN }
 					}).then(
 						function(res) {
-							console.log(res)
+							//console.log(res)
 							if(res.data.code=='0'){
 								//调用vuex方法存储resettoken
 								this.$store.commit('setResettoken',res.data.data)

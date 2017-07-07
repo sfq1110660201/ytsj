@@ -27,7 +27,7 @@
 		<!--跳转模态窗-->
 		<section class="registerSucceed" :style="{width: modelWid+'px', height: modelHet +'px'}" v-if="isModelShow">
 			<div class="goPageWindow box-shadow">
-				<h4 class="modelTip">提示信息</h4>
+				<h4 class="modelTip">删除提示</h4>
 				<div class="lineOne">
 					<span class="left check" @click="cancle">取消</span>
 					<span class="right check" @click="enture">确定</span>
@@ -62,7 +62,7 @@
 				}, {
 					name: "发布"
 				}],
-				isShowModel: "已审核/审核中/未通过",
+				isShowModel: "已审核/审核中/未通过/草稿",
 				deleteId:"",
 			}
 		},
@@ -93,11 +93,11 @@
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
-						//console.log(res.data.data)
+						console.log(res.data.data)
 						var articleData = res.data.data;
 						if(articleData != null) {
 							for(var i = 0; i < articleData.length; i++) {
-								if(articleData[i].Checkstate == -1) { //审核未通过
+								if(articleData[i].Checkstate == '-1') { //审核未通过
 									this.articleData.push({
 										Articleid: articleData[i].Articleid,
 										Title: articleData[i].Title,
@@ -106,7 +106,7 @@
 										Views: articleData[i].Views,
 										Pic: articleData[i].Pic,
 										Checkstate: "未通过",
-										Original: "nodata",
+										Original: articleData[i].Original,
 										options: [{
 											name: "操作"
 										}, {
@@ -117,7 +117,7 @@
 											name: "发布"
 										}]
 									})
-								} else if(articleData[i].Checkstate == 0) { //审核中
+								} else if(articleData[i].Checkstate == '0') { //审核中
 									this.articleData.push({
 										Articleid: articleData[i].Articleid,
 										Title: articleData[i].Title,
@@ -126,7 +126,7 @@
 										Views: articleData[i].Views,
 										Pic: articleData[i].Pic,
 										Checkstate: "审核中",
-										Original: "nodata",
+										Original: articleData[i].Original,
 										options: [{
 											name: "操作"
 										}, {
@@ -137,7 +137,7 @@
 											name: "发布"
 										}]
 									})
-								} else if(articleData[i].Checkstate == 1) { //已审核
+								} else if(articleData[i].Checkstate == '1') { //已审核
 									this.articleData.push({
 										Articleid: articleData[i].Articleid,
 										Title: articleData[i].Title,
@@ -146,7 +146,27 @@
 										Views: articleData[i].Views,
 										Pic: articleData[i].Pic,
 										Checkstate: "已审核",
-										Original: "nodata",
+										Original: articleData[i].Original,
+										options: [{
+											name: "操作"
+										}, {
+											name: "修改"
+										}, {
+											name: "删除"
+										}, {
+											name: "发布"
+										}]
+									})
+								}else if(articleData[i].Checkstate == '-2') { //草稿
+									this.articleData.push({
+										Articleid: articleData[i].Articleid,
+										Title: articleData[i].Title,
+										CreateDate: articleData[i].CreateDate.substr(0, 10),
+										Creator: articleData[i].Creator,
+										Views: articleData[i].Views,
+										Pic: articleData[i].Pic,
+										Checkstate: "草稿",
+										Original: articleData[i].Original,
 										options: [{
 											name: "操作"
 										}, {

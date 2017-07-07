@@ -87,7 +87,10 @@
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
-						console.log(res.data.message)
+						//console.log(res.data.message)
+						if(res.data.code=="0"){
+							alert("验证码已发送，清查收")
+						}
 					},
 					function() {
 						console.log("数据请求失败")

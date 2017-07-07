@@ -84,7 +84,10 @@
 						headers: { 'Authorization': TOKEN }
 					}).then(
 						function(res) {
-							console.log("短信验证码" + res.data.message)
+							//console.log("短信验证码" + res.data.message)
+							if(res.data.code=="0"){
+								alert("验证码已发送，请查收")
+							}
 						},
 						function() {
 							console.log("数据请求失败")

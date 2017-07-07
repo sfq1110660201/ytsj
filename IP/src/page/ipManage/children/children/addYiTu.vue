@@ -69,6 +69,7 @@
 							<option>企业</option>
 							<option>医生</option>
 							<option>医疗机构</option>
+							<option>内容IP</option>
 						</select>
 						<p class="form-control-static warned" v-text="typeTip"></p>
 					</div>

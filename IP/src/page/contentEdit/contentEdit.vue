@@ -2,12 +2,12 @@
   	<div class="contentEdit">
         <div class="content">
         	<header class="contentHeader">
-        		<img class="logoOne left" src="/static/img/logoOne.png"/>
+        		<img class="logoOne left" src="/static/IP/img/logoOne.png"/>
         		<span class="logoTitle left">医图号</span>
         		<router-link class="backCompany left" :to="{path:'/ipContent/yiTu/myYiTu',query:{enterpriseId:enterpriseId}}" >我的企业</router-link>
         		<span class="userName right">{{ipName}}</span>
         		<img class="userImg right" :src="ipSrc"/>
-        		<img class="email right" src="/static/img/email.png"/>
+        		<img class="email right" src="/static/IP/img/email.png"/>
         	</header>
         	<section id="editPart">
         		<div class="editOperate left">
@@ -50,9 +50,13 @@
         },
         mounted() {
 			this.$nextTick(function() {
-				this.ipId=this.$route.query.ipId;
-				//console.log(this.$route.query)
-				this.getIpInfo();
+				var TOKEN = localStorage.getItem("TOKEN")
+				if(TOKEN){
+					this.ipId=this.$route.query.ipId;
+					this.getIpInfo();
+				}else{
+					this.$router.push({path:"/login"})
+				}
 			})
 		},
         methods:{

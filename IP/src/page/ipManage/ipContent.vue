@@ -54,8 +54,13 @@
 			this.$nextTick(function() {
 				this.wid = window.screen.availWidth-310; //屏幕可视区域高
 				this.het = window.screen.availHeight; //屏幕可视区域高
-				this.emailName = localStorage.getItem("emailName")
-				this.enterpriseId = localStorage.getItem("enterpriseId")
+				var TOKEN = localStorage.getItem("TOKEN")
+				if(TOKEN){
+					this.emailName = localStorage.getItem("emailName")
+					this.enterpriseId = localStorage.getItem("enterpriseId")
+				}else{
+					this.$router.push({path:"/login"})
+				}
 			})
 		},
 //		computed:mapGetters({//vuex获取值
@@ -71,8 +76,6 @@
 				localStorage.removeItem("phoneNum");
 				localStorage.removeItem("token");
 				this.$router.push({path:"/login"})
-				
-				
 			}
 		},
 		watch: {
@@ -95,7 +98,7 @@
 			/*position: relative;*/
 			border-bottom: 1px solid #e4e7e9;
 			position: fixed;
-			z-index: 666;
+			z-index: 10000;
 			top: 0;
 			.logoTitle {
 				position: absolute;
@@ -130,6 +133,7 @@
 			position: fixed;
 			left: 0;
 			.modelTabs {
+				cursor: pointer;
 				width: 106px;
 				height: 103px;
 				text-align: center;
