@@ -95,7 +95,16 @@
 			this.$nextTick(function() {
 				this.het = window.screen.availHeight; //屏幕可视区域高
 				this.wid = window.screen.availWidth; //屏幕可视区域高
-				this.getVerificationPicToken();
+				var TOKEN=localStorage.removeItem("TOKEN");
+				var emailName=localStorage.removeItem("emailName");
+				var enterpriseId=localStorage.removeItem("enterpriseId");
+				var phoneNum=localStorage.removeItem("phoneNum");
+				var token=localStorage.removeItem("token");
+				if(TOKEN && emailName && enterpriseId && phoneNum && token){
+					this.$router.push({ path: "/ipContent/yiTu/myYiTu", query: { enterpriseId: enterpriseId } })
+				}else{
+					this.getVerificationPicToken();
+				}
 			})
 		},
 		computed:mapState({//vuex存值

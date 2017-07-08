@@ -173,7 +173,7 @@
 				var e=event;
 				//console.log(e.target.value)
 				//console.log(e.target.dataid)
-				this.lebalIndex=e.target.value
+				this.lebalIndex=(e.target.value).toString();
 			},
 			chooseLebals2(e){
 				var e=event;
@@ -289,29 +289,29 @@
 					this.isImgTypeTwo = "请添加二维码图片"
 				} else if(this.ipIntroduction == "") {
 					this.introductionTip = "请填写医图号简介"
-				} else if(this.ipDescriptionA == "") {
+				} else if((this.ipDescriptionA).toString() == "") {
 					this.descriptionTip = "请选择医图号描述"
 				} else if(this.ipDescriptionB == "") {
 					this.descriptionTip = "请选择医图号描述"
 				} else if(this.ipType == "") {
 					this.typeTip = "请选择医图号类型"
-				} else if(this.ipName != "" && this.imgOneSrc != "" && this.imgTwoSrc != "" && this.ipIntroduction != "" && this.ipDescriptionA != "" && this.ipDescriptionB != "" && this.ipType != "") {
+				} else if(this.ipName != "" && this.imgOneSrc != "" && this.imgTwoSrc != "" && this.ipIntroduction != "" && (this.ipDescriptionA).toString() != "" && this.ipDescriptionB != "" && this.ipType != "") {
 					var TOKEN = localStorage.getItem("TOKEN")
 					if(this.ipDescriptionA==0){
-						var ipDescriptionA="母婴健康"
+						var DescriptionA="母婴健康"
 					}else if(this.ipDescriptionA==1){
-						var ipDescriptionA="饮食养生"
+						var DescriptionA="饮食养生"
 					}else if(this.ipDescriptionA==2){
-						var ipDescriptionA='保健疗养'
+						var DescriptionA='保健疗养'
 					}else if(this.ipDescriptionA==3){
-						var ipDescriptionA="两性生活"
+						var DescriptionA="两性生活"
 					}
 					//console.log(this.ipName, this.imgOneSrc, this.imgTwoSrc, this.ipIntroduction, ipDescriptionA, this.ipDescriptionB, this.ipType)
 					var data = {
 						"ipname": this.ipName,
 						"summary": this.ipIntroduction,
 						"pic": this.imgOneSrc,
-						"tags": ipDescriptionA + "|" + this.ipDescriptionB,
+						"tags": DescriptionA + "|" + this.ipDescriptionB,
 						"qrcode": this.imgTwoSrc,
 						"iptype": this.ipType
 					}

@@ -138,7 +138,7 @@
 				},{
 					name:"孕期"
 				},{
-					name:"分娩期"
+					name:"分娩"
 				},{
 					name:"产后"
 				},{
@@ -148,19 +148,31 @@
 				},{
 					name:"婴儿"
 				},{
-					name:"学龄前儿童"
+					name:"1-3岁"
+				},{
+					name:"3-6岁"
+				},{
+					name:"7-14岁"
+				},{
+					name:"儿童"
 				},{
 					name:"少年"
-				}],
-				jibings:[{
-					name:"男性疾病"
 				},{
-					name:"女性疾病"
-				},{name:"两性疾病"},{name:"胎儿疾病"},{name:"新生儿疾病"},{name:"婴儿疾病"},{name:"儿童疾病"},{name:"内科"},{name:"外科"},{name:"遗传病"},{name:"皮肤科"},{name:"骨科"},{name:"眼科"},{name:"耳鼻喉科"},{name:"免疫科"},{name:"口腔科"},{name:"精神心理"},{name:"生长发育"},{name:"中医科"},{name:"寄生虫"},{name:"感染科"}],
-				hulis:[{name:"男性护理"},{name:"女性护理"},{name:"两性护理"},{name:"胎儿护理"},{name:"新生儿护理"},{name:"清洁"},{name:"院前护理"},{name:"疾病护理"},{name:"庭院护理"}],
-				foods:[{name:"生食"},{name:"熟食"},{name:"植物"},{name:"肉"},{name:"蛋"},{name:"乳"},{name:"营养素"},{name:"禁忌"},{name:"食品安全"}],
+					name:"青春期"
+				},{
+					name:"青年期"
+				},{
+					name:"中年期"
+				},{
+					name:"老年期"
+				},{
+					name:"临终期"
+				}],
+				jibings:[{name:"胎儿疾病"},{name:"新生儿疾病"},{name:"婴儿疾病"},{name:"儿童疾病"},{name:"内科"},{name:"外科"},{name:"遗传病"},{name:"传染科"},{name:"皮肤科"},{name:"骨科"},{name:"眼科"},{name:"耳鼻喉科"},{name:"免疫科"},{name:"口腔科"},{name:"精神心理"},{name:"生长发育"},{name:"中医"},{name:"寄生虫"},{name:"感染科"},{name:"男性疾病"},{name:"女性疾病"},{name:"两性疾病"}],
+				hulis:[{name:"喂药"},{name:"用品"},{name:"睡眠"},{name:"微量元素"},{name:"安全防护"},{name:"日常护理"},{name:"皮肤护理"},{name:"如厕训练"},{name:"磨牙"},{name:"疾病护理"},{name:"长牙"},{name:"视力"},{name:"体检"},{name:"舌苔"},{name:"生长发育"},{name:"断奶"},{name:"运动"},{name:"环境"},{name:"疫苗接种"},{name:"早产儿护理"}],
+				foods:[{name:"哺食"},{name:"奶粉"},{name:"婴幼儿食品"},{name:"食谱"},{name:"米粉"},{name:"母乳喂养"},{name:"混合喂养"},{name:"生食"},{name:"熟食"},{name:"植物"},{name:"肉"},{name:"蛋"},{name:"乳"},{name:"营养素"},{name:"禁忌"},{name:"食品安全"}],
 				baojians:[{name:"生活行为"},{name:"运动"},{name:"环境"},{name:"保健方法"}],
-				jiaoyus:[{name:"心理"},{name:"胎教"},{name:"儿童心理"},{name:"育儿"},{name:"经验分享"}],
+				jiaoyus:[{name:"胎教"},{name:"早教"},{name:"语言"},{name:"行为"},{name:"性格"},{name:"心理"},{name:"育儿"},{name:"经验"},{name:"游戏玩具"}],
 				firstLebal:"生理阶段",
 				secLebal:"",
 				secMidLebal:"",//检索数组中是否已含所选标签

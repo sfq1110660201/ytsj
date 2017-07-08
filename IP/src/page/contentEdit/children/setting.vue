@@ -312,12 +312,13 @@
 					this.introductionTip = "请填写医图号简介"
 				} else if((this.ipDescriptionA).toString() == "") {
 					this.descriptionTip = "请选择医图号描述"
-				} else if((this.ipDescriptionB).toString() == "") {
+			} else if(this.ipDescriptionB == "") {
 					this.descriptionTip = "请选择医图号描述"
 				} else if(this.ipType == "") {
 					
 					this.typeTip = "请选择医图号类型"
-				} else if(this.ipName != "" && this.imgOneSrc != "" && this.imgTwoSrc != "" && this.ipIntroduction != "" && this.ipDescriptionA != "" && this.ipDescriptionB != "" && this.ipType != "") {
+				} else if(this.ipName != "" && this.imgOneSrc != "" && this.imgTwoSrc != "" && this.ipIntroduction != "" && (this.ipDescriptionA).toString() != "" && this.ipDescriptionB != "" && this.ipType != "") {
+					//this.descriptionTip = ""
 					var TOKEN = localStorage.getItem("TOKEN")
 					if(this.ipDescriptionA=='0'){
 						var DescriptionA="母婴健康"

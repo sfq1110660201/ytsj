@@ -4,7 +4,7 @@
         	<div class="readInfo">
         		<div class="publishedInfo">
         			<router-link  :to="{path:'/contentEdit/publish/Graphic',query:{ipId:ipId}}" tag="section" class="publishedInfo_L left">
-        				<img class="publishedImg" src="/static/IP/img/dasdad.png"/>
+        				<!--<img class="publishedImg" src="/static/IP/img/dasdad.png"/>-->
         				<div class="publish">发表</div>
         			</router-link>
         			<section class="publishedInfo_R left">
