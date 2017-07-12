@@ -68,9 +68,11 @@
 				}).then(
 					function(res) {
 						//console.log(res)
-						this.ipSrc=res.data.data.Pic;
-						this.ipName=res.data.data.Ipname;
-						this.enterpriseId=res.data.data.Enterpriseid
+						if(res.data.code=="0"){
+							this.ipSrc=res.data.data.Pic;
+							this.ipName=res.data.data.Ipname;
+							this.enterpriseId=res.data.data.Enterpriseid
+						}
 						//console.log(res.data.data.Enterpriseid)
 					},
 					function() {

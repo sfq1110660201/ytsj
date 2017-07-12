@@ -61,7 +61,7 @@
 						containLabel: true, //控制图表大小
 					},
 					legend: {
-						data: ['蒸发量', '降水量', '平均温度']
+						data: ['新增男粉丝', '新增女粉丝', '新增粉丝数']
 					},
 					xAxis: [{
 						type: 'category',
@@ -72,27 +72,27 @@
 					}],
 					yAxis: [{
 							type: 'value',
-							name: '水量',
+							name: '人数',
 							min: 0,
 							max: 250,
 							interval: 50,
 							axisLabel: {
-								formatter: '{value} ml'
+								formatter: '{value}'
 							}
 						},
 						{
 							type: 'value',
-							name: '温度',
+							name: '人数',
 							min: 0,
 							max: 25,
 							interval: 5,
 							axisLabel: {
-								formatter: '{value} °C'
+								formatter: '{value} '//'前可以加°C
 							}
 						}
 					],
 					series: [{
-							name: '蒸发量',
+							name: '新增男粉丝',
 							type: 'bar',
 							label: {
 								normal: {//设置这点是否显示数字
@@ -103,7 +103,7 @@
 							data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
 						},
 						{
-							name: '降水量',
+							name: '新增女粉丝',
 							type: 'bar',
 							label: {
 								normal: {//设置这点是否显示数字
@@ -114,7 +114,7 @@
 							data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
 						},
 						{
-							name: '平均温度',
+							name: '新增粉丝数',
 							type: 'line',
 							yAxisIndex: 1,
 							label: {

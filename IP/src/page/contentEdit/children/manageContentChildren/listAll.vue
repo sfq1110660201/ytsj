@@ -2,7 +2,7 @@
 	<div>
 		<div v-if="isShowModel.indexOf(item.Checkstate)!=-1" class="listItem" v-for="item in articleData">
 			<section class="listItemL left">
-				<p>{{item.Title}}<span class="original">{{item.Original}}</span></p>
+				<p>{{item.Title}}<span class="original" v-if="item.Original!=''">{{item.Original}}</span></p>
 				<p>
 					<span class="isReview">{{item.Checkstate}}</span>
 					<span class="publishtime marginLRepair">{{item.CreateDate}}</span>
@@ -97,11 +97,12 @@
 						var articleData = res.data.data;
 						if(articleData != null) {
 							for(var i = 0; i < articleData.length; i++) {
+								console.log(typeof articleData[i].CreateDate)
 								if(articleData[i].Checkstate == '-1') { //审核未通过
 									this.articleData.push({
 										Articleid: articleData[i].Articleid,
 										Title: articleData[i].Title,
-										CreateDate: articleData[i].CreateDate.substr(0, 10),
+										CreateDate: articleData[i].CreateDate.substr(0, 10)+" "+articleData[i].CreateDate.substr(11, 5),
 										Creator: articleData[i].Creator,
 										Views: articleData[i].Views,
 										Pic: articleData[i].Pic,
