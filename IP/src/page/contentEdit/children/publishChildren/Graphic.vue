@@ -58,6 +58,9 @@
 				<ul class="secondLebals" v-if="lebalIndex==5">
 					<li v-for="item in jiaoyus" @click="saveLebals(item.name)">{{item.name}}</li>
 				</ul>
+				<ul class="secondLebals" v-if="lebalIndex==6">
+					<li v-for="item in polities" @click="saveLebals(item.name)">{{item.name}}</li>
+				</ul>
 			</div>
 		</div>
 		<p class="publishTitle">已选标签</p>
@@ -132,6 +135,10 @@
 					index: 5,
 					name: "教育",
 					isbool: true
+				}, {
+					index: 6,
+					name: "法规政策",
+					isbool: true
 				}],
 				shenglis: [{
 					name: "备孕"
@@ -169,10 +176,11 @@
 					name: "临终期"
 				}],
 				jibings: [{ name: "胎儿疾病" }, { name: "新生儿疾病" }, { name: "婴儿疾病" }, { name: "儿童疾病" }, { name: "内科" }, { name: "外科" }, { name: "遗传病" }, { name: "传染科" }, { name: "皮肤科" }, { name: "骨科" }, { name: "眼科" }, { name: "耳鼻喉科" }, { name: "免疫科" }, { name: "口腔科" }, { name: "精神心理" }, { name: "生长发育" }, { name: "中医" }, { name: "寄生虫" }, { name: "感染科" }, { name: "男性疾病" }, { name: "女性疾病" }, { name: "两性疾病" }],
-				hulis: [{ name: "喂药" }, { name: "用品" }, { name: "睡眠" }, { name: "微量元素" }, { name: "安全防护" }, { name: "日常护理" }, { name: "皮肤护理" }, { name: "如厕训练" }, { name: "磨牙" }, { name: "疾病护理" }, { name: "长牙" }, { name: "视力" }, { name: "体检" }, { name: "舌苔" }, { name: "生长发育" }, { name: "断奶" }, { name: "运动" }, { name: "环境" }, { name: "疫苗接种" }, { name: "早产儿护理" }],
+				hulis: [{ name: "喂药" }, { name: "用品" }, { name: "睡眠" }, { name: "微量元素" }, { name: "安全防护" }, { name: "日常护理" }, { name: "皮肤护理" }, { name: "如厕训练" }, { name: "磨牙" }, { name: "疾病护理" }, { name: "长牙" }, { name: "视力" }, { name: "体检" }, { name: "舌苔" }, { name: "生长发育" }, { name: "断奶" }, { name: "运动" }, { name: "环境" }, { name: "疫苗接种" }, { name: "早产儿护理" }, { name: "湿疹" }, { name: "过敏" }, { name: "惊厥" }, { name: "抽动症" }, { name: "多动症" }, { name: "癫痫" }, { name: "肥胖" }, { name: "疝气" }, { name: "自闭症" }, { name: "粪便异常" }, { name: "铅中毒" }, { name: "口吃" }, { name: "吐奶" }, { name: "抽搐" }, { name: "发育迟缓" }, { name: "发热" }, { name: "呕吐" }, { name: "黄疸" }, { name: "尿布疹" }, { name: "溢奶" }, { name: "消化不良" }, { name: "胀气" }, { name: "肠绞痛" }, { name: "便秘" }, { name: "流口水" }, { name: "依恋" }, { name: "认生" }, { name: "喝水" }, { name: "安抚" }, { name: "枕秃" }, { name: "睡姿" }, { name: "腹泻" }, { name: "贫血" }, { name: "鼻塞" }, { name: "伛偻病" }, { name: "口水疹" }, { name: "鹅口疮" }, { name: "肺炎" }],
 				foods: [{ name: "辅食" }, { name: "奶粉" }, { name: "婴幼儿食品" }, { name: "食谱" }, { name: "米粉" }, { name: "母乳喂养" }, { name: "混合喂养" }, { name: "生食" }, { name: "熟食" }, { name: "植物" }, { name: "肉" }, { name: "蛋" }, { name: "乳" }, { name: "营养素" }, { name: "禁忌" }, { name: "食品安全" }],
 				baojians: [{ name: "生活行为" }, { name: "运动" }, { name: "环境" }, { name: "保健方法" }],
 				jiaoyus: [{ name: "胎教" }, { name: "早教" }, { name: "语言" }, { name: "行为" }, { name: "性格" }, { name: "心理" }, { name: "育儿" }, { name: "经验" }, { name: "游戏玩具" }],
+				polities:[{ name: "法律" },{ name: "法规" },{ name: "规章" },{ name: "制度" },{ name: "须知" },{ name: "声明" }],
 				firstLebal: "生理阶段",
 				secLebal: "",
 				secMidLebal: "", //检索数组中是否已含所选标签

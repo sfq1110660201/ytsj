@@ -95,12 +95,13 @@
 			this.$nextTick(function() {
 				this.het = window.screen.availHeight; //屏幕可视区域高
 				this.wid = window.screen.availWidth; //屏幕可视区域高
-				var TOKEN=localStorage.removeItem("TOKEN");
-				var emailName=localStorage.removeItem("emailName");
-				var enterpriseId=localStorage.removeItem("enterpriseId");
-				var phoneNum=localStorage.removeItem("phoneNum");
-				var token=localStorage.removeItem("token");
-				if(TOKEN && emailName && enterpriseId && phoneNum && token){
+				var TOKEN=localStorage.getItem("TOKEN");
+				var emailName=localStorage.getItem("emailName");
+				var enterpriseId=localStorage.getItem("enterpriseId");
+				var phoneNum=localStorage.getItem("phoneNum");
+				var token=localStorage.getItem("token");
+				if(TOKEN!=undefined && emailName!=undefined && enterpriseId!=undefined && phoneNum!=undefined && token!=undefined){
+					
 					this.$router.push({ path: "/ipContent/yiTu/myYiTu", query: { enterpriseId: enterpriseId } })
 				}else{
 					this.getVerificationPicToken();
