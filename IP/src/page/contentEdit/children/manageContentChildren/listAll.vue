@@ -82,6 +82,7 @@
 		},
 		methods: {
 			getIpInfo() {
+				
 				var TOKEN = localStorage.getItem("TOKEN")
 				//console.log(TOKEN)
 				this.$http.get("https://api.lotusdata.com/ip/v1/article/list/" + this.ipId, {
@@ -93,11 +94,11 @@
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
-						console.log(res.data.data)
+						//console.log(res.data.data)
 						var articleData = res.data.data;
 						if(articleData != null) {
 							for(var i = 0; i < articleData.length; i++) {
-								console.log(typeof articleData[i].CreateDate)
+								//console.log(typeof articleData[i].CreateDate)
 								if(articleData[i].Checkstate == '-1') { //审核未通过
 									this.articleData.push({
 										Articleid: articleData[i].Articleid,
@@ -182,7 +183,7 @@
 
 							}
 							if(res.data.data.length == 20) {
-								this.page += 1;
+								this.page = this.page+20;
 								this.getIpInfo()
 							}
 						}

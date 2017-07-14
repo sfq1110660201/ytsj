@@ -40,26 +40,25 @@
 					<li v-for="lebal in lebals" :data-id="lebal.index" @mouseover="setLebalIndex(lebal)">{{lebal.name}}</li>
 				</ul>
 				<ul class="secondLebals" v-if="lebalIndex==0">
-					<li v-for="item in shenglis" @click="saveLebals(item.name)">{{item.name}}</li>
+					<li v-for="item in secLebals0" @click="saveLebals(item.name)">{{item.name}}</li>
 				</ul>
 				<ul class="secondLebals" v-if="lebalIndex==1">
-					<li v-for="item in jibings" @click="saveLebals(item.name)">{{item.name}}</li>
+					<li v-for="item in secLebals1" @click="saveLebals(item.name)">{{item.name}}</li>
 				</ul>
 				<ul class="secondLebals" v-if="lebalIndex==2">
-					<li v-for="item in hulis" @click="saveLebals(item.name)">{{item.name}}</li>
-
+					<li v-for="item in secLebals2" @click="saveLebals(item.name)">{{item.name}}</li>
 				</ul>
 				<ul class="secondLebals" v-if="lebalIndex==3">
-					<li v-for="item in foods" @click="saveLebals(item.name)">{{item.name}}</li>
+					<li v-for="item in secLebals3" @click="saveLebals(item.name)">{{item.name}}</li>
 				</ul>
 				<ul class="secondLebals" v-if="lebalIndex==4">
-					<li v-for="item in baojians" @click="saveLebals(item.name)">{{item.name}}</li>
+					<li v-for="item in secLebals4" @click="saveLebals(item.name)">{{item.name}}</li>
 				</ul>
 				<ul class="secondLebals" v-if="lebalIndex==5">
-					<li v-for="item in jiaoyus" @click="saveLebals(item.name)">{{item.name}}</li>
+					<li v-for="item in secLebals5" @click="saveLebals(item.name)">{{item.name}}</li>
 				</ul>
 				<ul class="secondLebals" v-if="lebalIndex==6">
-					<li v-for="item in polities" @click="saveLebals(item.name)">{{item.name}}</li>
+					<li v-for="item in secLebals6" @click="saveLebals(item.name)">{{item.name}}</li>
 				</ul>
 			</div>
 		</div>
@@ -111,36 +110,45 @@
 				isImgTypeOne: "",
 				checked: "",
 				lebalIndex: 0,
-				lebals: [{
-					index: 0,
-					name: "生理阶段",
-					isbool: true
-				}, {
-					index: 1,
-					name: "疾病",
-					isbool: true
-				}, {
-					index: 2,
-					name: "护理",
-					isbool: true
-				}, {
-					index: 3,
-					name: "饮食",
-					isbool: true
-				}, {
-					index: 4,
-					name: "保健",
-					isbool: true
-				}, {
-					index: 5,
-					name: "教育",
-					isbool: true
-				}, {
-					index: 6,
-					name: "法规政策",
-					isbool: true
-				}],
-				shenglis: [{
+				lebals:[],
+//				lebals: [{
+//					index: 0,
+//					name: "生理阶段",
+//					isbool: true
+//				}, {
+//					index: 1,
+//					name: "疾病",
+//					isbool: true
+//				}, {
+//					index: 2,
+//					name: "护理",
+//					isbool: true
+//				}, {
+//					index: 3,
+//					name: "饮食",
+//					isbool: true
+//				}, {
+//					index: 4,
+//					name: "保健",
+//					isbool: true
+//				}, {
+//					index: 5,
+//					name: "教育",
+//					isbool: true
+//				}, {
+//					index: 6,
+//					name: "法规政策",
+//					isbool: true
+//				}],
+//				secLebals0:[],
+//				secLebals1:[],
+//				secLebals2:[],
+//				secLebals3:[],
+//				secLebals4:[],
+//				secLebals5:[],
+//				secLebals6:[],
+				
+				secLebals0: [{
 					name: "备孕"
 				}, {
 					name: "孕期"
@@ -175,12 +183,12 @@
 				}, {
 					name: "临终期"
 				}],
-				jibings: [{ name: "胎儿疾病" }, { name: "新生儿疾病" }, { name: "婴儿疾病" }, { name: "儿童疾病" }, { name: "内科" }, { name: "外科" }, { name: "遗传病" }, { name: "传染科" }, { name: "皮肤科" }, { name: "骨科" }, { name: "眼科" }, { name: "耳鼻喉科" }, { name: "免疫科" }, { name: "口腔科" }, { name: "精神心理" }, { name: "生长发育" }, { name: "中医" }, { name: "寄生虫" }, { name: "感染科" }, { name: "男性疾病" }, { name: "女性疾病" }, { name: "两性疾病" }],
-				hulis: [{ name: "喂药" }, { name: "用品" }, { name: "睡眠" }, { name: "微量元素" }, { name: "安全防护" }, { name: "日常护理" }, { name: "皮肤护理" }, { name: "如厕训练" }, { name: "磨牙" }, { name: "疾病护理" }, { name: "长牙" }, { name: "视力" }, { name: "体检" }, { name: "舌苔" }, { name: "生长发育" }, { name: "断奶" }, { name: "运动" }, { name: "环境" }, { name: "疫苗接种" }, { name: "早产儿护理" }, { name: "湿疹" }, { name: "过敏" }, { name: "惊厥" }, { name: "抽动症" }, { name: "多动症" }, { name: "癫痫" }, { name: "肥胖" }, { name: "疝气" }, { name: "自闭症" }, { name: "粪便异常" }, { name: "铅中毒" }, { name: "口吃" }, { name: "吐奶" }, { name: "抽搐" }, { name: "发育迟缓" }, { name: "发热" }, { name: "呕吐" }, { name: "黄疸" }, { name: "尿布疹" }, { name: "溢奶" }, { name: "消化不良" }, { name: "胀气" }, { name: "肠绞痛" }, { name: "便秘" }, { name: "流口水" }, { name: "依恋" }, { name: "认生" }, { name: "喝水" }, { name: "安抚" }, { name: "枕秃" }, { name: "睡姿" }, { name: "腹泻" }, { name: "贫血" }, { name: "鼻塞" }, { name: "伛偻病" }, { name: "口水疹" }, { name: "鹅口疮" }, { name: "肺炎" }],
-				foods: [{ name: "辅食" }, { name: "奶粉" }, { name: "婴幼儿食品" }, { name: "食谱" }, { name: "米粉" }, { name: "母乳喂养" }, { name: "混合喂养" }, { name: "生食" }, { name: "熟食" }, { name: "植物" }, { name: "肉" }, { name: "蛋" }, { name: "乳" }, { name: "营养素" }, { name: "禁忌" }, { name: "食品安全" }],
-				baojians: [{ name: "生活行为" }, { name: "运动" }, { name: "环境" }, { name: "保健方法" }],
-				jiaoyus: [{ name: "胎教" }, { name: "早教" }, { name: "语言" }, { name: "行为" }, { name: "性格" }, { name: "心理" }, { name: "育儿" }, { name: "经验" }, { name: "游戏玩具" }],
-				polities:[{ name: "法律" },{ name: "法规" },{ name: "规章" },{ name: "制度" },{ name: "须知" },{ name: "声明" }],
+				secLebals1: [{ name: "胎儿疾病" }, { name: "新生儿疾病" }, { name: "婴儿疾病" }, { name: "儿童疾病" }, { name: "内科" }, { name: "外科" }, { name: "遗传病" }, { name: "传染科" }, { name: "皮肤科" }, { name: "骨科" }, { name: "眼科" }, { name: "耳鼻喉科" }, { name: "免疫科" }, { name: "口腔科" }, { name: "精神心理" }, { name: "生长发育" }, { name: "中医" }, { name: "寄生虫" }, { name: "感染科" }, { name: "男性疾病" }, { name: "女性疾病" }, { name: "两性疾病" }],
+				secLebals2: [{ name: "喂药" }, { name: "用品" }, { name: "睡眠" }, { name: "微量元素" }, { name: "安全防护" }, { name: "日常护理" }, { name: "皮肤护理" }, { name: "如厕训练" }, { name: "磨牙" }, { name: "疾病护理" }, { name: "长牙" }, { name: "视力" }, { name: "体检" }, { name: "舌苔" }, { name: "生长发育" }, { name: "断奶" }, { name: "运动" }, { name: "环境" }, { name: "疫苗接种" }, { name: "早产儿护理" }, { name: "湿疹" }, { name: "过敏" }, { name: "惊厥" }, { name: "抽动症" }, { name: "多动症" }, { name: "癫痫" }, { name: "肥胖" }, { name: "疝气" }, { name: "自闭症" }, { name: "粪便异常" }, { name: "铅中毒" }, { name: "口吃" }, { name: "吐奶" }, { name: "抽搐" }, { name: "发育迟缓" }, { name: "发热" }, { name: "呕吐" }, { name: "黄疸" }, { name: "尿布疹" }, { name: "溢奶" }, { name: "消化不良" }, { name: "胀气" }, { name: "肠绞痛" }, { name: "便秘" }, { name: "流口水" }, { name: "依恋" }, { name: "认生" }, { name: "喝水" }, { name: "安抚" }, { name: "枕秃" }, { name: "睡姿" }, { name: "腹泻" }, { name: "贫血" }, { name: "鼻塞" }, { name: "伛偻病" }, { name: "口水疹" }, { name: "鹅口疮" }, { name: "肺炎" }],
+				secLebals3: [{ name: "辅食" }, { name: "奶粉" }, { name: "婴幼儿食品" }, { name: "食谱" }, { name: "米粉" }, { name: "母乳喂养" }, { name: "混合喂养" }, { name: "生食" }, { name: "熟食" }, { name: "植物" }, { name: "肉" }, { name: "蛋" }, { name: "乳" }, { name: "营养素" }, { name: "禁忌" }, { name: "食品安全" }],
+				secLebals4: [{ name: "生活行为" }, { name: "运动" }, { name: "环境" }, { name: "保健方法" }],
+				secLebals5: [{ name: "胎教" }, { name: "早教" }, { name: "语言" }, { name: "行为" }, { name: "性格" }, { name: "心理" }, { name: "育儿" }, { name: "经验" }, { name: "游戏玩具" }],
+				secLebals6:[{ name: "法律" },{ name: "法规" },{ name: "规章" },{ name: "制度" },{ name: "须知" },{ name: "声明" }],
 				firstLebal: "生理阶段",
 				secLebal: "",
 				secMidLebal: "", //检索数组中是否已含所选标签
@@ -197,15 +205,47 @@
 				this.ipId = this.$route.query.ipId
 				//console.log(this.$route.query)
 				if(this.$route.query.Articleid) {
-					this.Articleid = this.$route.query.Articleid
+					this.Articleid = this.$route.query.Articleid;
+					this.getTags();
 					this.editArticle();
 				} else {
 					this.Articleid == "";
+					this.getTags();
 					this.setWangEditor()
 				}
 			})
 		},
 		methods: {
+			getTags(){
+				var TOKEN = localStorage.getItem("TOKEN")
+				this.$http.get("https://api.lotusdata.com/ip/v1/basicdic/tags", {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						if(res.data.code=="0"){
+							var tagList=res.data.data;
+							//console.log(tagList)
+							for(var i=0;i<tagList.length;i++){
+								this.lebals.push({
+									index:i,
+									name:tagList[i].master,
+									isbool:true
+								});
+//								for(var j=0;j<tagList[i].detail.length;j++){
+//									this.secLebals+i.push({
+//										name:tagList[i].detail[j]
+//									})
+//								}
+							}
+						}
+
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+				
+			},
 			setWangEditor(res) {
 				var self = this;
 				var TOKEN = localStorage.getItem("TOKEN")

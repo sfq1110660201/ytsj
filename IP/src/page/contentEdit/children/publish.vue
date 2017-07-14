@@ -6,10 +6,10 @@
 					<router-link :to="{path:'/contentEdit/publish/Graphic',query:{ipId:ipId}}" class="items" @click.native="checkOne">图文</router-link>
 				</li>
 				<li role="presentation" :class="{ active: isActive2}">
-					<router-link :to="{path:'/contentEdit/publish/vedio',query:{ipId:ipId}}" class="items" @click.native="checkTwo">视频</router-link>
+					<router-link :to="{path:'/contentEdit/publish/vedio',query:{ipId:ipId}}" class="items" @click.native="checkTwo">语音</router-link>
 				</li>
 				<li role="presentation" :class="{ active: isActive3}">
-					<router-link :to="{path:'/contentEdit/publish/pictures',query:{ipId:ipId}}" class="items" @click.native="checkThree">图集</router-link>
+					<router-link :to="{path:'/contentEdit/publish/pictures',query:{ipId:ipId}}" class="items" @click.native="checkThree">链接</router-link>
 				</li>
 			</ul>
 		</div>
