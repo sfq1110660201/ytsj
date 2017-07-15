@@ -227,7 +227,6 @@
 				}
 			},
 			sendimgOne() {
-				
 				var token = localStorage.getItem("token") //获取token
 				//console.log(TOKEN)
 				var form = document.getElementById('formOne');

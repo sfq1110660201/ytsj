@@ -14,10 +14,10 @@
 					<router-link :to="{path:'/contentEdit/manageContent/listAll',query:{ipId:ipId}}" class="items" @click.native="checkZero">全部</router-link>
 				</li>
 				<li role="presentation" :class="{ active: isActive1}">
-					<router-link :to="{path:'/contentEdit/manageContent/listGraphic',query:{ipId:ipId}}" class="items" @click.native="checkOne">图文</router-link>
+					<router-link :to="{path:'/contentEdit/manageContent/listGraphic',query:{ipId:ipId}}" class="items" @click.native="checkOne">语音</router-link>
 				</li>
 				<li role="presentation" :class="{ active: isActive2}">
-					<router-link :to="{path:'/contentEdit/manageContent/listVedio',query:{ipId:ipId}}" class="items" @click.native="checkTwo">视频</router-link>
+					<router-link :to="{path:'/contentEdit/manageContent/listVedio',query:{ipId:ipId}}" class="items" @click.native="checkTwo">链接</router-link>
 				</li>
 				<li role="presentation" :class="{ active: isActive3}">
 					<router-link :to="{path:'/contentEdit/manageContent/listPictures',query:{ipId:ipId}}" class="items" @click.native="checkThree">图集</router-link>

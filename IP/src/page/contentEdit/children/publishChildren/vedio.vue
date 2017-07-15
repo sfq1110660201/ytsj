@@ -39,7 +39,7 @@
 		</form>
 		
 		<p class="publishTitle">来源内容</p>
-		<div class="radioIpt"><input type="radio" name="isproto" value="原创" v-model="checked" @change="getRadio0('原创')"/>&nbsp;原创&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		<div class="radioIpt"><input type="radio" name="isproto" value="原创" v-model="checked" />&nbsp;原创&nbsp;&nbsp;&nbsp;&nbsp;</div>
 		<div>{{fromEdit}}：<input class="editor" v-model.trim="editor" type="text" maxlength="6" /></div>
 		<div class="agreement"><input type="checkbox" v-model="isAgreemnet" />&nbsp;医图视界提示：您应对自己上传的原创作品或转载作品的合法性负责，不得含有侵犯第三方知识产权的内容，否则，造成的法律责任由您全部负责！如若因此导致平台被追责的，平台有权依法向您行使追偿权。</div>
 		<form class="form-horizontal" role="form">
@@ -51,7 +51,7 @@
 					<input type="button" class="btn btn-default form-control right paddingRepair" @click="submit('1')" value="提交审核" />
 				</div>
 				<div class="col-sm-2 col-xs-2 right">
-					<input type="button" class="btn btn-default form-control right paddingRepair" @click="" value="保存草稿" />
+					<input type="button" class="btn btn-default form-control right paddingRepair" @click="submit('0')" value="保存草稿" />
 				</div>
 			</div>
 		</form>
@@ -64,7 +64,7 @@
 		data() {
 			return {
 				ipId: "",
-				Articleid: "",
+				VoiceId: "",
 				het: 0,
 				title: "",
 				audioTip:"",//上传语音提示
@@ -87,13 +87,11 @@
 		mounted() {
 			this.$nextTick(function() {
 				this.ipId = this.$route.query.ipId
-				//console.log(this.$route.query)
-				if(this.$route.query.Articleid) {
-					this.Articleid = this.$route.query.Articleid;
-					this.getTags();
-					this.editArticle();
+				if(this.$route.query.VoiceId) {
+					this.VoiceId = this.$route.query.VoiceId;
+					this.getEditVoice();
 				} else {
-					this.Articleid == "";
+					this.VoiceId == "";
 				}
 			})
 		},
@@ -182,27 +180,6 @@
 					}
 				)
 			},
-			setLebalIndex(res) {
-				this.lebalIndex = res.index;
-				this.firstLebal = res.name;
-				//console.log(this.choosingLebal)
-			},
-			saveLebals(res) {
-				if(this.secMidLebal.indexOf(res) == -1) {
-					this.secLebal = res;
-					this.secMidLebal += this.secLebal;
-					this.choosingLebal = this.firstLebal + ">" + this.secLebal;
-					this.chosedLebals.push({
-						name: this.choosingLebal
-					})
-					this.secLebal = "";
-				}
-
-			},
-			deleteLebal(res, index) {
-				//console.log(res,index);
-				this.chosedLebals.splice(index, 1);
-			},
 			submit(isDraft) {
 				//debugger
 				if(this.title == "") {
@@ -220,7 +197,8 @@
 				} else if(this.isAgreemnet == false) {
 					alert('请勾选版权提示')
 				} else if(this.title != "" && this.audioSRC != "" && this.imgOneSrc != "" && this.checked != "" && this.editor != "" && this.isAgreemnet == true && this.textarea!="") {
-					if(this.Articleid != "") { //编辑
+					
+					if(this.VoiceId != "") { //传输编辑后数据
 						this.sendEditInfo(isDraft);
 					} else { //创建新文章
 						this.sendInfo(isDraft);
@@ -235,7 +213,6 @@
 				var audioL=parseInt($("#audio")[0].duration);
 				var duration=parseInt(audioL/60)+"'"+(audioL-parseInt(audioL/60)*60)+'"';
 				var TOKEN = localStorage.getItem("TOKEN")
-				debugger
 				var articleInfo = {
 					"ipid": this.ipId,
 					"title": this.title,
@@ -254,7 +231,7 @@
 					function(res) {
 						//console.log(res)
 						if(res.data.code == "0") {
-							console.log("语音上传成功")
+							alert("语音上传成功")
 							//this.$router.push({path:"/contentEdit/manageContent/listAll",query:{ipId:this.ipId}})
 						}
 					},
@@ -264,31 +241,29 @@
 				)
 			},
 			sendEditInfo(isDraft) { //发送编辑后图文数据
+				var audioL=parseInt($("#audio")[0].duration);
+				var duration=parseInt(audioL/60)+"'"+(audioL-parseInt(audioL/60)*60)+'"';
 				var TOKEN = localStorage.getItem("TOKEN")
-				var tags = [];
-				for(var i = 0; i < this.chosedLebals.length; i++) {
-					tags.push(this.chosedLebals[i].name)
-				}
-				//console.log(tags.join("|"))
 				var articleInfo = {
 					"title": this.title,
-					"content": this.editorContent,
+					"voiceurl": this.audioSRC,
+					"duration" : duration,
 					"pic": this.imgOneSrc,
-					"tags": tags.join("|"),
+					"tags": '生命阶段>青年期',
 					"original": this.checked,
 					"Summary": this.textarea,
 					"author": this.editor,
 					"submit": isDraft
 				}
-				this.$http.put("https://api.lotusdata.com/ip/v1/article/" + this.Articleid, articleInfo, {
+				this.$http.put("https://api.lotusdata.com/ip/v1/voice/" + this.VoiceId, articleInfo, {
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
 						//console.log(res)
 						if(res.data.code == 0) {
 							//console.log("编辑文章成功")
-							//alert("编辑文章成功")
-							this.$router.push({path:"/contentEdit/manageContent/listAll",query:{ipId:this.ipId}})
+							//alert("编辑语音数据成功")
+							this.$router.push({path:"/contentEdit/manageContent/listGraphic",query:{ipId:this.ipId}})
 						}
 					},
 					function() {
@@ -296,9 +271,28 @@
 					}
 				)
 			},
-			getRadio0(value){
-				this.fromEdit="责任编辑"
-			},
+			getEditVoice() { //获取语音数据
+				var TOKEN = localStorage.getItem("TOKEN")
+				this.$http.get("https://api.lotusdata.com/ip/v1/voice/" + this.VoiceId, {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) { 
+						//console.log(res)
+						if(res.data.data.code=="0"){
+							var voiceData=res.data.data.voicedata;
+							this.title = voiceData.Title;
+							this.audioSRC=voiceData.Voiceurl;
+							this.textarea=voiceData.Summary;
+							this.imgOneSrc=voiceData.Pic;
+							this.checked=voiceData.Original;
+							this.editor=voiceData.Author
+						}
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+			}
 		}
 
 	}
