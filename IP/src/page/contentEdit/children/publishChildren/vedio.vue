@@ -4,14 +4,14 @@
 		<input type="text" v-model.trim="title" class="iptContent" />
 		<p class="publishTitle">上传语音</p>
 		<div class="audioContainer">
-			<audio id="audio" :src="audioSRC"  controls="controls" ref="abc">
+			<audio id="audio" :src="audioSRC" controls="controls" ref="abc">
 				Your browser does not support the audio element.
 			</audio>
 			<span v-if="isUploading">正在上传...</span>
 		</div>
 		<p class="form-control-static warned" v-text="audioTip"></p>
 		<a href="javascript:void(0);" class="uploadA btn btn-default marginTop paddingRepair">
-			<span class="upLoadAudiospan" >上传语音</span>
+			<span class="upLoadAudiospan">上传语音</span>
 			<form id="formTwo">
 				<input class="uploadIpt" type="file" name="Filedata" v-on:change="iptAudioChange" />
 			</form>
@@ -37,7 +37,42 @@
 				</div>
 			</div>
 		</form>
-		
+		<p class="publishTitle">标签选择</p>
+		<div class="ipLebals">
+			<div class="left">
+				<img src="/static/IP/img/addIP_03.png" />
+			</div>
+			<div class="lebalsContainer left">
+				<ul class="lebals">
+					<li class="firstLebal" v-for="lebal in lebals" :data-id="lebal.index" @mouseover="setLebalIndex(lebal)">{{lebal.name}}
+						<li class="secLebal"></li>
+					</li>
+				</ul>
+				<ul class="secondLebals" v-if="">
+					<li v-if="lebalIndex==0" v-for="item in secLebals0" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==1" v-for="item in secLebals1" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==2" v-for="item in secLebals2" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==3" v-for="item in secLebals3" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==4" v-for="item in secLebals4" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==5" v-for="item in secLebals5" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==6" v-for="item in secLebals6" @click="getSecTag(item)">{{item}}</li>
+				</ul>
+
+			</div>
+		</div>
+		<p class="publishTitle">已选标签</p>
+		<div class="ipLebals">
+			<div class="left">
+				<img src="/static/IP/img/addIP_06.png" />
+			</div>
+			<div class="lebalsContainer left">
+				<ul class="chosed">
+					<li v-for="item in choosingLebal">{{item}}<img class="delete" src="/static/IP/img/delete.png" @click='deleteLebal(item)' /></li>
+				</ul>
+
+			</div>
+		</div>
+
 		<p class="publishTitle">来源内容</p>
 		<div class="radioIpt"><input type="radio" name="isproto" value="原创" v-model="checked" />&nbsp;原创&nbsp;&nbsp;&nbsp;&nbsp;</div>
 		<div>{{fromEdit}}：<input class="editor" v-model.trim="editor" type="text" maxlength="6" /></div>
@@ -59,7 +94,6 @@
 </template>
 
 <script>
-
 	export default {
 		data() {
 			return {
@@ -67,7 +101,7 @@
 				VoiceId: "",
 				het: 0,
 				title: "",
-				audioTip:"",//上传语音提示
+				audioTip: "", //上传语音提示
 				imgOneSrc: "",
 				isImgTypeOne: "",
 				checked: "原创",
@@ -75,18 +109,27 @@
 				firstLebal: "生理阶段",
 				secLebal: "",
 				secMidLebal: "", //检索数组中是否已含所选标签
-				choosingLebal: "",
+				choosingLebal: [],
 				textarea: "",
 				editor: "",
 				isAgreemnet: false,
-				fromEdit:"责任编辑",
-				audioSRC:"",
-				isUploading:false,
+				fromEdit: "责任编辑",
+				audioSRC: "",
+				isUploading: false,
+				lebals: [],
+				secLebals0: [],
+				secLebals1: [],
+				secLebals2: [],
+				secLebals3: [],
+				secLebals4: [],
+				secLebals5: [],
+				secLebals6: [],
 			}
 		},
 		mounted() {
 			this.$nextTick(function() {
 				this.ipId = this.$route.query.ipId
+				this.getTags();
 				if(this.$route.query.VoiceId) {
 					this.VoiceId = this.$route.query.VoiceId;
 					this.getEditVoice();
@@ -96,6 +139,53 @@
 			})
 		},
 		methods: {
+			getTags() {
+				var TOKEN = localStorage.getItem("TOKEN")
+				this.$http.get("https://api.lotusdata.com/ip/v1/basicdic/tags", {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						if(res.data.code == "0") {
+							var tagList = res.data.data;
+							//console.log(tagList)
+							for(var i = 0; i < tagList.length; i++) {
+								this.lebals.push({
+									index: i,
+									name: tagList[i].master,
+									isbool: true
+								})
+							}
+							for(var i = 0; i < tagList[0].detail.length; i++) {
+								this.secLebals0.push(tagList[0].detail[i])
+							}
+							for(var i = 0; i < tagList[1].detail.length; i++) {
+								this.secLebals1.push(tagList[1].detail[i])
+							}
+							for(var i = 0; i < tagList[2].detail.length; i++) {
+								this.secLebals2.push(tagList[2].detail[i])
+							}
+							for(var i = 0; i < tagList[3].detail.length; i++) {
+								this.secLebals3.push(tagList[3].detail[i])
+							}
+							for(var i = 0; i < tagList[4].detail.length; i++) {
+								this.secLebals4.push(tagList[4].detail[i])
+							}
+							for(var i = 0; i < tagList[5].detail.length; i++) {
+								this.secLebals5.push(tagList[5].detail[i])
+							}
+							for(var i = 0; i < tagList[6].detail.length; i++) {
+								this.secLebals6.push(tagList[6].detail[i])
+							}
+
+						}
+
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+
+			},
 			iptAudioChange: function(e) { //判断并加载IP logo
 				e.preventDefault();
 				var files = e.target.files;
@@ -108,7 +198,7 @@
 				if(imgType == "mp3" || imgType == "MP3") {
 					if(imgSize < 10 * 1024 * 1024) {
 						//debugger
-						this.audioTip="";
+						this.audioTip = "";
 						this.sendVoice();
 					} else {
 						this.audioTip = "文件大小超出10M"
@@ -117,8 +207,8 @@
 					this.audioTip = "请选择MP3格式文件"
 				}
 			},
-			sendVoice(){
-				this.isUploading=true;
+			sendVoice() {
+				this.isUploading = true;
 				var token = localStorage.getItem("token") //获取token
 				var form = document.getElementById('formTwo');
 				var Filedata = new FormData(formTwo);
@@ -126,12 +216,12 @@
 					headers: { 'Authorization': token }
 				}).then(
 					function(res) {
-						
-						if(res.data.code=="0"){
-							this.isUploading=false;
+
+						if(res.data.code == "0") {
+							this.isUploading = false;
 							var newSrc = res.data.data
-							this.audioSRC=newSrc;
-							
+							this.audioSRC = newSrc;
+
 						}
 
 					},
@@ -172,7 +262,6 @@
 					function(res) {
 						var newSrc = res.data.data
 						this.imgOneSrc = newSrc;
-						
 
 					},
 					function() {
@@ -184,9 +273,9 @@
 				//debugger
 				if(this.title == "") {
 					alert("标题为空，请填写标题")
-				}else if(this.audioSRC==""){
+				} else if(this.audioSRC == "") {
 					alert("请上传音文件")
-				}else if(this.textarea==""){
+				} else if(this.textarea == "") {
 					alert("请填写摘要概述")
 				} else if(this.imgOneSrc == "") {
 					alert("请选择图文封面")
@@ -196,8 +285,8 @@
 					alert("请填写责任编辑")
 				} else if(this.isAgreemnet == false) {
 					alert('请勾选版权提示')
-				} else if(this.title != "" && this.audioSRC != "" && this.imgOneSrc != "" && this.checked != "" && this.editor != "" && this.isAgreemnet == true && this.textarea!="") {
-					
+				} else if(this.title != "" && this.audioSRC != "" && this.imgOneSrc != "" && this.checked != "" && this.editor != "" && this.isAgreemnet == true && this.textarea != "") {
+
 					if(this.VoiceId != "") { //传输编辑后数据
 						this.sendEditInfo(isDraft);
 					} else { //创建新文章
@@ -209,15 +298,15 @@
 			cancle() {
 				this.$router.go(-1)
 			},
-			sendInfo(isDraft) {//发送新建文章数据
-				var audioL=parseInt($("#audio")[0].duration);
-				var duration=parseInt(audioL/60)+"'"+(audioL-parseInt(audioL/60)*60)+'"';
+			sendInfo(isDraft) { //发送新建文章数据
+				var audioL = parseInt($("#audio")[0].duration);
+				var duration = parseInt(audioL / 60) + "'" + (audioL - parseInt(audioL / 60) * 60) + '"';
 				var TOKEN = localStorage.getItem("TOKEN")
 				var articleInfo = {
 					"ipid": this.ipId,
 					"title": this.title,
 					"voiceurl": this.audioSRC,
-					"duration" : duration,
+					"duration": duration,
 					"pic": this.imgOneSrc,
 					"tags": "生命阶段>青年期",
 					"original": this.checked,
@@ -241,13 +330,13 @@
 				)
 			},
 			sendEditInfo(isDraft) { //发送编辑后图文数据
-				var audioL=parseInt($("#audio")[0].duration);
-				var duration=parseInt(audioL/60)+"'"+(audioL-parseInt(audioL/60)*60)+'"';
+				var audioL = parseInt($("#audio")[0].duration);
+				var duration = parseInt(audioL / 60) + "'" + (audioL - parseInt(audioL / 60) * 60) + '"';
 				var TOKEN = localStorage.getItem("TOKEN")
 				var articleInfo = {
 					"title": this.title,
 					"voiceurl": this.audioSRC,
-					"duration" : duration,
+					"duration": duration,
 					"pic": this.imgOneSrc,
 					"tags": '生命阶段>青年期',
 					"original": this.checked,
@@ -263,7 +352,7 @@
 						if(res.data.code == 0) {
 							//console.log("编辑文章成功")
 							//alert("编辑语音数据成功")
-							this.$router.push({path:"/contentEdit/manageContent/listGraphic",query:{ipId:this.ipId}})
+							this.$router.push({ path: "/contentEdit/manageContent/listGraphic", query: { ipId: this.ipId } })
 						}
 					},
 					function() {
@@ -276,22 +365,45 @@
 				this.$http.get("https://api.lotusdata.com/ip/v1/voice/" + this.VoiceId, {
 					headers: { 'Authorization': TOKEN }
 				}).then(
-					function(res) { 
+					function(res) {
 						//console.log(res)
-						if(res.data.data.code=="0"){
-							var voiceData=res.data.data.voicedata;
+						if(res.data.data.code == "0") {
+							var voiceData = res.data.data.voicedata;
 							this.title = voiceData.Title;
-							this.audioSRC=voiceData.Voiceurl;
-							this.textarea=voiceData.Summary;
-							this.imgOneSrc=voiceData.Pic;
-							this.checked=voiceData.Original;
-							this.editor=voiceData.Author
+							this.audioSRC = voiceData.Voiceurl;
+							this.textarea = voiceData.Summary;
+							this.imgOneSrc = voiceData.Pic;
+							this.checked = voiceData.Original;
+							this.editor = voiceData.Author
 						}
 					},
 					function() {
 						console.log("数据请求失败")
 					}
 				)
+			},
+			setLebalIndex(res) {
+				this.lebalIndex = res.index;
+				this.firstLebal = res.name;
+				//console.log(this.firstLebal)
+			},
+			getSecTag(item) {
+				var testRepeat = this.choosingLebal.join("/");
+				if(testRepeat.indexOf(this.firstLebal + ">" + item) == -1) {
+					this.choosingLebal.push(this.firstLebal + ">" + item)
+				}
+			},
+			deleteLebal(item) {
+				var index=this.arrSearch(this.choosingLebal, item);
+				this.choosingLebal.splice(index,1)
+			},
+			arrSearch(data, key) {//返回特定字符在数组中的位置
+				var m = data.length
+				for(var i = 0; i < m; i++) {
+					if(data[i] == key){
+						return i
+					} 
+				}
 			}
 		}
 
@@ -307,13 +419,14 @@
 		margin-bottom: 20px;
 	}
 	
-	.iptContent{
+	.iptContent {
 		width: 660px;
 		height: 35px;
 		border: 1px solid #ccc;
 		padding: 0 10px;
 		font-size: 16px;
 	}
+	
 	.publishTitle {
 		padding: 30px 0 5px 0;
 	}
@@ -325,11 +438,13 @@
 			margin-right: 20px;
 		}
 	}*/
-	.audioContainer{
+	
+	.audioContainer {
 		padding: 5px 10px;
 		width: 660px;
 		border: 1px solid #ccc;
 	}
+	
 	.textarea {
 		width: 660px;
 		height: 180px;
@@ -370,28 +485,6 @@
 		margin-bottom: 0;
 	}
 	
-	.ipLebals {
-		width: 960px;
-		border: 1px solid #ccc;
-		padding: 20px;
-		overflow: hidden;
-		.left img {
-			width: 25px;
-		}
-		.lebalsContainer {
-			margin-left: 20px;
-			width: 850px;
-			.chosed {
-				li {
-					display: inline-block;
-					padding: 0 0 10px 0;
-					margin: 0 5px;
-					border-bottom: 4px solid #fff;
-				}
-			}
-		}
-	}
-	
 	.radioIpt {
 		margin-bottom: 20px;
 		font-size: 20px;
@@ -417,9 +510,11 @@
 		height: 600px;
 	}
 	/*图片上传控件*/
-	.marginTop{
+	
+	.marginTop {
 		/*margin-top: 25px;*/
 	}
+	
 	.uploadA {
 		width: 100px;
 		height: 30px;
@@ -451,16 +546,66 @@
 		width: 15px!important;
 		cursor: pointer;
 	}
-	.upLoadAudiospan{
-		color: #fff; font-size: 13px;margin-top: 2px;
+	
+	.upLoadAudiospan {
+		color: #fff;
+		font-size: 13px;
+		margin-top: 2px;
 	}
+	
 	.paddingRepair {
 		background: #6dc5a3!important;
 		color: #fff!important;
 	}
-	audio{
+	
+	audio {
 		width: 350px;
 		height: 35px;
 		vertical-align: sub;
+	}
+	
+	.ipLebals {
+		width: 960px;
+		border: 1px solid #ccc;
+		padding: 20px;
+		overflow: hidden;
+		.left img {
+			width: 25px;
+		}
+		.lebalsContainer {
+			margin-left: 20px;
+			width: 850px;
+			.lebals {
+				margin-bottom: 10px;
+				li {
+					display: inline-block;
+					padding: 0 0 10px 0;
+					margin: 0 5px;
+					border-bottom: 4px solid #fff;
+				}
+			}
+			.secondLebals {
+				li {
+					display: inline-block;
+					padding: 0 0 15px 0;
+					margin: 0 6px;
+					color: #959595;
+				}
+			}
+			.chosed {
+				li {
+					display: inline-block;
+					padding: 0 0 10px 0;
+					margin: 0 5px;
+					border-bottom: 4px solid #fff;
+				}
+			}
+			.lebals li:hover {
+				border-bottom: 4px solid #6dc5a3;
+			}
+			.secondLebals li:hover {
+				color: #000000;
+			}
+		}
 	}
 </style>
