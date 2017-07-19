@@ -323,7 +323,7 @@
 							if(res.body.message=="success"){
 								this.descriptionTip=""
 								alert("医图号设置成功")
-								//this.$router.push({path:"/ipContent/yiTu/myYiTu",query:{enterpriseId:this.enterpriseId}})
+								this.$router.push({path:"/ipContent/yiTu/myYiTu",query:{enterpriseId:this.enterpriseId}})
 							}
 						},
 						function() {
@@ -332,9 +332,6 @@
 					)
 				}
 			}
-		},
-		watch: {
-
 		}
 	}
 </script>

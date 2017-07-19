@@ -44,9 +44,7 @@
 			</div>
 			<div class="lebalsContainer left">
 				<ul class="lebals">
-					<li class="firstLebal" v-for="lebal in lebals" :data-id="lebal.index" @mouseover="setLebalIndex(lebal)">{{lebal.name}}
-						<li class="secLebal"></li>
-					</li>
+					<li class="firstLebal" v-for="lebal in lebals" :data-id="lebal.index" @mouseover="setLebalIndex(lebal)">{{lebal.name}}</li>
 				</ul>
 				<ul class="secondLebals" v-if="">
 					<li v-if="lebalIndex==0" v-for="item in secLebals0" @click="getSecTag(item)">{{item}}</li>
@@ -107,8 +105,6 @@
 				checked: "原创",
 				lebalIndex: 0,
 				firstLebal: "生理阶段",
-				secLebal: "",
-				secMidLebal: "", //检索数组中是否已含所选标签
 				choosingLebal: [],
 				textarea: "",
 				editor: "",
@@ -197,7 +193,6 @@
 				var imgSize = imgFile.size; //获取图片大小
 				if(imgType == "mp3" || imgType == "MP3") {
 					if(imgSize < 10 * 1024 * 1024) {
-						//debugger
 						this.audioTip = "";
 						this.sendVoice();
 					} else {
@@ -221,7 +216,6 @@
 							this.isUploading = false;
 							var newSrc = res.data.data
 							this.audioSRC = newSrc;
-
 						}
 
 					},
@@ -270,7 +264,6 @@
 				)
 			},
 			submit(isDraft) {
-				//debugger
 				if(this.title == "") {
 					alert("标题为空，请填写标题")
 				} else if(this.audioSRC == "") {
@@ -285,8 +278,9 @@
 					alert("请填写责任编辑")
 				} else if(this.isAgreemnet == false) {
 					alert('请勾选版权提示')
-				} else if(this.title != "" && this.audioSRC != "" && this.imgOneSrc != "" && this.checked != "" && this.editor != "" && this.isAgreemnet == true && this.textarea != "") {
-
+				} else if(this.choosingLebal.length==0){
+					alert("请选择标签")
+				} else if(this.title != "" && this.audioSRC != "" && this.imgOneSrc != "" && this.choosingLebal.length > 0 && this.checked != "" && this.editor != "" && this.isAgreemnet == true && this.textarea != "") {
 					if(this.VoiceId != "") { //传输编辑后数据
 						this.sendEditInfo(isDraft);
 					} else { //创建新文章
@@ -301,6 +295,10 @@
 			sendInfo(isDraft) { //发送新建文章数据
 				var audioL = parseInt($("#audio")[0].duration);
 				var duration = parseInt(audioL / 60) + "'" + (audioL - parseInt(audioL / 60) * 60) + '"';
+				var tags = [];
+				for(var i = 0; i < this.choosingLebal.length; i++) {
+					tags.push(this.choosingLebal[i])
+				}
 				var TOKEN = localStorage.getItem("TOKEN")
 				var articleInfo = {
 					"ipid": this.ipId,
@@ -308,7 +306,7 @@
 					"voiceurl": this.audioSRC,
 					"duration": duration,
 					"pic": this.imgOneSrc,
-					"tags": "生命阶段>青年期",
+					"tags": tags.join("|"),
 					"original": this.checked,
 					"Summary": this.textarea,
 					"author": this.editor,
@@ -375,6 +373,10 @@
 							this.imgOneSrc = voiceData.Pic;
 							this.checked = voiceData.Original;
 							this.editor = voiceData.Author
+							var voiceTags=voiceData.Keywords.split("|");
+							//console.log(voiceTags)
+							this.choosingLebal=voiceTags
+							
 						}
 					},
 					function() {

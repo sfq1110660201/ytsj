@@ -2,13 +2,13 @@
 	<div class="publishPage">
 		<div class="container" style="padding-left: 0;">
 			<ul class="nav nav-tabs" role="tablists">
-				<li role="presentation" :class="{ active: isActive1}">
+				<li role="presentation" :class="{ active: $route.path.indexOf('Graphic') !== -1}">
 					<router-link :to="{path:'/contentEdit/publish/Graphic',query:{ipId:ipId}}" class="items" @click.native="checkOne">图文</router-link>
 				</li>
-				<li role="presentation" :class="{ active: isActive2}">
+				<li role="presentation" :class="{ active: $route.path.indexOf('vedio') !== -1}">
 					<router-link :to="{path:'/contentEdit/publish/vedio',query:{ipId:ipId}}" class="items" @click.native="checkTwo">语音</router-link>
 				</li>
-				<li role="presentation" :class="{ active: isActive3}">
+				<li role="presentation" :class="{ active: $route.path.indexOf('pictures') !== -1}">
 					<router-link :to="{path:'/contentEdit/publish/pictures',query:{ipId:ipId}}" class="items" @click.native="checkThree">链接</router-link>
 				</li>
 			</ul>

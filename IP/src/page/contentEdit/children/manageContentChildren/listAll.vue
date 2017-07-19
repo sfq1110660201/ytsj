@@ -82,9 +82,7 @@
 		},
 		methods: {
 			getIpInfo() {
-				
 				var TOKEN = localStorage.getItem("TOKEN")
-				//console.log(TOKEN)
 				this.$http.get("https://api.lotusdata.com/ip/v1/article/list/" + this.ipId, {
 					params: {
 						key: "",
@@ -98,7 +96,6 @@
 						var articleData = res.data.data;
 						if(articleData != null) {
 							for(var i = 0; i < articleData.length; i++) {
-								//console.log(typeof articleData[i].CreateDate)
 								if(articleData[i].Checkstate == '-1') { //审核未通过
 									this.articleData.push({
 										Articleid: articleData[i].Articleid,
@@ -213,8 +210,10 @@
 					function(res) {
 						if(res.data.code == 0) {
 							this.articleData = [];
-							this.getIpInfo();
 							this.deleteId="";
+							this.page=0;
+							this.getIpInfo();
+							
 						}
 					},
 					function() {

@@ -10,16 +10,16 @@
 		</div>
 		<div class="container">
 			<ul class="nav nav-tabs" role="tablists">
-				<li role="presentation" :class="{ active: isActive0}">
+				<li role="presentation" :class="{ active: $route.path.indexOf('listAll') !== -1}">
 					<router-link :to="{path:'/contentEdit/manageContent/listAll',query:{ipId:ipId}}" class="items" @click.native="checkZero">全部</router-link>
 				</li>
-				<li role="presentation" :class="{ active: isActive1}">
+				<li role="presentation" :class="{ active: $route.path.indexOf('listGraphic') !== -1}">
 					<router-link :to="{path:'/contentEdit/manageContent/listGraphic',query:{ipId:ipId}}" class="items" @click.native="checkOne">语音</router-link>
 				</li>
-				<li role="presentation" :class="{ active: isActive2}">
+				<li role="presentation" :class="{ active: $route.path.indexOf('listVedio') !== -1}">
 					<router-link :to="{path:'/contentEdit/manageContent/listVedio',query:{ipId:ipId}}" class="items" @click.native="checkTwo">链接</router-link>
 				</li>
-				<li role="presentation" :class="{ active: isActive3}">
+				<li role="presentation" :class="{ active: $route.path.indexOf('listPictures') !== -1}">
 					<router-link :to="{path:'/contentEdit/manageContent/listPictures',query:{ipId:ipId}}" class="items" @click.native="checkThree">图集</router-link>
 				</li>
 				<li class="pull_right">
@@ -31,7 +31,6 @@
 						<option :value="item.name" v-for="item in options">{{item.value}}</option>
 					</select>
 				</li>
-				
 			</ul>
 		</div>
 		<div class="listContainer">
@@ -72,9 +71,6 @@
 			this.$nextTick(function() {
 				this.ipId=this.$route.query.ipId;
 			})
-		},
-		components: {
-
 		},
 		methods: {
 			checkZero() {

@@ -35,7 +35,7 @@
 					<div class="left">
 						<img class="logIcon" src="/static/IP/img/istrue.png" />
 						<span class="iptItem">验证码</span>
-						<input class="iptLIstrue" type="text" v-model.trim="verificationValue" />
+						<input class="iptLIstrue" type="text" v-model.trim="verificationValue" @keyup.enter="submit"/>
 						<span class="warned Tip" v-if="isVerification" v-text="verificationText"></span>
 						<img v-if="verificationRight" class="isverificationRight" src="/static/IP/img/right.png" />
 					</div>

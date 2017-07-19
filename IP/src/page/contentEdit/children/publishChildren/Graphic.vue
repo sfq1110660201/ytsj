@@ -37,29 +37,20 @@
 			</div>
 			<div class="lebalsContainer left">
 				<ul class="lebals">
-					<li v-for="lebal in lebals" :data-id="lebal.index" @mouseover="setLebalIndex(lebal)">{{lebal.name}}</li>
+					<li class="firstLebal" v-for="lebal in lebals" :data-id="lebal.index" @mouseover="setLebalIndex(lebal)">{{lebal.name}}
+						<li class="secLebal"></li>
+					</li>
 				</ul>
-				<ul class="secondLebals" v-if="lebalIndex==0">
-					<li v-for="item in secLebals0" @click="saveLebals(item.name)">{{item.name}}</li>
+				<ul class="secondLebals" v-if="">
+					<li v-if="lebalIndex==0" v-for="item in secLebals0" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==1" v-for="item in secLebals1" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==2" v-for="item in secLebals2" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==3" v-for="item in secLebals3" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==4" v-for="item in secLebals4" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==5" v-for="item in secLebals5" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==6" v-for="item in secLebals6" @click="getSecTag(item)">{{item}}</li>
 				</ul>
-				<ul class="secondLebals" v-if="lebalIndex==1">
-					<li v-for="item in secLebals1" @click="saveLebals(item.name)">{{item.name}}</li>
-				</ul>
-				<ul class="secondLebals" v-if="lebalIndex==2">
-					<li v-for="item in secLebals2" @click="saveLebals(item.name)">{{item.name}}</li>
-				</ul>
-				<ul class="secondLebals" v-if="lebalIndex==3">
-					<li v-for="item in secLebals3" @click="saveLebals(item.name)">{{item.name}}</li>
-				</ul>
-				<ul class="secondLebals" v-if="lebalIndex==4">
-					<li v-for="item in secLebals4" @click="saveLebals(item.name)">{{item.name}}</li>
-				</ul>
-				<ul class="secondLebals" v-if="lebalIndex==5">
-					<li v-for="item in secLebals5" @click="saveLebals(item.name)">{{item.name}}</li>
-				</ul>
-				<ul class="secondLebals" v-if="lebalIndex==6">
-					<li v-for="item in secLebals6" @click="saveLebals(item.name)">{{item.name}}</li>
-				</ul>
+
 			</div>
 		</div>
 		<p class="publishTitle">已选标签</p>
@@ -69,11 +60,12 @@
 			</div>
 			<div class="lebalsContainer left">
 				<ul class="chosed">
-					<li v-for="(item,index) in chosedLebals">{{item.name}}<img class="delete" src="/static/IP/img/delete.png" @click='deleteLebal(item.name,index)' /></li>
+					<li v-for="item in choosingLebal">{{item}}<img class="delete" src="/static/IP/img/delete.png" @click='deleteLebal(item)' /></li>
 				</ul>
 
 			</div>
 		</div>
+		
 		<p class="publishTitle">来源内容</p>
 		<div class="radioIpt"><input type="radio" name="isproto" value="原创" v-model="checked" @change="getRadio0('原创')"/>&nbsp;原创&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="isproto" value="转载" v-model="checked" @change="getRadio1('转载')"/>&nbsp;转载</div>
 		<div>{{fromEdit}}：<input class="editor" v-model.trim="editor" type="text" maxlength="6" /></div>
@@ -110,90 +102,16 @@
 				isImgTypeOne: "",
 				checked: "",
 				lebalIndex: 0,
-				lebals:[],
-//				lebals: [{
-//					index: 0,
-//					name: "生理阶段",
-//					isbool: true
-//				}, {
-//					index: 1,
-//					name: "疾病",
-//					isbool: true
-//				}, {
-//					index: 2,
-//					name: "护理",
-//					isbool: true
-//				}, {
-//					index: 3,
-//					name: "饮食",
-//					isbool: true
-//				}, {
-//					index: 4,
-//					name: "保健",
-//					isbool: true
-//				}, {
-//					index: 5,
-//					name: "教育",
-//					isbool: true
-//				}, {
-//					index: 6,
-//					name: "法规政策",
-//					isbool: true
-//				}],
-//				secLebals0:[],
-//				secLebals1:[],
-//				secLebals2:[],
-//				secLebals3:[],
-//				secLebals4:[],
-//				secLebals5:[],
-//				secLebals6:[],
-				
-				secLebals0: [{
-					name: "备孕"
-				}, {
-					name: "孕期"
-				}, {
-					name: "分娩"
-				}, {
-					name: "产后"
-				}, {
-					name: "出生后24小时"
-				}, {
-					name: "新生儿"
-				}, {
-					name: "婴儿"
-				}, {
-					name: "1-3岁"
-				}, {
-					name: "3-6岁"
-				}, {
-					name: "7-14岁"
-				}, {
-					name: "儿童"
-				}, {
-					name: "少年"
-				}, {
-					name: "青春期"
-				}, {
-					name: "青年期"
-				}, {
-					name: "中年期"
-				}, {
-					name: "老年期"
-				}, {
-					name: "临终期"
-				}],
-				secLebals1: [{ name: "胎儿疾病" }, { name: "新生儿疾病" }, { name: "婴儿疾病" }, { name: "儿童疾病" }, { name: "内科" }, { name: "外科" }, { name: "遗传病" }, { name: "传染科" }, { name: "皮肤科" }, { name: "骨科" }, { name: "眼科" }, { name: "耳鼻喉科" }, { name: "免疫科" }, { name: "口腔科" }, { name: "精神心理" }, { name: "生长发育" }, { name: "中医" }, { name: "寄生虫" }, { name: "感染科" }, { name: "男性疾病" }, { name: "女性疾病" }, { name: "两性疾病" }],
-				secLebals2: [{ name: "喂药" }, { name: "用品" }, { name: "睡眠" }, { name: "微量元素" }, { name: "安全防护" }, { name: "日常护理" }, { name: "皮肤护理" }, { name: "如厕训练" }, { name: "磨牙" }, { name: "疾病护理" }, { name: "长牙" }, { name: "视力" }, { name: "体检" }, { name: "舌苔" }, { name: "生长发育" }, { name: "断奶" }, { name: "运动" }, { name: "环境" }, { name: "疫苗接种" }, { name: "早产儿护理" }, { name: "湿疹" }, { name: "过敏" }, { name: "惊厥" }, { name: "抽动症" }, { name: "多动症" }, { name: "癫痫" }, { name: "肥胖" }, { name: "疝气" }, { name: "自闭症" }, { name: "粪便异常" }, { name: "铅中毒" }, { name: "口吃" }, { name: "吐奶" }, { name: "抽搐" }, { name: "发育迟缓" }, { name: "发热" }, { name: "呕吐" }, { name: "黄疸" }, { name: "尿布疹" }, { name: "溢奶" }, { name: "消化不良" }, { name: "胀气" }, { name: "肠绞痛" }, { name: "便秘" }, { name: "流口水" }, { name: "依恋" }, { name: "认生" }, { name: "喝水" }, { name: "安抚" }, { name: "枕秃" }, { name: "睡姿" }, { name: "腹泻" }, { name: "贫血" }, { name: "鼻塞" }, { name: "伛偻病" }, { name: "口水疹" }, { name: "鹅口疮" }, { name: "肺炎" }],
-				secLebals3: [{ name: "辅食" }, { name: "奶粉" }, { name: "婴幼儿食品" }, { name: "食谱" }, { name: "米粉" }, { name: "母乳喂养" }, { name: "混合喂养" }, { name: "生食" }, { name: "熟食" }, { name: "植物" }, { name: "肉" }, { name: "蛋" }, { name: "乳" }, { name: "营养素" }, { name: "禁忌" }, { name: "食品安全" }],
-				secLebals4: [{ name: "生活行为" }, { name: "运动" }, { name: "环境" }, { name: "保健方法" }],
-				secLebals5: [{ name: "胎教" }, { name: "早教" }, { name: "语言" }, { name: "行为" }, { name: "性格" }, { name: "心理" }, { name: "育儿" }, { name: "经验" }, { name: "游戏玩具" }],
-				secLebals6:[{ name: "法律" },{ name: "法规" },{ name: "规章" },{ name: "制度" },{ name: "须知" },{ name: "声明" }],
+				lebals:[],				
+				secLebals0: [],
+				secLebals1: [],
+				secLebals2: [],
+				secLebals3: [],
+				secLebals4: [],
+				secLebals5: [],
+				secLebals6: [],
 				firstLebal: "生理阶段",
-				secLebal: "",
-				secMidLebal: "", //检索数组中是否已含所选标签
-				choosingLebal: "",
-				chosedLebals: [],
+				choosingLebal: [],
 				textarea: "",
 				editor: "",
 				isAgreemnet: false,
@@ -203,39 +121,53 @@
 		mounted() {
 			this.$nextTick(function() {
 				this.ipId = this.$route.query.ipId
-				//console.log(this.$route.query)
+				this.getTags();
 				if(this.$route.query.Articleid) {
 					this.Articleid = this.$route.query.Articleid;
-					this.getTags();
 					this.editArticle();
 				} else {
 					this.Articleid == "";
-					this.getTags();
 					this.setWangEditor()
 				}
 			})
 		},
 		methods: {
-			getTags(){
+			getTags() {
 				var TOKEN = localStorage.getItem("TOKEN")
 				this.$http.get("https://api.lotusdata.com/ip/v1/basicdic/tags", {
 					headers: { 'Authorization': TOKEN }
 				}).then(
 					function(res) {
-						if(res.data.code=="0"){
-							var tagList=res.data.data;
+						if(res.data.code == "0") {
+							var tagList = res.data.data;
 							//console.log(tagList)
-							for(var i=0;i<tagList.length;i++){
+							for(var i = 0; i < tagList.length; i++) {
 								this.lebals.push({
-									index:i,
-									name:tagList[i].master,
-									isbool:true
-								});
-//								for(var j=0;j<tagList[i].detail.length;j++){
-//									this.secLebals+i.push({
-//										name:tagList[i].detail[j]
-//									})
-//								}
+									index: i,
+									name: tagList[i].master,
+									isbool: true
+								})
+							}
+							for(var i = 0; i < tagList[0].detail.length; i++) {
+								this.secLebals0.push(tagList[0].detail[i])
+							}
+							for(var i = 0; i < tagList[1].detail.length; i++) {
+								this.secLebals1.push(tagList[1].detail[i])
+							}
+							for(var i = 0; i < tagList[2].detail.length; i++) {
+								this.secLebals2.push(tagList[2].detail[i])
+							}
+							for(var i = 0; i < tagList[3].detail.length; i++) {
+								this.secLebals3.push(tagList[3].detail[i])
+							}
+							for(var i = 0; i < tagList[4].detail.length; i++) {
+								this.secLebals4.push(tagList[4].detail[i])
+							}
+							for(var i = 0; i < tagList[5].detail.length; i++) {
+								this.secLebals5.push(tagList[5].detail[i])
+							}
+							for(var i = 0; i < tagList[6].detail.length; i++) {
+								this.secLebals6.push(tagList[6].detail[i])
 							}
 						}
 
@@ -244,7 +176,7 @@
 						console.log("数据请求失败")
 					}
 				)
-				
+
 			},
 			setWangEditor(res) {
 				var self = this;
@@ -309,33 +241,34 @@
 			setLebalIndex(res) {
 				this.lebalIndex = res.index;
 				this.firstLebal = res.name;
-				//console.log(this.choosingLebal)
+				//console.log(this.firstLebal)
 			},
-			saveLebals(res) {
-				if(this.secMidLebal.indexOf(res) == -1) {
-					this.secLebal = res;
-					this.secMidLebal += this.secLebal;
-					this.choosingLebal = this.firstLebal + ">" + this.secLebal;
-					this.chosedLebals.push({
-						name: this.choosingLebal
-					})
-					this.secLebal = "";
+			getSecTag(item) {
+				var testRepeat = this.choosingLebal.join("/");
+				if(testRepeat.indexOf(this.firstLebal + ">" + item) == -1) {
+					this.choosingLebal.push(this.firstLebal + ">" + item)
 				}
-
 			},
-			deleteLebal(res, index) {
-				//console.log(res,index);
-				this.chosedLebals.splice(index, 1);
+			deleteLebal(item) {
+				var index=this.arrSearch(this.choosingLebal, item);
+				this.choosingLebal.splice(index,1)
+			},
+			arrSearch(data, key) {//返回特定字符在数组中的位置
+				var m = data.length
+				for(var i = 0; i < m; i++) {
+					if(data[i] == key){
+						return i
+					} 
+				}
 			},
 			submit(isDraft) {
-				//debugger
 				if(this.title == "") {
 					alert("标题为空，请填写标题")
 				} else if(this.editorContent == "") {
 					alert("请添加编辑内容")
 				} else if(this.imgOneSrc == "") {
 					alert("请选择图文封面")
-				} else if(this.chosedLebals.length == 0) {
+				} else if(this.choosingLebal.length == 0) {
 					alert("请选择标签")
 				} else if(this.checked == "") {
 					alert("请选择原创类型")
@@ -343,7 +276,7 @@
 					alert("请填写责任编辑")
 				} else if(this.isAgreemnet == false) {
 					alert('请勾选版权提示')
-				} else if(this.title != "" && this.editorContent != "" && this.imgOneSrc != "" && this.chosedLebals.length > 0 && this.checked != "" && this.editor != "" && this.isAgreemnet == true) {
+				} else if(this.title != "" && this.editorContent != "" && this.imgOneSrc != "" && this.choosingLebal.length > 0 && this.checked != "" && this.editor != "" && this.isAgreemnet == true) {
 					if(this.Articleid != "") { //编辑
 						this.sendEditInfo(isDraft);
 					} else { //创建新文章
@@ -356,13 +289,11 @@
 				this.$router.go(-1)
 			},
 			sendInfo(isDraft) { //发送新建文章数据
-				//debugger
 				var TOKEN = localStorage.getItem("TOKEN")
 				var tags = [];
-				for(var i = 0; i < this.chosedLebals.length; i++) {
-					tags.push(this.chosedLebals[i].name)
+				for(var i = 0; i < this.choosingLebal.length; i++) {
+					tags.push(this.choosingLebal[i])
 				}
-				//console.log(tags.join("|"))
 				var articleInfo = {
 					"ipid": this.ipId,
 					"title": this.title,
@@ -392,10 +323,9 @@
 			sendEditInfo(isDraft) { //发送编辑后图文数据
 				var TOKEN = localStorage.getItem("TOKEN")
 				var tags = [];
-				for(var i = 0; i < this.chosedLebals.length; i++) {
-					tags.push(this.chosedLebals[i].name)
+				for(var i = 0; i < this.choosingLebal.length; i++) {
+					tags.push(this.choosingLebal[i])
 				}
-				//console.log(tags.join("|"))
 				var articleInfo = {
 					"title": this.title,
 					"content": this.editorContent,
@@ -427,21 +357,22 @@
 				this.$http.get("https://api.lotusdata.com/ip/v1/article/" + this.Articleid, {
 					headers: { 'Authorization': TOKEN }
 				}).then(
-					function(res) { //
-						console.log(res)
-						var editArticleData = res.data.data;
-						this.title = editArticleData.articledata.Title;
-						this.editorContent = editArticleData.articledata.Content;
-						this.imgOneSrc = editArticleData.articledata.Pic;
-						this.textarea = editArticleData.articledata.Summary;
-						this.editor = editArticleData.articledata.Author;
-						for(var i = 0; i < editArticleData.articletags.length; i++) {
-							this.chosedLebals.push({
-								name: editArticleData.articletags[i].Tagshow
-							})
+					function(res) { 
+						if(res.data.code==0){
+							//console.log(res)
+							var editArticleData = res.data.data;
+							this.title = editArticleData.articledata.Title;
+							this.editorContent = editArticleData.articledata.Content;
+							this.imgOneSrc = editArticleData.articledata.Pic;
+							this.textarea = editArticleData.articledata.Summary;
+							this.editor = editArticleData.articledata.Author;
+							for(var i = 0; i < editArticleData.articletags.length; i++) {
+								this.choosingLebal.push(editArticleData.articletags[i].Tagshow)
+							}
+							this.checked = editArticleData.articledata.Original;
+							this.setWangEditor(this.editorContent);
 						}
-						this.checked = editArticleData.articledata.Original;
-						this.setWangEditor(this.editorContent);
+						
 					},
 					function() {
 						console.log("数据请求失败")

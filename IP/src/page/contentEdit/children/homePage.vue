@@ -18,7 +18,7 @@
         				</div>
         				<div class="readInfoTwo left">
         					<div class="readeNumber center">
-        						0
+        						{{totalViews}}
         					</div>
         					<div class="center">
         						累计阅读量
@@ -44,15 +44,41 @@
             return{
                 het:0,
                 ipId:"",
+                totalViews:0,
             }
         },
         mounted() {
 			this.$nextTick(function() {
 				this.ipId=this.$route.query.ipId;
+				this.getUserInfo();
 			})
 		},
         components: {
            
+        },
+        methods:{
+        	getUserInfo(){//获取IP基本统计信息
+        		var TOKEN = localStorage.getItem("TOKEN")
+				this.$http.get("https://api.lotusdata.com/ip/v1/ipm/static/" + this.ipId, {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						//console.log(res)
+						if(res.data.code == 0) {
+							var userData=res.data.data;
+							if(userData.views!=""){
+								this.totalViews=userData.views
+							}else{
+								this.totalViews=0;
+							}
+							
+						}
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+        	}
         }
         
     }
@@ -97,6 +123,7 @@
    						background: #6dc5a3;
    						padding: 19px 0 28px 0;
    						.readInfoOne{
+   							cursor: pointer;
    							width: 50%;
    							div{color: #fff;}
    							.fansNumber{
@@ -105,6 +132,7 @@
    							}
    						}
    						.readInfoTwo{
+   							cursor: pointer;
    							width: 50%;
    							div{color: #fff;}
    							border-left: 2px solid #8adec8;

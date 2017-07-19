@@ -2,7 +2,7 @@
 	<div>
 		<div v-if="isShowModel.indexOf(item.Checkstate)!=-1" class="listItem" v-for="item in articleData">
 			<section class="listItemL left">
-				<p>{{item.Title}}<span class="original" v-if="item.Original!=''">{{item.Original}}</span></p>
+				<p><span class="voiceTitle">{{item.Title}}</span><span class="original" v-if="item.Original!=''">{{item.Original}}</span></p>
 				<p>
 					<span class="isReview">{{item.Checkstate}}</span>
 					<span class="publishtime marginLRepair">{{item.CreateDate}}</span>
@@ -100,7 +100,7 @@
 					function(res) {
 						//console.log(res.data.data)
 						var articleData = res.data.data;
-						if(res.data.code=="0") {
+						if( articleData!=null && res.data.code=="0") {
 							for(var i = 0; i < articleData.length; i++) {
 								//console.log(typeof articleData[i].CreateDate)
 								if(articleData[i].Checkstate == '-1') { //审核未通过
@@ -256,6 +256,13 @@
 		border-bottom: 2px solid #e6e6e6;
 		overflow: hidden;
 		.listItemL {
+			.voiceTitle{
+				display: inline-block;
+				width: 400px;
+				text-overflow: ellipsis;
+				white-space:nowrap;
+				overflow: hidden;
+			}
 			.original {
 				margin-left: 15px;
 				padding: 2px 8px;

@@ -36,7 +36,41 @@
 				</div>
 			</div>
 		</form>
-		
+		<p class="publishTitle">标签选择</p>
+		<div class="ipLebals">
+			<div class="left">
+				<img src="/static/IP/img/addIP_03.png" />
+			</div>
+			<div class="lebalsContainer left">
+				<ul class="lebals">
+					<li class="firstLebal" v-for="lebal in lebals"  @mouseover="setLebalIndex(lebal)">{{lebal.name}}
+						<li class="secLebal"></li>
+					</li>
+				</ul>
+				<ul class="secondLebals" v-if="">
+					<li v-if="lebalIndex==0" v-for="item in secLebals0" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==1" v-for="item in secLebals1" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==2" v-for="item in secLebals2" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==3" v-for="item in secLebals3" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==4" v-for="item in secLebals4" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==5" v-for="item in secLebals5" @click="getSecTag(item)">{{item}}</li>
+					<li v-if="lebalIndex==6" v-for="item in secLebals6" @click="getSecTag(item)">{{item}}</li>
+				</ul>
+
+			</div>
+		</div>
+		<p class="publishTitle">已选标签</p>
+		<div class="ipLebals">
+			<div class="left">
+				<img src="/static/IP/img/addIP_06.png" />
+			</div>
+			<div class="lebalsContainer left">
+				<ul class="chosed">
+					<li v-for="item in choosingLebal">{{item}}<img class="delete" src="/static/IP/img/delete.png" @click='deleteLebal(item)' /></li>
+				</ul>
+
+			</div>
+		</div>
 		<p class="publishTitle">来源内容</p>
 		<div class="radioIpt"><input type="radio" name="isproto" value="原创" v-model="checked" @change="getRadio0('原创')"/>&nbsp;原创&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="isproto" value="转载" v-model="checked" @change="getRadio1('转载')"/>&nbsp;转载</div>
 		<div>{{fromEdit}}：<input class="editor" v-model.trim="editor" type="text" maxlength="6" /></div>
@@ -47,10 +81,10 @@
 					<input type="button" class="btn btn-default form-control right paddingRepair" @click="cancle" value="取消" />
 				</div>
 				<div class="col-sm-2 col-xs-2 right">
-					<input type="button" class="btn btn-default form-control right paddingRepair" @click="" value="提交审核" />
+					<input type="button" class="btn btn-default form-control right paddingRepair" disabled @click="" value="提交审核" />
 				</div>
 				<div class="col-sm-2 col-xs-2 right">
-					<input type="button" class="btn btn-default form-control right paddingRepair" @click="" value="保存草稿" />
+					<input type="button" class="btn btn-default form-control right paddingRepair" disabled @click="" value="保存草稿" />
 				</div>
 			</div>
 		</form>
@@ -79,12 +113,21 @@
 				editor: "",
 				isAgreemnet: false,
 				fromEdit:"责任编辑",
+				lebals: [],
+				secLebals0: [],
+				secLebals1: [],
+				secLebals2: [],
+				secLebals3: [],
+				secLebals4: [],
+				secLebals5: [],
+				secLebals6: [],
+				choosingLebal: [],
 			}
 		},
 		mounted() {
 			this.$nextTick(function() {
 				this.ipId = this.$route.query.ipId
-				//console.log(this.$route.query)
+				this.getTags();
 				if(this.$route.query.Articleid) {
 					this.Articleid = this.$route.query.Articleid;
 					this.getTags();
@@ -95,7 +138,53 @@
 			})
 		},
 		methods: {
-			
+			getTags() {
+				var TOKEN = localStorage.getItem("TOKEN")
+				this.$http.get("https://api.lotusdata.com/ip/v1/basicdic/tags", {
+					headers: { 'Authorization': TOKEN }
+				}).then(
+					function(res) {
+						if(res.data.code == "0") {
+							var tagList = res.data.data;
+							//console.log(tagList)
+							for(var i = 0; i < tagList.length; i++) {
+								this.lebals.push({
+									index: i,
+									name: tagList[i].master,
+									isbool: true
+								})
+							}
+							for(var i = 0; i < tagList[0].detail.length; i++) {
+								this.secLebals0.push(tagList[0].detail[i])
+							}
+							for(var i = 0; i < tagList[1].detail.length; i++) {
+								this.secLebals1.push(tagList[1].detail[i])
+							}
+							for(var i = 0; i < tagList[2].detail.length; i++) {
+								this.secLebals2.push(tagList[2].detail[i])
+							}
+							for(var i = 0; i < tagList[3].detail.length; i++) {
+								this.secLebals3.push(tagList[3].detail[i])
+							}
+							for(var i = 0; i < tagList[4].detail.length; i++) {
+								this.secLebals4.push(tagList[4].detail[i])
+							}
+							for(var i = 0; i < tagList[5].detail.length; i++) {
+								this.secLebals5.push(tagList[5].detail[i])
+							}
+							for(var i = 0; i < tagList[6].detail.length; i++) {
+								this.secLebals6.push(tagList[6].detail[i])
+							}
+
+						}
+
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+
+			},
 			iptOneChange: function(e) { //判断并加载IP logo
 				e.preventDefault();
 				var files = e.target.files;
@@ -256,6 +345,29 @@
 			},
 			getRadio1(value){
 				this.fromEdit="文章来源"
+			},
+			setLebalIndex(res) {
+				this.lebalIndex = res.index;
+				this.firstLebal = res.name;
+				//console.log(this.firstLebal)
+			},
+			getSecTag(item) {
+				var testRepeat = this.choosingLebal.join("/");
+				if(testRepeat.indexOf(this.firstLebal + ">" + item) == -1) {
+					this.choosingLebal.push(this.firstLebal + ">" + item)
+				}
+			},
+			deleteLebal(item) {
+				var index=this.arrSearch(this.choosingLebal, item);
+				this.choosingLebal.splice(index,1)
+			},
+			arrSearch(data, key) {//返回特定字符在数组中的位置
+				var m = data.length
+				for(var i = 0; i < m; i++) {
+					if(data[i] == key){
+						return i
+					} 
+				}
 			}
 		}
 
@@ -410,5 +522,49 @@
 	.paddingRepair {
 		background: #6dc5a3!important;
 		color: #fff!important;
+	}
+	.ipLebals {
+		width: 960px;
+		border: 1px solid #ccc;
+		padding: 20px;
+		overflow: hidden;
+		.left img {
+			width: 25px;
+		}
+		.lebalsContainer {
+			margin-left: 20px;
+			width: 850px;
+			.lebals {
+				margin-bottom: 10px;
+				li {
+					display: inline-block;
+					padding: 0 0 10px 0;
+					margin: 0 5px;
+					border-bottom: 4px solid #fff;
+				}
+			}
+			.secondLebals {
+				li {
+					display: inline-block;
+					padding: 0 0 15px 0;
+					margin: 0 6px;
+					color: #959595;
+				}
+			}
+			.chosed {
+				li {
+					display: inline-block;
+					padding: 0 0 10px 0;
+					margin: 0 5px;
+					border-bottom: 4px solid #fff;
+				}
+			}
+			.lebals li:hover {
+				border-bottom: 4px solid #6dc5a3;
+			}
+			.secondLebals li:hover {
+				color: #000000;
+			}
+		}
 	}
 </style>

@@ -14,19 +14,42 @@
         			<router-link :to="{path:'/contentEdit/homePage',query:{ipId:ipId}}" class="editItem" tag="li" :class="{activeColor:$route.path.indexOf('homePage') !== -1}">●&nbsp;主页</router-link>
 					<router-link :to="{path:'/contentEdit/publish/Graphic',query:{ipId:ipId}}" class="editItem" tag="li" :class="{activeColor:$route.path.indexOf('publish') !== -1}">●&nbsp;发表</router-link>
         			<div class="editItem">
-        				●&nbsp;管理
+        				●&nbsp;内容
         				<router-link :to="{path:'/contentEdit/manageContent/listAll',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('manageContent') !== -1}">内容管理</router-link>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">接口管理</li>
         			</div>
         			<div class="editItem">
-        				●&nbsp;数据统计
-        				<router-link :to="{path:'/contentEdit/userIncrease/newAdding',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('newAdding') !== -1}">用户增长</router-link>
-        				<router-link :to="{path:'/contentEdit/contentAnalysis',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('contentAnalysis') !== -1}">内容分析</router-link>
-        				<router-link :to="{path:'/contentEdit/interestStatistics',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('interestStatistics') !== -1}">兴趣统计</router-link>
-        				<router-link :to="{path:'/contentEdit/userClass',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('userClass') !== -1}">用户属性</router-link>
+        				●&nbsp;分析工具
+        				<router-link :to="{path:'/contentEdit/userIncrease/newAdding',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('newAdding') !== -1}">用户行为</router-link>
+        				<router-link :to="{path:'/contentEdit/contentAnalysis',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('contentAnalysis') !== -1}">阅读分析</router-link>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">分享分析</li>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">关键字分析</li>
+        				<router-link :to="{path:'/contentEdit/interestStatistics',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('interestStatistics') !== -1}">画像分析</router-link>
+        				<router-link :to="{path:'/contentEdit/userClass',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('userClass') !== -1}">LBS分析</router-link>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">趋势分析</li>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">行业分析</li>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">评价分析</li>
+        			</div>
+        			<div class="editItem">
+        				●&nbsp;用户管理
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">分析用户</li>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">潜在用户</li>
+        			</div>
+        			<div class="editItem">
+        				●&nbsp;流量工具
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">应用域管理</li>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">广告管理</li>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">问答管理</li>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">社群商城</li>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">医生评价</li>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">社群管理工具</li>
         			</div>
         			<div class="editItem">
         				●&nbsp;设置
         				<router-link :to="{path:'/contentEdit/setting',query:{ipId:ipId}}" class="secondaryItem" tag="li" :class="{activeColor:$route.path.indexOf('setting') !== -1}">医图号信息</router-link>
+        			</div>
+        			<div class="editItem">
+        				●&nbsp;空间服务
         			</div>
         		</div>
         		<div class="editContent left">
@@ -161,5 +184,8 @@
    				}
    			}
    		}
+   	}
+   	.gray{
+   		color: #9b9b9b;
    	}
 </style>
