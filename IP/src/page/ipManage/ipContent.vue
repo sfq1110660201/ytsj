@@ -1,6 +1,5 @@
 <template>
-
-	<div class="yituContainer">
+	<div class="yituContainer" v-show="ipContentShow">
 		<section :style="{width:wid+'px'}">
 			<div class="logoTitle">医图视界健康数据链AI平台</div>
 			<div class="dropdown dropdown_con">
@@ -11,7 +10,7 @@
 				</button>
 				<ul class="dropdown-menu dropdown_menu" role="menu" aria-labelledby="dropdownMenu1">
 					<li>
-						<router-link :to="{path:'/ipContent/yiTu/myYiTu',query:{enterpriseId:enterpriseId}}" >用户中心</router-link>
+						<router-link :to="{path:'/ipContent/yiTu/myYiTu',query:{enterpriseId:enterpriseId}}">用户中心</router-link>
 					</li>
 					<!--<li>
 						<router-link to="">我的消息</router-link>
@@ -23,7 +22,10 @@
 					<li>
 						<router-link to="" @click.native="signOut">退出</router-link>
 					</li>
-
+					<!--<li>
+						<a href="javascript:alert('清除成功');"> 清除缓存 </a>
+					</li>-->
+					
 				</ul>
 			</div>
 		</section>
@@ -31,20 +33,20 @@
 			<router-link :to="{ path:'/ipContent/yiTu/myYiTu',query:{enterpriseId:enterpriseId} }" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('yiTu') !== -1}">医图号</router-link>
 			<router-link :to="{path:'/ipContent/userInfo/userData',query:{enterpriseId:enterpriseId}}" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('userInfo') !== -1}">用户信息</router-link>
 		</div>
-
 		<router-view></router-view>
 	</div>
 </template>
 
 <script>
-	import {mapGetters} from 'vuex'
+	import { mapGetters } from 'vuex'
 	export default {
 		data() {
 			return {
-				wid:0,
+				ipContentShow: false,
+				wid: 0,
 				het: 0,
 				enterpriseId: "",
-				emailName:"",
+				emailName: "",
 			}
 		},
 		components: {
@@ -52,30 +54,48 @@
 		},
 		mounted() {
 			this.$nextTick(function() {
-				this.wid = window.screen.availWidth-310; //屏幕可视区域高
+				this.wid = window.screen.availWidth - 310; //屏幕可视区域高
 				this.het = window.screen.availHeight; //屏幕可视区域高
-				var TOKEN = localStorage.getItem("TOKEN")
-				if(TOKEN){
-					this.emailName = localStorage.getItem("emailName")
-					this.enterpriseId = localStorage.getItem("enterpriseId")
-				}else{
-					this.$router.push({path:"/login"})
+				var TOKEN = localStorage.getItem("TOKEN");
+				//debugger
+				if(TOKEN) {
+					this.testTOKEN(TOKEN);
+					//this.emailName = localStorage.getItem("emailName")
+					//this.enterpriseId = localStorage.getItem("enterpriseId")
+				} else {
+					this.$router.push({ path: "/login" })
 				}
 			})
 		},
-//		computed:mapGetters({//vuex获取值
-//         emailName:'getEmail',
-//         EnterpriseId:"getEnterpriseId"
-//     	}),
 		methods: {
-			signOut(){//tuichu
-				
+			testTOKEN(TOKEN) {
+				var token = TOKEN.substr(4, TOKEN.length);
+				this.$http.post("https://api.lotusdata.com/v1/buser/refreshtoken", { "token": token }, {}).then(
+					function(res) {
+						//console.log(res)
+						if(res.data.code == "0") {
+							var token = "JWT " + res.data.data;
+							localStorage.setItem("TOKEN",token)
+							this.ipContentShow=true;
+							this.emailName = localStorage.getItem("emailName")
+							this.enterpriseId = localStorage.getItem("enterpriseId")
+						}else{
+							this.$router.push({ path: "/login" })
+						}
+
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+			},
+			signOut() { //tuichu
 				localStorage.removeItem("TOKEN");
 				localStorage.removeItem("emailName");
 				localStorage.removeItem("enterpriseId");
 				localStorage.removeItem("phoneNum");
 				localStorage.removeItem("token");
-				this.$router.push({path:"/login"})
+				this.$router.push({ path: "/login" })
 			}
 		},
 		watch: {

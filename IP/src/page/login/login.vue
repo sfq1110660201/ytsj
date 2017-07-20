@@ -1,5 +1,5 @@
 <template>
-	<div class="loginContainer" :style="{height:het+'px',width:wid+'px'}">
+	<div class="loginContainer" v-show="loginShow" :style="{height:het+'px',width:wid+'px'}">
 		<div class="containerModel">
 			<section class="left loginL">
 				<p class="welcome">欢迎来到医图视界</p>
@@ -65,6 +65,7 @@
 	export default {
 		data() {
 			return {
+				loginShow:false,
 				het: 0,
 				wid: 0,
 				//用户名
@@ -104,6 +105,7 @@
 					
 					this.$router.push({ path: "/ipContent/yiTu/myYiTu", query: { enterpriseId: enterpriseId } })
 				}else{
+					this.loginShow=true;
 					this.getVerificationPicToken();
 				}
 			})

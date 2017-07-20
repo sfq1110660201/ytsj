@@ -1,6 +1,6 @@
  <template>
   	<div class="contentEdit">
-        <div class="content">
+        <div class="content" v-show="contentEditShow">
         	<header class="contentHeader">
         		<img class="logoOne left" src="/static/IP/img/logoOne.png"/>
         		<span class="logoTitle left">医图号</span>
@@ -32,7 +32,7 @@
         			</div>
         			<div class="editItem">
         				●&nbsp;用户管理
-        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">分析用户</li>
+        				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">用户分析</li>
         				<li  class="secondaryItem gray"  :class="{activeColor:$route.path.indexOf('fdsfs') !== -1}">潜在用户</li>
         			</div>
         			<div class="editItem">
@@ -65,6 +65,7 @@
     export default {
         data(){
             return{
+            	contentEditShow:false,
                ipId:"",
                ipSrc:"",
                ipName:"",
@@ -75,14 +76,34 @@
 			this.$nextTick(function() {
 				var TOKEN = localStorage.getItem("TOKEN")
 				if(TOKEN){
-					this.ipId=this.$route.query.ipId;
-					this.getIpInfo();
+					this.testTOKEN(TOKEN);
 				}else{
 					this.$router.push({path:"/login"})
 				}
 			})
 		},
         methods:{
+        	testTOKEN(TOKEN) {
+				var token = TOKEN.substr(4, TOKEN.length);
+				this.$http.post("https://api.lotusdata.com/v1/buser/refreshtoken", { "token": token }, {}).then(
+					function(res) {
+						//console.log(res)
+						if(res.data.code == "0") {
+							var token = "JWT " + res.data.data;
+							localStorage.setItem("TOKEN",token);
+							this.contentEditShow=true;
+							this.ipId=this.$route.query.ipId;
+							this.getIpInfo();
+						}else{
+							this.$router.push({ path: "/login" })
+						}
+
+					},
+					function() {
+						console.log("数据请求失败")
+					}
+				)
+			},
         	getIpInfo(){
         		var TOKEN = localStorage.getItem("TOKEN")
         		//console.log(TOKEN)
