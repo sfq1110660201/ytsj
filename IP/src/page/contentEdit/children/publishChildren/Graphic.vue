@@ -207,7 +207,6 @@
 				var imgFile = files[0];
 				var imgType = imgFile.name.substring(imgFile.name.indexOf(".") + 1, imgFile.name.length); //获取图片格式
 				var imgSize = imgFile.size; //获取图片大小
-				//console.log(imgFile)
 				if(imgType == "png" || imgType == "jpg" || imgType == "gif" || imgType == "jpeg") {
 					//console.log(imgType)
 					if(imgSize < 2 * 1024 * 1024) {

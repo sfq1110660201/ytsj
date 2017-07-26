@@ -46,6 +46,11 @@
 						that.backNum--;
 						if(that.backNum==0){
 							clearInterval(timefunc);
+							localStorage.removeItem("TOKEN");
+							localStorage.removeItem("emailName");
+							localStorage.removeItem("enterpriseId");
+							localStorage.removeItem("phoneNum");
+							localStorage.removeItem("token");
 							that.$router.push({ path: "/login" })
 						}
 					},1000)

@@ -3,6 +3,7 @@
 		<div class="modelLeft" :style="{height:het+'px'}">
 			<router-link :to="{ path:'/ipContent/userInfo/userData',query:{enterpriseId:enterpriseId} }" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('userData') !== -1}">用户资料</router-link>
 			<router-link :to="{ path:'/ipContent/userInfo/accountSecurity',query:{enterpriseId:enterpriseId} }" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('accountSecurity') !== -1}">账户安全</router-link>
+			<router-link to="" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('dasda') !== -1}">客服</router-link>
 		</div>
 		<div class="modelRight">
 			<router-view></router-view>

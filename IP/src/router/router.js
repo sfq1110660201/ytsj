@@ -1,12 +1,22 @@
 import App from '../App'
 //ip管理
 const ipContent = r => require.ensure([], () => r(require('../page/ipManage/ipContent')), 'ipContent')
+//医图号
 const yiTu = r => require.ensure([], () => r(require('../page/ipManage/children/yiTu')), 'yiTu')
 const addYiTu = r => require.ensure([], () => r(require('../page/ipManage/children/children/addYiTu')), 'addYiTu')
 const myYiTu = r => require.ensure([], () => r(require('../page/ipManage/children/children/myYiTu')), 'myYiTu')
+//企业号
 const userInfo = r => require.ensure([], () => r(require('../page/ipManage/children/userInfo')), 'userInfo')
 const userData = r => require.ensure([], () => r(require('../page/ipManage/children/children/userData')), 'userData')
 const accountSecurity = r => require.ensure([], () => r(require('../page/ipManage/children/children/accountSecurity')), 'accountSecurity')
+//数据分析
+const dataAnalysis = r => require.ensure([], () => r(require('../page/ipManage/children/dataAnalysis')), 'dataAnalysis')
+//用户管理  
+const userManage = r => require.ensure([], () => r(require('../page/ipManage/children/userManage')), 'userManage')
+//流量服务
+const flowServe = r => require.ensure([], () => r(require('../page/ipManage/children/flowServe')), 'flowServe')
+//空间服务
+const spaceServe = r => require.ensure([], () => r(require('../page/ipManage/children/spaceServe')), 'spaceServe')
 //更换手机
 const testPhone = r => require.ensure([], () => r(require('../page/ipManage/children/children/changePhone/testPhone')), 'testPhone')
 const changeAnotherPhone = r => require.ensure([], () => r(require('../page/ipManage/children/children/changePhone/changeAnotherPhone')), 'changeAnotherPhone')
@@ -117,12 +127,20 @@ export default [{
 		                component: completePassword,
 		            }]
             	}]
+            },{
+                path: 'dataAnalysis', 
+                component: dataAnalysis,
+            },{
+                path: 'userManage', 
+                component: userManage,
+            },{
+                path: 'flowServe', 
+                component: flowServe,
+            },{
+                path: 'spaceServe', 
+                component: spaceServe,
             }]
         },
-//      {
-//          path: 'wangEditor', 
-//          component: wangEditor,
-//      },
         //登陆
         {
             path: 'login', 
