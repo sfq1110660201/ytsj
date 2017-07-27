@@ -244,6 +244,8 @@
 
 <style lang="scss" scoped>
 	.loginContainer {
+		min-height: 900px;
+		min-width: 1585px;
 		background: url(/static/IP/img/back.jpg) no-repeat;
 		background-size: cover;
 		position: relative;
@@ -255,7 +257,7 @@
 			left: 0;
 			background-color: rgba(0, 0, 0, .5);
 			overflow: hidden;
-			padding: 150px 90px;
+			padding: 150px 50px;
 			.loginL {
 				padding: 165px 0;
 				width: 835px;
