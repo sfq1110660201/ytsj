@@ -33,7 +33,7 @@
 			<router-link :to="{ path:'/ipContent/yiTu/myYiTu',query:{enterpriseId:enterpriseId} }" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('yiTu') !== -1}">医图号</router-link>
 			<router-link :to="{path:'/ipContent/dataAnalysis',query:{enterpriseId:enterpriseId}}" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('dataAnalysis') !== -1}">数据分析</router-link>
 			<router-link :to="{path:'/ipContent/userManage',query:{enterpriseId:enterpriseId}}" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('userManage') !== -1}">用户管理</router-link>
-			<router-link :to="{path:'/ipContent/flowServe',query:{enterpriseId:enterpriseId}}" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('flowServe') !== -1}">流量服务</router-link>
+			<router-link :to="{path:'/ipContent/flowServe/applicaYu/applicaSetting',query:{enterpriseId:enterpriseId}}" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('flowServe') !== -1}">流量服务</router-link>
 			<router-link :to="{path:'/ipContent/spaceServe',query:{enterpriseId:enterpriseId}}" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('spaceServe') !== -1}">空间服务</router-link>
 			<router-link :to="{path:'/ipContent/userInfo/userData',query:{enterpriseId:enterpriseId}}" tag='li' class="modelTabs" :class="{active:$route.path.indexOf('userInfo') !== -1}">企业号</router-link>
 		</div>

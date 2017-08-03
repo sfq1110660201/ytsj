@@ -9,6 +9,10 @@ import VueResource from 'vue-resource'
 import $ from 'jquery'
 import './assets/css/bootstrap.min.css'
 import './assets/js/bootstrap.min'
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
+Vue.use(MintUI)
 
 //echarts
 import echarts from 'echarts'

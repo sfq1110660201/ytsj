@@ -5,6 +5,9 @@ const ipContent = r => require.ensure([], () => r(require('../page/ipManage/ipCo
 const yiTu = r => require.ensure([], () => r(require('../page/ipManage/children/yiTu')), 'yiTu')
 const addYiTu = r => require.ensure([], () => r(require('../page/ipManage/children/children/addYiTu')), 'addYiTu')
 const myYiTu = r => require.ensure([], () => r(require('../page/ipManage/children/children/myYiTu')), 'myYiTu')
+const applicaYu = r => require.ensure([], () => r(require('../page/ipManage/children/children/applicaYu')), 'applicaYu')
+const applicaSetting = r => require.ensure([], () => r(require('../page/ipManage/children/children/applicaCon/applicaSetting')), 'applicaSetting')
+const applicaContant = r => require.ensure([], () => r(require('../page/ipManage/children/children/applicaCon/applicaContant')), 'applicaContant')
 //企业号
 const userInfo = r => require.ensure([], () => r(require('../page/ipManage/children/userInfo')), 'userInfo')
 const userData = r => require.ensure([], () => r(require('../page/ipManage/children/children/userData')), 'userData')
@@ -136,6 +139,17 @@ export default [{
             },{
                 path: 'flowServe', 
                 component: flowServe,
+                children:[{
+            		path:"applicaYu",
+            		component:applicaYu,//applicaSetting//applicaContant
+            		children:[{
+	            		path:"applicaSetting",
+	            		component:applicaSetting,
+	            	},{
+	            		path:"applicaContant",
+	            		component:applicaContant,
+	            	}]
+            	}]
             },{
                 path: 'spaceServe', 
                 component: spaceServe,

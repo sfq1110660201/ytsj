@@ -1,7 +1,7 @@
 <template>
 	<div class="yituMiddleContent">
 		<div class="modelLeft" :style="{height:het+'px'}">
-			<router-link to=""  tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('myYiTu') !== -1}">应用域管理</router-link>
+			<router-link :to="{path:'/ipContent/flowServe/applicaYu/applicaSetting',query:{enterpriseId:enterpriseId}}"  tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('applicaYu') !== -1}">应用域管理</router-link>
 			<router-link to="" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('addYiTu') !== -1}">广告业务</router-link>
 			<router-link to=""  tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('myYiTu') !== -1}">智能问答</router-link>
 			<router-link to="" tag='li' class="modelTabs" :class="{activeLi:$route.path.indexOf('addYiTu') !== -1}">社群商城</router-link>
