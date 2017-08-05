@@ -85,7 +85,7 @@
 				}
 			},
 			testEmailExist(){
-				var TOKEN = localStorage.getItem("TOKEN")
+				var TOKEN = localStorage.getItem("token")
 				var data = {
 					"filed": "email",
 					"data": this.mailName
@@ -135,7 +135,7 @@
 				}
 			},
 			sendInfo(){
-				var TOKEN = localStorage.getItem("TOKEN")
+				var TOKEN = localStorage.getItem("token")
 				var data = {
 					"email" : this.mailName,
 					"passw" : this.password2,
@@ -172,7 +172,7 @@
 				
 			},
 			testPhoneExist(phone){
-				var TOKEN = localStorage.getItem("TOKEN")
+				var TOKEN = localStorage.getItem("token")
 				var data = {
 					"filed": "phone",
 					"data": phone
@@ -199,7 +199,7 @@
 			},
 			sendTxt(){//手机号码无误获取验证码
 				this.postphone=this.phoneNumber
-				var TOKEN = localStorage.getItem("TOKEN")
+				var TOKEN = localStorage.getItem("token")
 				this.$http.post("https://api.lotusdata.com/v1/sms/send", {}, {
 					params: {
 						phone: this.postphone,
@@ -223,7 +223,7 @@
 					this.isTipShow=false;
 					if(this.Txt != "") {
 						this.isTipShow=false;
-						var TOKEN = localStorage.getItem("TOKEN")
+						var TOKEN = localStorage.getItem("token")
 						this.$http.post("https://api.lotusdata.com/v1/sms/codever", {}, {
 							params: {
 								phone: this.phoneNumber,
@@ -350,6 +350,7 @@
 				width: 600px;
 			}
 			.getTxt {
+				cursor: pointer;
 				width: 200px;
 				text-align: center;
 				color: #4781ea;
