@@ -30,6 +30,8 @@
 		</form>
 		<p class="publishTitle">摘要</p>
 		<textarea class="textarea" v-model.trim="textarea" placeholder="选填，如不填写会默认抓取正文前54个字"></textarea>
+		<p class="publishTitle">参考文献</p>
+		<textarea type="text" class="resources" v-model.trim="resources"></textarea>
 		<p class="publishTitle">标签选择</p>
 		<div class="ipLebals">
 			<div class="left">
@@ -65,6 +67,7 @@
 
 			</div>
 		</div>
+		
 		
 		<p class="publishTitle">来源内容</p>
 		<div class="radioIpt"><input type="radio" name="isproto" value="原创" v-model="checked" @change="getRadio0('原创')"/>&nbsp;原创&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="isproto" value="转载" v-model="checked" @change="getRadio1('转载')"/>&nbsp;转载</div>
@@ -116,6 +119,7 @@
 				editor: "",
 				isAgreemnet: false,
 				fromEdit:"责任编辑",
+				resources:"",
 			}
 		},
 		mounted() {
@@ -302,7 +306,8 @@
 					"original": this.checked,
 					"Summary": this.textarea,
 					"author": this.editor,
-					"submit": isDraft
+					"submit": isDraft,
+					"resources":this.resources,
 				}
 				this.$http.post("https://api.lotusdata.com/ip/v1/article/", articleInfo, {
 					headers: { 'Authorization': TOKEN }
@@ -333,7 +338,8 @@
 					"original": this.checked,
 					"Summary": this.textarea,
 					"author": this.editor,
-					"submit": isDraft
+					"submit": isDraft,
+					"resources":this.resources,
 				}
 				this.$http.put("https://api.lotusdata.com/ip/v1/article/" + this.Articleid, articleInfo, {
 					headers: { 'Authorization': TOKEN }
@@ -365,6 +371,7 @@
 							this.imgOneSrc = editArticleData.articledata.Pic;
 							this.textarea = editArticleData.articledata.Summary;
 							this.editor = editArticleData.articledata.Author;
+							this.resources= editArticleData.articledata.Resources;
 							for(var i = 0; i < editArticleData.articletags.length; i++) {
 								this.choosingLebal.push(editArticleData.articletags[i].Tagshow)
 							}
@@ -486,7 +493,14 @@
 			}
 		}
 	}
-	
+	.resources{
+		display:block;
+		border: 1px solid #ccc;
+		width: 960px;
+		padding: 10px 20px;
+		height: 100px;
+		resize: none;
+	}
 	.radioIpt {
 		margin-bottom: 20px;
 		font-size: 20px;

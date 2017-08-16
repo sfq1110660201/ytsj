@@ -8,7 +8,7 @@
 				<router-link to="/register/registerName" class="btn btn-default register">注 册</router-link>
 			</section>
 			<section class="right loginR">
-				<p class="center headTip">登 陆</p>
+				<p class="center headTip">登 录</p>
 				<div class="iptCon">
 					<div class="left">
 						<img class="logIcon" src="/static/IP/img/userName.png" />
