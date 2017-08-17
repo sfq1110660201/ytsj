@@ -393,7 +393,7 @@
 		},
 		methods: {
 			getAreas(){
-				var TOKEN = localStorage.getItem("TOKEN")
+				var TOKEN = localStorage.getItem("token")
 				this.$http.get("https://api.lotusdata.com/ip/v1/basicdic/chineseregions?type=p", {
 					headers: { 'Authorization': TOKEN }
 				}).then(
@@ -495,7 +495,7 @@
 				}
 			},
 			sendInfo(){
-				var TOKEN = localStorage.getItem("TOKEN")
+				var TOKEN = localStorage.getItem("token")
 				var registerId=sessionStorage.getItem("registerId")
 				var proEnd=this.pro.length-6
 				var pro=this.pro.slice(0,proEnd)
@@ -599,7 +599,7 @@
 				}
 			},
 			sendimgOne() {
-				var TOKEN = localStorage.getItem("TOKEN") //获取token
+				var TOKEN = localStorage.getItem("token") //获取token
 				var form = document.getElementById('formOne');
 				var Filedata = new FormData(formOne);
 				this.$http.post("https://api.lotusdata.com/v1/file/standardupload", Filedata, {
@@ -634,7 +634,7 @@
 				}
 			},
 			sendimgTwo() {
-				var TOKEN = localStorage.getItem("TOKEN") //获取token
+				var TOKEN = localStorage.getItem("token") //获取token
 				var form = document.getElementById('formTwo');
 				var Filedata = new FormData(formTwo);
 				this.$http.post("https://api.lotusdata.com/v1/file/standardupload", Filedata, {
@@ -670,7 +670,7 @@
 				}
 			},
 			sendimgThree() {
-				var TOKEN = localStorage.getItem("TOKEN") //获取token
+				var TOKEN = localStorage.getItem("token") //获取token
 				var form = document.getElementById('formThree');
 				var Filedata = new FormData(formThree);
 				this.$http.post("https://api.lotusdata.com/v1/file/standardupload", Filedata, {
@@ -696,7 +696,7 @@
 				this.getCitys(proID)
 			},
 			getCitys(proID){
-				var TOKEN = localStorage.getItem("TOKEN")
+				var TOKEN = localStorage.getItem("token")
 				this.$http.get("https://api.lotusdata.com/ip/v1/basicdic/chineseregions", {
 					params: {
 						type: "c",
@@ -733,7 +733,7 @@
 				this.getDistricts(districtID)
 			},
 			getDistricts(districtID){
-				var TOKEN = localStorage.getItem("TOKEN")
+				var TOKEN = localStorage.getItem("token")
 				this.$http.get("https://api.lotusdata.com/ip/v1/basicdic/chineseregions", {
 					params: {
 						type: "a",
