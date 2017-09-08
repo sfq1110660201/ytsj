@@ -1,0 +1,16 @@
+
+/* page/home/home.wxss */
+.headCon{
+  background:#08c79e;
+}
+.headTitle1{
+  color: #fff;
+  text-align: center;
+  font-size: 30rpx;
+}
+.headTitle2{
+  color: #fff;
+  text-align: center;
+  font-size: 25rpx;
+  margin-top: 20rpx;
+}
