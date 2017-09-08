@@ -405,7 +405,6 @@
 								proId:areasData[i].i
 							})
 						}
-						
 					},
 					function() {
 						console.log("获取TOKEN失败")
@@ -526,8 +525,6 @@
 						console.log(res)
 						if(res.data.code==0){
 							this.testNameAndPssword();
-//							
-							
 						}
 					},
 					function() {
