@@ -5,7 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    voices:[
+      {
+        docSrc:"http://sxbjxh.oss-cn-shanghai.aliyuncs.com/upload/ff8080815d107c98015d1093c20a0005y.jpg",
+        docName:"王亚琴",
+        docPosition:"主任医师",
+        docHospital:"陕西省人民医院",
+        title:"APIItem.enN卡萨丁看了就爱上邓丽君大赛科技大塑料袋拉丝机抵抗力静安寺ame",
+        audioSrc:"http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46",
+        listenCount:"1223",
+        collects:"323",
+        cares:"21345"
+
+      }, {
+        docSrc: "http://sxbjxh.oss-cn-shanghai.aliyuncs.com/upload/ff8080815d107c98015d1093c20a0005y.jpg",
+        docName: "王亚琴2",
+        docPosition: "主任医师2",
+        docHospital: "陕西省人民医院2",
+        title: "APIItem.enN卡萨丁看了就爱上邓丽君大赛科技大塑料袋拉丝机抵抗力静安寺am2e",
+        audioSrc: "http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46",
+        listenCount: "12223",
+        collects: "3213",
+        cares: "213145"
+
+      }
+    ],
+    isPlaying:false,
+    audioCtx:"",
   },
 
   /**
@@ -14,7 +40,17 @@ Page({
   onLoad: function (options) {
   
   },
-
+  palyAudio(e){
+    console.log(e.target.id)
+    var index = e.target.id
+    this.audioCtx = wx.createAudioContext('myAudio' + index)
+    console.log(this.audioCtx)
+    if (this.audioCtx.play()){
+      console.log(234)
+    }else{
+      this.audioCtx.pause()
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

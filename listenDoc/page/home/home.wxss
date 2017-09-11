@@ -2,6 +2,7 @@
 /* page/home/home.wxss */
 .headCon{
   background:#08c79e;
+  padding: 20rpx 0;
 }
 .headTitle1{
   color: #fff;
@@ -14,3 +15,158 @@
   font-size: 25rpx;
   margin-top: 20rpx;
 }
+.searchCon{
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  overflow: hidden
+}
+.searchIpt{
+  width: 85%;
+  background: #fff;
+  float: left;
+  height: 50rpx;
+}
+.searchIcon{
+  width: 15%;
+  background: #eee;
+  text-align: center;
+  float: left;
+  padding-top: 3rpx; 
+  height: 50rpx;
+}
+.searchIcon image{
+  width: 43rpx;
+  height: 43rpx;
+}
+
+.menu-item-api-list {
+  transition: 200ms;
+  height: auto;
+  border-top: 1px solid #d8d8d8;
+  background: #fff;
+}
+.menu-item-api-item {
+  display: flex;
+  justify-content: space-between;
+  /* height: 80rpx; */
+  padding: 20rpx 20rpx 20rpx 0;
+  margin-left: 40rpx;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+}
+.menu-item-api-item-text0 {
+  display: flex;
+  /* flex-direction: column;
+   justify-content: space-between;  */
+  height: 100%;
+}
+.menu-item-api-item-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;   
+  height: 100%;
+}
+.menu-item-api-item-text1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;   
+  height: 100%;
+}
+.menu_item_care_share{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;   
+  height: 100%;
+  width: 20%;
+  padding-top: 50rpx
+}
+.userImg{
+  display: flex;
+  flex-direction: column;
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 25rpx
+}
+.careRepair{
+  
+}
+.menu_item_con{
+  display: flex;
+  flex-direction: column;
+}
+.menu-item-api-item-text-zhname {
+  font-size: 30rpx;
+}
+.docImg{
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 30rpx;
+  border-radius: 40rpx
+}
+.menu-item-api-item-text-enname0 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.spanIcon{
+  color: #ddd;
+  margin: 0 5rpx;
+}
+.dcoName{
+  font-size: 30rpx;
+  color: #666;
+  margin-right: 30rpx
+}
+.docPosition,.docHospital,.spanIcon{
+  font-size: 25rpx;
+  color: #999;
+}
+.menu-item-api-item-text-enname0 {
+  font-size: 26rpx;
+  color: #6b6b6b;
+  margin: 20rpx 0;
+}
+.menu-item-api-item-text-enname {
+  font-size: 26rpx;
+  color: #6b6b6b;
+}
+.menu-item-api-item-arrow {
+  width: 32rpx;
+  height: 32rpx;
+}
+.goDocPage{
+  margin-top: 30rpx;
+  border-top:none
+}
+.recommend{
+  margin-top: 30rpx;
+  background: #fff;
+}
+.radioCon{
+  width: 320rpx;
+  height: 60rpx;
+  background: url(/image/radioCon.png);
+  background-size:cover;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.radioCon image{
+  position:absolute;
+  right:25rpx;
+  top:14rpx;
+  width:35rpx;
+  height:35rpx;
+}
+.operation image{
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 5rpx;
+}
+.operation text{
+  margin-right: 60rpx;
+  font-size: 27rpx;
+  color: #999;
+  vertical-align: middle
+}
+
