@@ -1,0 +1,49 @@
+<view class="docHead">
+  <view class="docHeadInfo">
+    <image class="docLogo" src="/image/userImg.png"></image>
+    <view class="docIntrotuction">
+      <view>
+        <text>张敏</text>
+        <text class="docposition">主任医师</text>
+      </view>
+      <view class="dochos">陕西省人民医院<text class="splICON">|</text>产科</view>
+    </view>
+    <text class="careBtn">关注</text>
+  </view>
+</view>
+
+<view class="acticleCon">
+  <view class="artTitle">da打开拉升到那时大四大美女</view>
+  <view class="articleContent">{{articleContent}}</view>
+  <view class="reference">参考文献</view>
+  <view class="referenceInfo" wx:for="{{referenceInfo}}">{{item.text}}</view>
+  <view class="others">
+      <view class="other_part">
+        <image src="/image/care.png"></image>
+        <text>2350</text>
+      </view>
+      <view class="other_part">
+        <image src="/image/collect.png"></image>
+        <text>2350</text>
+      </view>
+  </view>
+</view>
+
+
+<view class="commentCon">
+  <view class="conmmentTip">相关评论</view>
+  <view class="singleCom" wx:for="{{commentData}}">
+    <image class="commenterImg" src="{{item.src}}"></image>
+    <view class="commContainer">
+      <view class="aboutCom">
+        <text class="commenterName">{{item.comUserName}}</text>
+        <text class="commentTime">{{item.comTime}}</text>
+        <view class="commentThumbup">
+          <image src="/image/care.png"></image>
+          <text> {{item.thumbups}}</text>
+        </view>
+      </view>
+      <view class="usersCom">{{item.content}}</view>
+    </view>
+  </view>
+</view>

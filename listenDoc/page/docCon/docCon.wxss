@@ -1,0 +1,271 @@
+page{
+  font-size: 30rpx;
+
+}
+.docHead{
+  padding: 40rpx;
+  background: #6dc5a3;
+}
+.docHeadInfo{
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+.docLogo{
+  width: 80rpx;
+  height: 80rpx;
+}
+.docIntrotuction{
+  display: flex;
+  flex-direction: column;
+  width: 68%
+}
+.careBtn{
+  color: #fff;
+  border: 1rpx solid #fff;
+  padding: 3rpx 10rpx;
+  height: 45rpx;
+  border-radius: 5rpx;
+}
+.docposition{
+  font-size: 26rpx;
+  margin-left: 30rpx;
+}
+.dochos{
+  font-size: 26rpx;
+}
+.splICON{
+  margin: 0 10rpx;
+}
+.docOtherInfo{
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  padding: 0 50rpx;
+  margin-top: 30rpx;
+}
+.countNum{
+  margin-left: 20rpx;
+}
+.expertCon{
+  padding: 40rpx;
+  background: #fff;
+}
+.expertInfo{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: left;
+}
+.expertName{
+  width: 15%;
+  color: #999;
+}
+.expertData{
+  width: 85%;
+  font-size: 28rpx;
+  color: #6b6b6b
+}
+.depCon{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 160rpx;
+  margin-top: 20rpx;
+}
+.depTwo{
+  width: 45%;
+}
+.backg1{
+  background: url(/image/mydep.png) no-repeat;
+  background-size:cover;
+}
+.backg2{
+  background: url(/image/myclics.png) no-repeat;
+  background-size:cover
+}
+.dark_word{
+  margin-top: 16%;
+  padding: 16rpx 0;
+  text-align: center;
+  color: #fff;
+  background: rgba(0,0,0,.5)
+}
+/* 语音 */
+.tipView{
+  padding: 15rpx 40rpx;
+  background: #fff;
+  margin-bottom: 5rpx;
+  margin-top: 5rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.tipView .more{
+  color: #999
+}
+
+/* 文章 */
+.menu-item-api-list {
+  transition: 200ms;
+  height: auto;
+  border-top: 1px solid #d8d8d8;
+  background: #fff;
+  margin-bottom: 5rpx;
+}
+.menu-item-api-item {
+  display: flex;
+  justify-content: space-between;
+  /* height: 80rpx; */
+  padding: 20rpx 20rpx 20rpx 0;
+  margin-left: 40rpx;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+}
+.menu-item-api-item-text1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;   
+  height: 100%;
+}
+.userImg{
+  display: flex;
+  flex-direction: column;
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 25rpx
+}
+.menu-item-api-item-text-zhname {
+  font-size: 30rpx;
+}
+.docImg{
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 30rpx;
+  border-radius: 40rpx
+}
+.menu-item-api-item-text-enname0 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.spanIcon{
+  color: #ddd;
+  margin: 0 5rpx;
+}
+.dcoName{
+  font-size: 30rpx;
+  color: #666;
+  margin-right: 30rpx
+}
+.docPosition,.docHospital,.spanIcon{
+  font-size: 25rpx;
+  color: #999;
+}
+.docHospital{
+  margin-right: 40rpx;
+}
+.original{
+  color: #6dc5a3;
+  border: 2rpx solid #6dc5a3;
+  padding: 3rpx 8rpx;
+  border-radius: 10rpx;
+}
+.menu-item-api-item-text-enname0 {
+  font-size: 26rpx;
+  color: #6b6b6b;
+  margin: 20rpx 0;
+}
+.menu-item-api-item-text-enname {
+  font-size: 26rpx;
+  color: #6b6b6b;
+}
+.menu-item-api-item-arrow {
+  width: 32rpx;
+  height: 32rpx;
+}
+.goDocPage{
+  border-top:none
+}
+.recommend{
+  background: #fff;
+}
+.radioCon{
+  width: 320rpx;
+  height: 60rpx;
+  background: url(/image/radioCon.png);
+  background-size:cover;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.radioCon image{
+  position:absolute;
+  right:25rpx;
+  top:14rpx;
+  width:35rpx;
+  height:35rpx;
+}
+.operation image{
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 5rpx;
+}
+.operation text{
+  margin-right: 60rpx;
+  font-size: 27rpx;
+  color: #999;
+  vertical-align: middle
+}
+.articlesPart{
+  background: #fff;
+  margin-bottom: 5rpx;
+}
+.articleCon{
+  display:flex;
+  justify-content:space-between;
+  padding:20rpx 20rpx 20rpx 0;
+  margin-left:40rpx;
+  align-items:center;
+  border-top:1px solid #f0f0f0;
+}
+.videoL{
+  flex: 3;
+  flex-direction: column;
+  height: 140rpx;
+  font-size: 26rpx;
+}
+.videoL .title{
+  color: #6b6b6b
+}
+.videoL .other{
+  margin-top: 70rpx;
+  color: #999
+}
+.videoR{
+  flex: 1;
+}
+.videoR image{
+  width: 220rpx;
+  height: 140rpx;
+}
+.activityCon{
+  padding: 40rpx;
+  background: #fff;
+}
+.activitySrc{
+  width: 100%;
+  height: 300rpx;
+  margin:20rpx 0;
+}
+.activityOther{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.dataRepair{
+  width: 45%;
+  color: #999
+}
+.activityTitle{
+  color: #6b6b6b
+}

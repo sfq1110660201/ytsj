@@ -1,8 +1,17 @@
 {
   "pages": [
+    
     "page/home/home",
+    "page/docCon/docCon",
     "page/kno/kno",
+    "page/article/article",
+    "page/voice/voice",
+    "page/docpages/docpages",
+    
+    "page/search/search",
+    
     "page/user/user",
+    
 
 
     "page/component/index",
@@ -64,13 +73,13 @@
     
   ],
   "window": {
-    "navigationBarBackgroundColor": "#08c79e",
+    "navigationBarBackgroundColor": "#6dc5a3",
     "backgroundColor": "#eee",
     "navigationBarTextStyle": "#ffffff"
   },
   "tabBar": {
     "color": "#dddddd",
-    "selectedColor": "#08c79e",
+    "selectedColor": "#6dc5a3",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [

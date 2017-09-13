@@ -1,3 +1,4 @@
+/* page/search/search.wxss */
 page{
   font-size: 30rpx;
 }
@@ -39,38 +40,32 @@ page{
   top: 28rpx;
   font-size: 35rpx
 }
-
-.headTabs{
-  position: fixed;
-  top: 55px;
-  z-index:1000;
-  overflow: hidden;
-  width: 100%;
+.searchResult{
+  padding: 15rpx 40rpx;
+  margin-top: 55px;
   background: #fff;
-}
-.headTabs text{
-  float: left;
-  width: 33.3%;
-  text-align: center;
-  padding: 15rpx 0;
   color: #999;
-  border-bottom: 2rpx solid #ddd;
+  margin-bottom: 5rpx;
 }
-.activeTab{
-  color: #6dc5a3!important;
-  border-bottom: 2rpx solid #6dc5a3!important;
+.tipView{
+  padding: 15rpx 40rpx;
+  background: #fff;
+  margin-bottom: 5rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.tipView .more{
+  color: #999
 }
 
-
+/* 文章 */
 .menu-item-api-list {
   transition: 200ms;
   height: auto;
   border-top: 1px solid #d8d8d8;
   background: #fff;
-}
-.recommend{
-  background: #fff;
-  margin-top: 85px
+  margin-bottom: 5rpx;
 }
 .menu-item-api-item {
   display: flex;
@@ -87,19 +82,26 @@ page{
   justify-content: space-between;   
   height: 100%;
 }
-.menu-item-api-item-text-enname0 {
+.userImg{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-size: 26rpx;
-  color: #6b6b6b;
-  margin: 20rpx 0;
+  flex-direction: column;
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 25rpx
+}
+.menu-item-api-item-text-zhname {
+  font-size: 30rpx;
 }
 .docImg{
   width: 45rpx;
   height: 45rpx;
   margin-right: 30rpx;
   border-radius: 40rpx
+}
+.menu-item-api-item-text-enname0 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .spanIcon{
   color: #ddd;
@@ -114,12 +116,33 @@ page{
   font-size: 25rpx;
   color: #999;
 }
+.docHospital{
+  margin-right: 40rpx;
+}
 .original{
   color: #6dc5a3;
   border: 2rpx solid #6dc5a3;
   padding: 3rpx 8rpx;
   border-radius: 10rpx;
-  margin-left: 30rpx
+}
+.menu-item-api-item-text-enname0 {
+  font-size: 26rpx;
+  color: #6b6b6b;
+  margin: 20rpx 0;
+}
+.menu-item-api-item-text-enname {
+  font-size: 26rpx;
+  color: #6b6b6b;
+}
+.menu-item-api-item-arrow {
+  width: 32rpx;
+  height: 32rpx;
+}
+.goDocPage{
+  border-top:none
+}
+.recommend{
+  background: #fff;
 }
 .radioCon{
   width: 320rpx;
@@ -147,11 +170,9 @@ page{
   color: #999;
   vertical-align: middle
 }
-
 .articlesPart{
   background: #fff;
   margin-bottom: 5rpx;
-  margin-top: 85px;
 }
 .articleCon{
   display:flex;

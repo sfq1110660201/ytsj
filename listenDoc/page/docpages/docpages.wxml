@@ -1,0 +1,31 @@
+ <view class="search-form">
+  <input placeholder="请输入您的关键字" value="" bindinput="" bindconfirm="" bindfocus="" confirm-type="search" name="" />
+  <icon class="icon-small" type="search" size="20" bindtap=""></icon>
+  <!-- <text>取消</text> -->
+</view> 
+
+<view class="headTabs">
+  <text class="nor_tab {{index==activeIndex ? 'activeTab' : ''}}" wx:for="{{tabItems}}" id="{{index}}" bindtap="changeTab">{{item}}</text>
+</view>
+<!-- 医生列表 -->
+<view class="menu-item-api-list docList">
+  <block>
+    <navigator url="../docCon/docCon"  wx:for="{{docInfos}}">
+      <view class="menu-item-api-item">
+        <view class="menu-item-api-item-text0">
+          <image class="userImg" src="{{item.src}}"></image>
+          <view class="menu_item_con">
+            <text class="menu-item-api-item-text-zhname">
+              <text class="docName">{{item.name}}</text>
+              <text class="docPos">{{item.position}}</text>
+            </text>
+            <text class="menu-item-api-item-text-enname">{{item.hospital}} | {{item.department}}</text>
+            <!-- <text>大静安寺道德经哦爱上及哦啊接抖擞静安寺大家哦啊是假的</text> -->
+          </view>
+        </view>
+        <view class="expert">擅长：{{item.experts}}</view>
+        <!-- <image class="menu-item-api-item-arrow" src="/image/arrowright.png"></image> -->
+      </view>
+    </navigator>
+  </block>
+</view>

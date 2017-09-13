@@ -1,0 +1,145 @@
+page{
+  font-size: 30rpx;
+}
+.docHead{
+  padding: 15rpx 40rpx;
+  background: #fff;
+}
+.docHeadInfo{
+  display: flex;
+  justify-content: space-between;
+  color: #999;
+}
+.docLogo{
+  width: 80rpx;
+  height: 80rpx;
+}
+.docIntrotuction{
+  display: flex;
+  flex-direction: column;
+  width: 68%
+}
+.careBtn{
+  color: #6dc5a3;
+  border: 1rpx solid #6dc5a3;
+  padding: 3rpx 10rpx;
+  height: 45rpx;
+  border-radius: 5rpx;
+}
+.docposition{
+  font-size: 26rpx;
+  margin-left: 30rpx;
+}
+.dochos{
+  font-size: 26rpx;
+}
+.splICON{
+  margin: 0 10rpx;
+}
+.docOtherInfo{
+  display: flex;
+  justify-content: space-between;
+  color: #999;
+  padding: 0 50rpx;
+  margin-top: 30rpx;
+}
+.countNum{
+  margin-left: 20rpx;
+}
+
+/* 文章 */
+.acticleCon{
+  padding: 15rpx 40rpx 50rpx;
+  background: #fff;
+}
+.artTitle{
+  font-size: 40rpx;
+  font-weight: 600;
+}
+.artLebals{
+  margin: 20rpx 0;
+}
+.artLebals text{
+  color: #6dc5a3;
+  font-size: 26rpx;
+}
+.articleContent{
+  color: #666;
+}
+.reference{
+  color: #999;
+  margin: 20rpx 0;
+}
+.others{
+  width: 45%;
+  margin: 0 auto;
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: space-around
+}
+.other_part{
+  display: flex;
+  flex-direction: column;
+  font-size: 26rpx;
+  color: #999;
+
+}
+.other_part image{
+  width: 80rpx;
+  height: 80rpx;
+}
+.other_part text{
+  text-align: center
+}
+/* 评论 */
+.commentCon{
+  padding: 30rpx 40rpx;
+  background: #fff;
+  margin-top: 20rpx
+}
+.conmmentTip{
+  padding: 10rpx 0;
+  margin: 20rpx 0;
+}
+.singleCom{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 17rpx;
+  color: #5a5959;
+}
+.commenterImg{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
+}
+.commContainer{
+  width: 87%;
+}
+.aboutCom{
+  overflow: hidden;
+}
+.commenterName{
+  color: #666;
+  float: left;
+  font-size: 25rpx;
+}
+.commentTime{
+  float: left;
+  color: #ddd;
+  margin-left: 30rpx;
+  font-size: 25rpx;
+}
+.commentThumbup{
+  float: right;
+  font-size: 25rpx;
+  color: #666;
+}
+.commentThumbup image{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle
+}
+.usersCom{
+  margin-top: 20rpx;
+  font-size: 28rpx;
+}

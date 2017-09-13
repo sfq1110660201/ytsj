@@ -1,20 +1,19 @@
 <view class="headCon">
   <view class="headTitle1">每日健康</view>
-  <view class="headTitle2">每天听听专业的医生讲讲健康</view>
-  <view class="searchCon">
-    <input class="searchIpt" type="search" placeholder="" />
-    <view class="searchIcon">
-      <image src="/image/search.png"></image>
-    </view>
+  <view class="headTitle2">每天听一听，专家讲健康</view>
+  <view class="search-form">
+    <input placeholder="请输入您的关键字" value="" bindinput="" bindconfirm="" bindfocus="goSearch" confirm-type="search" name="" />
+    <icon class="icon-small" type="search" size="20" bindtap=""></icon>
   </view>
 </view>
 
+<view class="classTip marginTopRepair">找医生</view>
 <view class="menu-item-api-list goDocPage">
   <block>
-    <navigator url="">
-      <view class="menu-item-api-item" >
+    <navigator url="../docpages/docpages">
+      <view class="menu-item-api-item">
         <view class="menu-item-api-item-text0">
-           <image class="userImg" src="/image/userImg.png"></image>
+          <image class="userImg" src="/image/userImg.png"></image>
           <view class="menu_item_con">
             <text class="menu-item-api-item-text-zhname">找医生</text>
             <text class="menu-item-api-item-text-enname">听听/看看医生这么说健康</text>
@@ -27,38 +26,33 @@
 </view>
 
 <!-- 每日推荐 -->
-<view class="menu-item-api-list open recommend">
-    <block>
-      <view wx:for="{{voices}}">
-        <view class="menu-item-api-item" >
-          <view class="menu-item-api-item-text1">
-            <view class="menu-item-api-item-text-zhname0">
-              <image class="docImg" src="{{item.docSrc}}"></image>
-              <text class="dcoName">{{item.docName}}</text>
-              <text class="docPosition">{{item.docPosition}}</text>
-              <text class="spanIcon">|</text>
-              <text class="docHospital">{{item.docHospital}}</text>
-            </view>
-            <text class="menu-item-api-item-text-enname0">{{item.title}}</text>
-            <view class="radioCon">
-              <image src="/image/yuyin.png" id="{{index}}" bindtap="palyAudio"></image>
-              <audio style="display:none" poster="" name="" author="" id="myAudio{{index}}" src="{{item.audioSrc}}"  controls loop></audio>
-            </view>
-            <view class="operation">
-              <image src="/image/listen.png"></image><text>{{item.listenCount}}</text>
-              <image src="/image/collect.png"></image><text>{{item.collects}}</text>
-              <image src="/image/care.png"></image><text>{{item.cares}}</text>
-            </view>
+<view class="classTip">每日推荐</view>
+<view class="menu-item-api-list open recommend" style="border-top:none">
+  <block>
+    <navigator url="../voice/voice" wx:for="{{voices}}">
+      <view class="menu-item-api-item">
+        <view class="menu-item-api-item-text1">
+          <view class="menu-item-api-item-text-zhname0">
+            <image class="docImg" src="{{item.docSrc}}"></image>
+            <text class="dcoName">{{item.docName}}</text>
+            <text class="docPosition">{{item.docPosition}}</text>
+            <text class="spanIcon">|</text>
+            <text class="docHospital">{{item.docHospital}}</text>
           </view>
-          <view class="radioBxo">
+          <text class="menu-item-api-item-text-enname0">{{item.title}}</text>
+          <view class="radioCon">
+            <image src="/image/yuyin.png" id="{{index}}" bindtap="palyAudio"></image>
+            <!-- <audio style="display:none" poster="" name="" author="" id="myAudio{{index}}" src="{{item.audioSrc}}" action="{{item.action}}"  controls loop></audio>  -->
           </view>
-          <!-- <view class="menu_item_care_share">
-            <image class="menu-item-api-item-arrow careRepair" src="/image/care.png"></image>
-            <image class="menu-item-api-item-arrow careRepair" src="/image/share.png"></image>
-          </view> -->
+          <view class="operation">
+            <image src="/image/listen.png"></image><text>{{item.listenCount}}</text>
+            <image src="/image/collect.png"></image><text>{{item.collects}}</text>
+            <image src="/image/care.png"></image><text>{{item.cares}}</text>
+          </view>
+        </view>
+        <view class="radioBxo">
         </view>
       </view>
-      
-      
-    </block>
-  </view>
+    </navigator>
+  </block>
+</view>

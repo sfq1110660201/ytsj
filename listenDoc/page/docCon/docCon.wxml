@@ -1,0 +1,123 @@
+<view class="docHead">
+  <view class="docHeadInfo">
+    <image class="docLogo" src="/image/userImg.png"></image>
+    <view class="docIntrotuction">
+      <view>
+        <text>张敏</text>
+        <text class="docposition">主任医师</text>
+      </view>
+      <view class="dochos">陕西省人民医院<text class="splICON">|</text>产科</view>
+    </view>
+    <text class="careBtn">关注</text>
+  </view>
+  <view class="docOtherInfo">
+    <view class="otherInfoCon">
+      关注
+      <text class="countNum">123</text>
+    </view>
+    <view class="otherInfoCon">
+      |
+    </view>
+    <view class="otherInfoCon">
+      阅读
+      <text class="countNum">123</text>
+    </view>
+    <view class="otherInfoCon">
+      |
+    </view>
+    <view class="otherInfoCon">
+      收听
+      <text class="countNum">123</text>
+    </view>
+  </view>
+</view>
+
+<view class="expertCon">
+  <view class="expertInfo">
+    <view class="expertName">擅长</view>
+    <view class="expertData">看了法是否考虑到上课了发了多少反倒是开了房间卡了第三方考虑设计费水电费水电费是大脑</view>
+  </view>
+  <view class="depCon">
+    <view class="depTwo backg1">
+      <view class="dark_word">我的科室</view>
+    </view>
+    <view class="depTwo backg2">
+      <view class="dark_word">我的科室</view>
+    </view>
+  </view>
+</view>
+
+<view class="tipView">
+  <text>相关语音</text>
+  <!-- <navigator class="more" url="url">更多</navigator>     -->
+</view>
+<view class="menu-item-api-list open recommend" style="border-top:none">
+  <block>
+    <view wx:for="{{voices}}">
+      <view class="menu-item-api-item">
+        <view class="menu-item-api-item-text1">
+          <view class="menu-item-api-item-text-zhname0">
+            <image class="docImg" src="{{item.docSrc}}"></image>
+            <text class="dcoName">{{item.docName}}</text>
+            <text class="docPosition">{{item.docPosition}}</text>
+            <text class="spanIcon">|</text>
+            <text class="docHospital">{{item.docHospital}}</text>
+          </view>
+          <text class="menu-item-api-item-text-enname0">{{item.title}}</text>
+          <view class="radioCon">
+            <image src="/image/yuyin.png" id="{{index}}" bindtap="palyAudio"></image>
+            <!-- <audio style="display:none" poster="" name="" author="" id="myAudio{{index}}" src="{{item.audioSrc}}" action="{{item.action}}"  controls loop></audio>  -->
+          </view>
+          <view class="operation">
+            <image src="/image/listen.png"></image><text>{{item.listenCount}}</text>
+            <image src="/image/collect.png"></image><text>{{item.collects}}</text>
+            <image src="/image/care.png"></image><text>{{item.cares}}</text>
+          </view>
+        </view>
+        <view class="radioBxo">
+        </view>
+        <!-- <view class="menu_item_care_share">
+            <image class="menu-item-api-item-arrow careRepair" src="/image/care.png"></image>
+            <image class="menu-item-api-item-arrow careRepair" src="/image/share.png"></image>
+          </view> -->
+      </view>
+    </view>
+  </block>
+</view>
+
+
+<view class="tipView">
+  <text>相关文章</text>
+  <!-- <navigator class="more" url="url">更多</navigator>     -->
+</view>
+<view class="articlesPart">
+  <view class="articleCon" wx:for="{{videos}}">
+    <view class="videoL">
+      <view class="title">{{item.title}}</view>
+      <view class="other">
+        <text style="margin-right:30rpx">阅读{{item.views}}</text>
+        <text>点赞{{item.thumbUps}}</text>
+      </view>
+    </view>
+    <view class="videoR">
+      <image src="{{item.src}}"></image>
+    </view>
+  </view>
+</view>
+
+<view class="tipView">
+  <text>公益活动</text>
+</view>
+<view class="activityCon">
+  <text class="activityTitle">das的卡拉是假的大家世界啊，打打的，啊萨达实打实，大叔大婶的大声道</text>
+  <image class="activitySrc" src="/image/cbd.jpg"></image>
+  <view class="activityOther">
+    <view class="dataRepair">2012-12-12</view>
+    <view class="operation">
+      <image src="/image/listen.png"></image><text>42423</text>
+      <image src="/image/collect.png"></image><text>321</text>
+      <image src="/image/care.png"></image><text>123</text>
+    </view>
+  </view>
+</view>
+

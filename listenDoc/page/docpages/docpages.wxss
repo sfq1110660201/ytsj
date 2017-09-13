@@ -1,0 +1,117 @@
+page{
+  font-size: 30rpx;
+}
+.search-form{
+  width:100%;
+  box-sizing:border-box;
+  padding: 20rpx 0 10rpx;
+  height: 55px;
+  position: fixed;
+  z-index:1000;
+  top: 0;
+  left: 0;
+  background: #6dc5a3;
+}
+.search-form input{
+  width: 80%;
+  padding: 0 15rpx;
+  background: #fff;
+  border-radius: 5rpx;
+  font-size: 30rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  margin: 0 auto
+
+}
+.search-form icon{
+  display: inline-block;
+  border:none;
+  background:none;
+  position:absolute;
+  right:85rpx;
+  top:30rpx;
+  z-index:999;
+}
+.search-form text{
+  position: absolute;
+  right: 20rpx;
+  color: #fff;
+  top: 28rpx;
+  font-size: 35rpx
+}
+
+.headTabs{
+  position: fixed;
+  top: 55px;
+  z-index:1000;
+  overflow: hidden;
+  width: 100%;
+  background: #fff;
+}
+.headTabs text{
+  float: left;
+  width: 25%;
+  text-align: center;
+  padding: 15rpx 0;
+  color: #999;
+  border-bottom: 2rpx solid #ddd;
+}
+.activeTab{
+  color: #6dc5a3!important;
+  border-bottom: 2rpx solid #6dc5a3!important;
+}
+.docList{
+  margin-top: 89px
+}
+.menu-item-api-list {
+  transition: 200ms;
+  height: auto;
+  border-top: 1px solid #d8d8d8;
+  background: #fff;
+}
+.menu-item-api-item {
+  display: flex;
+  /* justify-content: space-between; */
+  /* height: 80rpx; */
+  padding: 20rpx 20rpx 20rpx 0;
+  margin-left: 40rpx;
+  /* align-items: center; */
+  border-bottom: 1px solid #f0f0f0;
+   flex-direction: column; 
+}
+.menu-item-api-item-text0 {
+  display: flex;
+   /* flex-direction: column; */
+   /* justify-content: space-between;   */
+  height: 100%;
+}
+.userImg{
+  display: flex;
+  flex-direction: column;
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 25rpx
+}
+.menu_item_con{
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+}
+.menu-item-api-item-text-zhname {
+  font-size: 30rpx;
+}
+.menu-item-api-item-text-enname {
+  margin-top: 10rpx;
+  font-size: 25rpx;
+  color: #6b6b6b;
+}
+.docPos{
+  margin-left: 40rpx;
+  color: #999;
+  font-size: 25rpx
+}
+.expert{
+  margin-top: 10rpx;
+  color: #666;
+  font-size: 28rpx
+}

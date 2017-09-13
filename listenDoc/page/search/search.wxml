@@ -1,16 +1,17 @@
- <view class="search-form">
-  <input placeholder="请输入您的关键字" value="" bindinput="" bindconfirm="" bindfocus="" confirm-type="search" name="" />
+<!--page/search/search.wxml-->
+<view class="search-form">
+  <input placeholder="请输入您的关键字" value="" bindinput="" bindconfirm="" bindfocus="goSearch" confirm-type="search" name="" />
   <icon class="icon-small" type="search" size="20" bindtap=""></icon>
   <!-- <text>取消</text> -->
-</view> 
-
-<view class="headTabs">
-  <text class="nor_tab {{index==activeIndex ? 'activeTab' : ''}}" wx:for="{{tabItems}}" id="{{index}}" bindtap="changeTab">{{item}}</text>
 </view>
-<!-- 语音 -->
-<view class="menu-item-api-list open recommend" style="border-top:none" wx:if="{{activeIndex==0}}">
+<view class="searchResult">搜索结果</view>
+<view class="tipView">
+  <text>语音</text>
+  <navigator class="more" url="url">更多</navigator>    
+</view>
+<view class="menu-item-api-list open recommend" style="border-top:none">
   <block>
-    <navigator url="../voice/voice" wx:for="{{voices}}">
+    <view wx:for="{{voices}}">
       <view class="menu-item-api-item">
         <view class="menu-item-api-item-text1">
           <view class="menu-item-api-item-text-zhname0">
@@ -33,15 +34,23 @@
         </view>
         <view class="radioBxo">
         </view>
+        <!-- <view class="menu_item_care_share">
+            <image class="menu-item-api-item-arrow careRepair" src="/image/care.png"></image>
+            <image class="menu-item-api-item-arrow careRepair" src="/image/share.png"></image>
+          </view> -->
       </view>
-    </navigator>
+    </view>
   </block>
 </view>
 
-<!-- 文章 -->
-<view class="menu-item-api-list open recommend" style="border-top:none" wx:if="{{activeIndex==1}}">
+
+<view class="tipView">
+  <text>文章</text>
+  <navigator class="more" url="url">更多</navigator>    
+</view>
+<view class="menu-item-api-list open recommend" style="border-top:none">
   <block>
-    <navigator url="../article/article" wx:for="{{articles}}">
+    <view wx:for="{{articles}}">
       <view class="menu-item-api-item">
         <view class="menu-item-api-item-text1">
           <view class="menu-item-api-item-text-zhname0">
@@ -60,12 +69,16 @@
           </view>
         </view>
       </view>
-    </navigator>
+    </view>
   </block>
 </view>
 
-<!-- 视频 -->
-<view class="articlesPart" wx:if="{{activeIndex==2}}">
+
+<view class="tipView">
+  <text>视频</text>
+  <navigator class="more" url="url">更多</navigator>    
+</view>
+<view class="articlesPart">
   <view class="articleCon" wx:for="{{videos}}">
     <view class="videoL">
       <view class="title">{{item.title}}</view>

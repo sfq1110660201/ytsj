@@ -1,8 +1,12 @@
 
 /* page/home/home.wxss */
 .headCon{
-  background:#08c79e;
+  background:#6dc5a3;
   padding: 20rpx 0;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
 }
 .headTitle1{
   color: #fff;
@@ -38,6 +42,56 @@
 .searchIcon image{
   width: 43rpx;
   height: 43rpx;
+}
+.search-form{
+  padding:10rpx 10rpx;
+  width:85%;
+  box-sizing:border-box;
+  margin: 0 auto;
+  margin-top: 30rpx;
+}
+.search-form input{
+  height:55rpx;
+  padding: 0 15rpx;
+  background: #fff;
+   /* box-shadow: 0 2rpx 4rpx rgba(0,0,0,.1);  */
+  border-radius: 5rpx;
+  font-size: 30rpx;
+}
+.search-form icon{
+  display: inline-block;
+  border:none;
+  background:none;
+  position:absolute;
+  right:85rpx;
+  top:160rpx;
+  z-index:999;
+}
+.search-form1{
+  padding:r10px 10rpx;
+  width:100%;
+  box-sizing:border-box;
+  margin: 0 auto;
+  padding: 30rpx 0;
+  background: #6dc5a3;
+}
+.search-form1 input{
+  width: 80%;
+  height:55rpx;
+  padding: 0 15rpx;
+  background: #fff;
+  border-radius: 5rpx;
+  font-size: 30rpx;
+  margin-left: 30rpx;
+}
+.search-form1 icon{
+  display: inline-block;
+  border:none;
+  background:none;
+  position:absolute;
+  right:130rpx;
+  top:40rpx;
+  z-index:999;
 }
 
 .menu-item-api-list {
@@ -88,9 +142,6 @@
   height: 90rpx;
   margin-right: 25rpx
 }
-.careRepair{
-  
-}
 .menu_item_con{
   display: flex;
   flex-direction: column;
@@ -136,11 +187,9 @@
   height: 32rpx;
 }
 .goDocPage{
-  margin-top: 30rpx;
   border-top:none
 }
 .recommend{
-  margin-top: 30rpx;
   background: #fff;
 }
 .radioCon{
@@ -168,5 +217,22 @@
   font-size: 27rpx;
   color: #999;
   vertical-align: middle
+}
+.classTip{
+  font-size: 35rpx;
+  color: #6dc5a3;
+  background: #fff;
+  margin-top: 30rpx;
+  padding: 10rpx 40rpx;
+}
+.marginTopRepair{
+  margin-top: 133px;
+}
+.searchModel{
+  background: #fff;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0
 }
 
