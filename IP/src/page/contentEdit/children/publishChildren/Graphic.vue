@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="editTitle">
-			<input class="editTitleIpt" v-model.trim="title" maxlength="30" type="text" placeholder="文章标题  （5-30字）" style="display: block;height: 75px;width: 100%;font-size: 25px;padding-left: 25px;" />
+			<input class="editTitleIpt" v-model.trim="title" maxlength="50" type="text" placeholder="文章标题  （5-30字）" style="display: block;height: 75px;width: 100%;font-size: 25px;padding-left: 25px;" />
 		</div>
 		<!--<div id="editor-container" style="height: 700px;">-->
 		<div id="editor-trigger" style="height: 700px;">
