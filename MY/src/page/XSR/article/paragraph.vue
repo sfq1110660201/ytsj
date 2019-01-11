@@ -78,6 +78,7 @@
 				iscontentIndex:false,//判断ip简介部分是否显示
 				isRead:false,
 				locationhref: "###",
+				
 				SDK: "",
 				//微信分享参数
 				weiChatAppId:"",

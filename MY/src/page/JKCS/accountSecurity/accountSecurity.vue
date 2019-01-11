@@ -48,7 +48,7 @@
         },
         methods: {
             goChangePhone(){
-            	console.log(this.$route.path)
+            	console.log(123)
             	this.title="绑定第三方账号"
             	this.$router.push('/JKCSaccountSecurity/JKCSchangePhone');
             },
